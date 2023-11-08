@@ -46,7 +46,7 @@ final class ProgressView: UIView {
     }
 
     init() {
-        super.init(frame: frame)
+        super.init(frame: .zero)
     }
 
     override func draw(_ rect: CGRect) {
@@ -139,8 +139,8 @@ final class ProgressView: UIView {
 
     // 计算圆弧上点的坐标
     func calcCircleCoordinateWithCenter(_ center: CGPoint, radius: CGFloat, angle: CGFloat) -> CGPoint {
-            let x2 = radius * CGFloat(cosf(Float(angle) * Float(.pi) / Float(180)))
-            let y2 = radius * CGFloat(sinf(Float(angle) * Float(.pi) / Float(180)))
+            let x2 = radius * CGFloat(cosf(Float(angle) * .pi / Float(180)))
+            let y2 = radius * CGFloat(sinf(Float(angle) * .pi / Float(180)))
         return CGPoint(x: center.x + x2, y: center.y - y2)
     }
 }
