@@ -1,0 +1,6 @@
+module Pods_WeShare {
+  umbrella header "Pods-WeShare-umbrella.h"
+
+  export *
+  module * { export * }
+}
