@@ -8,7 +8,7 @@ final class ProgressView: UIView {
         static let trackColor = UIColor(red: 245 / 255.0, green: 245 / 255.0, blue: 245 / 255.0,
                                         alpha: 1)
         // 进度条颜色
-        static let progressColoar = UIColor.orange
+        static let progressColoar = UIColor.pl_main
     }
 
     // 进度槽
@@ -19,6 +19,8 @@ final class ProgressView: UIView {
     let path = UIBezierPath()
     // 头部圆点
     var dot: UIView!
+
+    static let dotSize = 13 + Constant.lineWidth
 
     // 进度条圆环中点
     var progressCenter: CGPoint {
@@ -73,10 +75,10 @@ final class ProgressView: UIView {
         layer.addSublayer(progressLayer)
 
         // 绘制进度条头部圆点
-        dot = UIView(frame: CGRect(x: 0, y: 0, width: Constant.lineWidth,
-                                   height: Constant.lineWidth))
+        dot = UIView(frame: CGRect(x: 0, y: 0, width: Self.dotSize,
+                                   height: Self.dotSize))
         let dotPath = UIBezierPath(ovalIn:
-            CGRect(x: 0, y: 0, width: Constant.lineWidth, height: Constant.lineWidth)).cgPath
+            CGRect(x: 0, y: 0, width: Self.dotSize, height: Self.dotSize)).cgPath
         let arc = CAShapeLayer()
         arc.lineWidth = 0
         arc.path = dotPath
@@ -84,10 +86,6 @@ final class ProgressView: UIView {
         arc.strokeEnd = 1
         arc.strokeColor = Constant.progressColoar.cgColor
         arc.fillColor = Constant.progressColoar.cgColor
-        arc.shadowColor = UIColor.black.cgColor
-        arc.shadowRadius = 5.0
-        arc.shadowOpacity = 0.5
-        arc.shadowOffset = CGSize.zero
         dot.layer.addSublayer(arc)
         dot.layer.position = calcCircleCoordinateWithCenter(progressCenter,
                                                             radius: radius, angle: CGFloat(-progress) / 100 * 360 + 90)
@@ -139,8 +137,8 @@ final class ProgressView: UIView {
 
     // 计算圆弧上点的坐标
     func calcCircleCoordinateWithCenter(_ center: CGPoint, radius: CGFloat, angle: CGFloat) -> CGPoint {
-            let x2 = radius * CGFloat(cosf(Float(angle) * .pi / Float(180)))
-            let y2 = radius * CGFloat(sinf(Float(angle) * .pi / Float(180)))
+        let x2 = radius * CGFloat(cosf(Float(angle) * .pi / Float(180)))
+        let y2 = radius * CGFloat(sinf(Float(angle) * .pi / Float(180)))
         return CGPoint(x: center.x + x2, y: center.y - y2)
     }
 }

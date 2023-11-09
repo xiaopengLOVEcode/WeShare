@@ -73,7 +73,7 @@ final class SendingViewController: PLBaseViewController {
         contentView.addSubview(progressView)
         progressView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(200)
+            make.width.height.equalTo(230)
             make.bottom.equalToSuperview().offset(-283)
         }
         
@@ -86,15 +86,14 @@ final class SendingViewController: PLBaseViewController {
         contentView.addSubview(bottomBtn)
         bottomBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(tipLable.snp.bottom).offset(16)
+            make.bottom.equalToSuperview().offset(-77)
             make.width.equalTo(274)
             make.height.equalTo(46)
         }
         
         contentView.addSubview(centerProgressLabel)
         centerProgressLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(infoView.snp.bottom).offset(173)
+            make.center.equalTo(progressView)
         }
     }
 }

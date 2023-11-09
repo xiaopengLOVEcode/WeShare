@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>NSContactsUsageDescription</key>
+	<string>请允许访问联系人，支持传输</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请允许访问相册，支持传输</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>请允许访问日历，支持传输</string>
+</dict>
 </plist>
