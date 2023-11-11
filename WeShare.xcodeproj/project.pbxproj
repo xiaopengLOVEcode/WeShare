@@ -10,6 +10,20 @@
 		59912ECF3395DE53BDB3912D /* libPods-WeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFB8F8897797B093057D65A /* libPods-WeShare.a */; };
 		620DB6522AFA82DF00C3A556 /* SendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DB6512AFA82DF00C3A556 /* SendingViewController.swift */; };
 		620DB6562AFA838600C3A556 /* InfoTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DB6552AFA838600C3A556 /* InfoTopView.swift */; };
+		623572382AFE7BF1000F8F34 /* SwitchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572332AFE7BF1000F8F34 /* SwitchBar.swift */; };
+		6235723B2AFE7BF1000F8F34 /* IntroduceCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572362AFE7BF1000F8F34 /* IntroduceCenterView.swift */; };
+		623572432AFE7D61000F8F34 /* ARSUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572422AFE7D61000F8F34 /* ARSUISwitch.swift */; };
+		623572462AFF6FEC000F8F34 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572442AFF6FEC000F8F34 /* SettingViewController.swift */; };
+		623572472AFF6FEC000F8F34 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572452AFF6FEC000F8F34 /* EntryView.swift */; };
+		623572492AFF7030000F8F34 /* IntroduceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572482AFF7030000F8F34 /* IntroduceController.swift */; };
+		6235724B2AFFB7EA000F8F34 /* ARSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235724A2AFFB7EA000F8F34 /* ARSGradientView.swift */; };
+		6235724F2AFFC35D000F8F34 /* TZAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6235724E2AFFC35D000F8F34 /* TZAlbumPickerController.m */; };
+		623572542AFFC42C000F8F34 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 623572532AFFC42C000F8F34 /* TZImageManager.m */; };
+		623572572AFFD447000F8F34 /* PhotoSelectedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */; };
+		623572592AFFD828000F8F34 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572582AFFD828000F8F34 /* PhotoModel.swift */; };
+		6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */; };
+		6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */; };
+		6235725F2AFFE9CD000F8F34 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */; };
 		629666932AF9188D00E06522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629666922AF9188D00E06522 /* AppDelegate.swift */; };
 		6296669C2AF9188F00E06522 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6296669B2AF9188F00E06522 /* Images.xcassets */; };
 		6296669F2AF9188F00E06522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6296669D2AF9188F00E06522 /* LaunchScreen.storyboard */; };
@@ -52,7 +66,6 @@
 		6296671A2AF9218300E06522 /* PLViewControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 629666F52AF9218300E06522 /* PLViewControllerUtils.m */; };
 		629667202AF925BD00E06522 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296671F2AF925BD00E06522 /* SendViewController.swift */; };
 		629667222AF925DB00E06522 /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667212AF925DB00E06522 /* ReceiveViewController.swift */; };
-		629667242AF925E800E06522 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667232AF925E800E06522 /* SettingViewController.swift */; };
 		629667262AF92FF000E06522 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667252AF92FF000E06522 /* PhotoViewController.swift */; };
 		629667282AF92FFC00E06522 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667272AF92FFC00E06522 /* VideoViewController.swift */; };
 		6296672A2AF9300600E06522 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667292AF9300600E06522 /* ContactViewController.swift */; };
@@ -61,7 +74,6 @@
 		629667332AF9322000E06522 /* OrderMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667322AF9322000E06522 /* OrderMenuCell.swift */; };
 		629667362AF9322600E06522 /* MineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667342AF9322600E06522 /* MineItemView.swift */; };
 		629667392AF9426E00E06522 /* WSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667382AF9426E00E06522 /* WSGradientView.swift */; };
-		6296673B2AF94A4E00E06522 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673A2AF94A4E00E06522 /* EntryView.swift */; };
 		6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673C2AF956FD00E06522 /* GradientButton.swift */; };
 		62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB43882AFBE237008F9DE3 /* ProgressView.swift */; };
 		62DB438C2AFD1376008F9DE3 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438B2AFD1376008F9DE3 /* GuideModel.swift */; };
@@ -75,6 +87,22 @@
 		42C0C66C69EF691728422096 /* Pods-WeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeShare.release.xcconfig"; path = "Target Support Files/Pods-WeShare/Pods-WeShare.release.xcconfig"; sourceTree = "<group>"; };
 		620DB6512AFA82DF00C3A556 /* SendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.swift; sourceTree = "<group>"; };
 		620DB6552AFA838600C3A556 /* InfoTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTopView.swift; sourceTree = "<group>"; };
+		623572332AFE7BF1000F8F34 /* SwitchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchBar.swift; sourceTree = "<group>"; };
+		623572362AFE7BF1000F8F34 /* IntroduceCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroduceCenterView.swift; sourceTree = "<group>"; };
+		623572422AFE7D61000F8F34 /* ARSUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSUISwitch.swift; sourceTree = "<group>"; };
+		623572442AFF6FEC000F8F34 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		623572452AFF6FEC000F8F34 /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		623572482AFF7030000F8F34 /* IntroduceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroduceController.swift; sourceTree = "<group>"; };
+		6235724A2AFFB7EA000F8F34 /* ARSGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSGradientView.swift; sourceTree = "<group>"; };
+		6235724D2AFFC35D000F8F34 /* TZAlbumPickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZAlbumPickerController.h; sourceTree = "<group>"; };
+		6235724E2AFFC35D000F8F34 /* TZAlbumPickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZAlbumPickerController.m; sourceTree = "<group>"; };
+		623572522AFFC42B000F8F34 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		623572532AFFC42C000F8F34 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectedHeader.swift; sourceTree = "<group>"; };
+		623572582AFFD828000F8F34 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemsCell.swift; sourceTree = "<group>"; };
+		6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LZCollectionView.swift; sourceTree = "<group>"; };
+		6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		6296668F2AF9188D00E06522 /* WeShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		629666922AF9188D00E06522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6296669B2AF9188F00E06522 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -123,7 +151,6 @@
 		6296671E2AF9228200E06522 /* WeShare-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeShare-Bridging-Header.h"; sourceTree = "<group>"; };
 		6296671F2AF925BD00E06522 /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		629667212AF925DB00E06522 /* ReceiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
-		629667232AF925E800E06522 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		629667252AF92FF000E06522 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		629667272AF92FFC00E06522 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		629667292AF9300600E06522 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -132,7 +159,6 @@
 		629667322AF9322000E06522 /* OrderMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderMenuCell.swift; sourceTree = "<group>"; };
 		629667342AF9322600E06522 /* MineItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineItemView.swift; sourceTree = "<group>"; };
 		629667382AF9426E00E06522 /* WSGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSGradientView.swift; sourceTree = "<group>"; };
-		6296673A2AF94A4E00E06522 /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		6296673C2AF956FD00E06522 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		62DB43882AFBE237008F9DE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		62DB438B2AFD1376008F9DE3 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
@@ -164,6 +190,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		623572512AFFC3CA000F8F34 /* PhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				623572522AFFC42B000F8F34 /* TZImageManager.h */,
+				623572532AFFC42C000F8F34 /* TZImageManager.m */,
+				6235724D2AFFC35D000F8F34 /* TZAlbumPickerController.h */,
+				6235724E2AFFC35D000F8F34 /* TZAlbumPickerController.m */,
+			);
+			path = PhotoPicker;
+			sourceTree = "<group>";
+		};
+		623572552AFFD403000F8F34 /* PhotoAbout */ = {
+			isa = PBXGroup;
+			children = (
+				623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */,
+				623572582AFFD828000F8F34 /* PhotoModel.swift */,
+				6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */,
+				6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */,
+			);
+			path = PhotoAbout;
+			sourceTree = "<group>";
+		};
 		629666862AF9188D00E06522 = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +236,7 @@
 				629666922AF9188D00E06522 /* AppDelegate.swift */,
 				629666A82AF91F7400E06522 /* TabBarItem.swift */,
 				629666A62AF91F4E00E06522 /* TabBarViewController.swift */,
+				623572512AFFC3CA000F8F34 /* PhotoPicker */,
 				62DB438A2AFD1359008F9DE3 /* Guide */,
 				629666C52AF9203A00E06522 /* Send */,
 				629666C72AF9205400E06522 /* Receive */,
@@ -213,8 +262,11 @@
 		629666C62AF9204900E06522 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				6296673A2AF94A4E00E06522 /* EntryView.swift */,
-				629667232AF925E800E06522 /* SettingViewController.swift */,
+				623572482AFF7030000F8F34 /* IntroduceController.swift */,
+				623572442AFF6FEC000F8F34 /* SettingViewController.swift */,
+				623572362AFE7BF1000F8F34 /* IntroduceCenterView.swift */,
+				623572452AFF6FEC000F8F34 /* EntryView.swift */,
+				623572332AFE7BF1000F8F34 /* SwitchBar.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -289,6 +341,8 @@
 		629666E62AF9218300E06522 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				6235724A2AFFB7EA000F8F34 /* ARSGradientView.swift */,
+				623572422AFE7D61000F8F34 /* ARSUISwitch.swift */,
 				62DB43932AFD419E008F9DE3 /* SheetView.swift */,
 				6296673C2AF956FD00E06522 /* GradientButton.swift */,
 				629667382AF9426E00E06522 /* WSGradientView.swift */,
@@ -318,8 +372,10 @@
 		629667302AF930DA00E06522 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6296671F2AF925BD00E06522 /* SendViewController.swift */,
+				623572552AFFD403000F8F34 /* PhotoAbout */,
 				629667252AF92FF000E06522 /* PhotoViewController.swift */,
+				6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */,
+				6296671F2AF925BD00E06522 /* SendViewController.swift */,
 				629667272AF92FFC00E06522 /* VideoViewController.swift */,
 				629667292AF9300600E06522 /* ContactViewController.swift */,
 				6296672B2AF9301F00E06522 /* CalendarViewController.swift */,
@@ -457,15 +513,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				629667052AF9218300E06522 /* NSData+Base64.m in Sources */,
+				623572462AFF6FEC000F8F34 /* SettingViewController.swift in Sources */,
 				629666A92AF91F7400E06522 /* TabBarItem.swift in Sources */,
 				62DB43902AFD2AD0008F9DE3 /* BannerView.swift in Sources */,
 				629666F82AF9218300E06522 /* UIDevice+Extension.swift in Sources */,
 				629666FB2AF9218300E06522 /* UIWindow+Extension.swift in Sources */,
 				629667222AF925DB00E06522 /* ReceiveViewController.swift in Sources */,
-				629667242AF925E800E06522 /* SettingViewController.swift in Sources */,
 				629666FD2AF9218300E06522 /* UIButton+Extension.swift in Sources */,
 				629667112AF9218300E06522 /* PLPresentModalController.swift in Sources */,
 				629667282AF92FFC00E06522 /* VideoViewController.swift in Sources */,
+				6235725F2AFFE9CD000F8F34 /* PhotoViewModel.swift in Sources */,
 				629667042AF9218300E06522 /* UIFont+Convenience.swift in Sources */,
 				629667082AF9218300E06522 /* HUDView.swift in Sources */,
 				629667032AF9218300E06522 /* RxCore+Extensions.swift in Sources */,
@@ -474,6 +531,7 @@
 				629667392AF9426E00E06522 /* WSGradientView.swift in Sources */,
 				629667262AF92FF000E06522 /* PhotoViewController.swift in Sources */,
 				629667012AF9218300E06522 /* UIScrollView+Extension.swift in Sources */,
+				6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */,
 				629666A72AF91F4E00E06522 /* TabBarViewController.swift in Sources */,
 				62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */,
 				6296672C2AF9301F00E06522 /* CalendarViewController.swift in Sources */,
@@ -481,15 +539,22 @@
 				6296670B2AF9218300E06522 /* LoadingHUDView.swift in Sources */,
 				6296671A2AF9218300E06522 /* PLViewControllerUtils.m in Sources */,
 				6296672A2AF9300600E06522 /* ContactViewController.swift in Sources */,
+				6235724F2AFFC35D000F8F34 /* TZAlbumPickerController.m in Sources */,
 				629667072AF9218300E06522 /* PLToast.swift in Sources */,
 				6296672F2AF9304000E06522 /* FileViewController.swift in Sources */,
 				620DB6562AFA838600C3A556 /* InfoTopView.swift in Sources */,
 				629667202AF925BD00E06522 /* SendViewController.swift in Sources */,
+				623572592AFFD828000F8F34 /* PhotoModel.swift in Sources */,
 				629666FF2AF9218300E06522 /* String+Extension.swift in Sources */,
 				629667172AF9218300E06522 /* PLBaseViewController.swift in Sources */,
+				6235724B2AFFB7EA000F8F34 /* ARSGradientView.swift in Sources */,
+				623572472AFF6FEC000F8F34 /* EntryView.swift in Sources */,
+				6235723B2AFE7BF1000F8F34 /* IntroduceCenterView.swift in Sources */,
 				629667062AF9218300E06522 /* Array+Extension.swift in Sources */,
 				629667152AF9218300E06522 /* CommonConstants.swift in Sources */,
+				623572432AFE7D61000F8F34 /* ARSUISwitch.swift in Sources */,
 				6296670E2AF9218300E06522 /* LayoutConstants.swift in Sources */,
+				623572572AFFD447000F8F34 /* PhotoSelectedHeader.swift in Sources */,
 				629666F62AF9218300E06522 /* UIImageView+Extension.swift in Sources */,
 				629667332AF9322000E06522 /* OrderMenuCell.swift in Sources */,
 				629666932AF9188D00E06522 /* AppDelegate.swift in Sources */,
@@ -503,15 +568,18 @@
 				629666FA2AF9218300E06522 /* UIColor+Extension.swift in Sources */,
 				629666FE2AF9218300E06522 /* Codable+Default.swift in Sources */,
 				629667002AF9218300E06522 /* UIView+Layout.swift in Sources */,
+				623572492AFF7030000F8F34 /* IntroduceController.swift in Sources */,
 				6296670F2AF9218300E06522 /* Device+Extension.swift in Sources */,
 				629666FC2AF9218300E06522 /* Collection+Extension.swift in Sources */,
 				629667132AF9218300E06522 /* ARSNavigationController.swift in Sources */,
 				6296670D2AF9218300E06522 /* TextView.swift in Sources */,
 				6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */,
 				629667182AF9218300E06522 /* PLViewController.swift in Sources */,
+				623572382AFE7BF1000F8F34 /* SwitchBar.swift in Sources */,
 				629667022AF9218300E06522 /* PLNetworkError.swift in Sources */,
+				623572542AFFC42C000F8F34 /* TZImageManager.m in Sources */,
 				629667142AF9218300E06522 /* PLFadedModalController.swift in Sources */,
-				6296673B2AF94A4E00E06522 /* EntryView.swift in Sources */,
+				6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */,
 				62DB43922AFD2EFB008F9DE3 /* BannerCell.swift in Sources */,
 				6296670C2AF9218300E06522 /* TTTAttributedLabel.m in Sources */,
 				629667192AF9218300E06522 /* PLHeaderView.swift in Sources */,
@@ -659,18 +727,23 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ54L65454;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
+				INFOPLIST_KEY_NSContactsUsageDescription = "请允许访问联系人，支持传输";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "请允许访问相册，支持传输";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeShare;
+				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexxs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WeShare/WeShare-Bridging-Header.h";
@@ -687,18 +760,23 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ54L65454;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
+				INFOPLIST_KEY_NSContactsUsageDescription = "请允许访问联系人，支持传输";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "请允许访问相册，支持传输";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeShare;
+				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexxs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WeShare/WeShare-Bridging-Header.h";

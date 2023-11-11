@@ -45,6 +45,8 @@ class SettingViewController: PLBaseViewController {
         var entries: [EntryView] = []
         let shareData = EntryData.arrow("分享给好友", "share") { [weak self] in
             guard let self = self else { return }
+            let vc = IntroduceController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let shareEntry = EntryView(with: shareData)
 
