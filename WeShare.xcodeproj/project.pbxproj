@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,8 +17,6 @@
 		623572472AFF6FEC000F8F34 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572452AFF6FEC000F8F34 /* EntryView.swift */; };
 		623572492AFF7030000F8F34 /* IntroduceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572482AFF7030000F8F34 /* IntroduceController.swift */; };
 		6235724B2AFFB7EA000F8F34 /* ARSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235724A2AFFB7EA000F8F34 /* ARSGradientView.swift */; };
-		6235724F2AFFC35D000F8F34 /* TZAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6235724E2AFFC35D000F8F34 /* TZAlbumPickerController.m */; };
-		623572542AFFC42C000F8F34 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 623572532AFFC42C000F8F34 /* TZImageManager.m */; };
 		623572572AFFD447000F8F34 /* PhotoSelectedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */; };
 		623572592AFFD828000F8F34 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572582AFFD828000F8F34 /* PhotoModel.swift */; };
 		6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */; };
@@ -75,6 +73,7 @@
 		629667362AF9322600E06522 /* MineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667342AF9322600E06522 /* MineItemView.swift */; };
 		629667392AF9426E00E06522 /* WSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667382AF9426E00E06522 /* WSGradientView.swift */; };
 		6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673C2AF956FD00E06522 /* GradientButton.swift */; };
+		62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */; };
 		62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB43882AFBE237008F9DE3 /* ProgressView.swift */; };
 		62DB438C2AFD1376008F9DE3 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438B2AFD1376008F9DE3 /* GuideModel.swift */; };
 		62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438D2AFD1444008F9DE3 /* GuideViewController.swift */; };
@@ -94,10 +93,6 @@
 		623572452AFF6FEC000F8F34 /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		623572482AFF7030000F8F34 /* IntroduceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroduceController.swift; sourceTree = "<group>"; };
 		6235724A2AFFB7EA000F8F34 /* ARSGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSGradientView.swift; sourceTree = "<group>"; };
-		6235724D2AFFC35D000F8F34 /* TZAlbumPickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZAlbumPickerController.h; sourceTree = "<group>"; };
-		6235724E2AFFC35D000F8F34 /* TZAlbumPickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZAlbumPickerController.m; sourceTree = "<group>"; };
-		623572522AFFC42B000F8F34 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
-		623572532AFFC42C000F8F34 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
 		623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectedHeader.swift; sourceTree = "<group>"; };
 		623572582AFFD828000F8F34 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemsCell.swift; sourceTree = "<group>"; };
@@ -160,6 +155,7 @@
 		629667342AF9322600E06522 /* MineItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineItemView.swift; sourceTree = "<group>"; };
 		629667382AF9426E00E06522 /* WSGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSGradientView.swift; sourceTree = "<group>"; };
 		6296673C2AF956FD00E06522 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		62DB43882AFBE237008F9DE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		62DB438B2AFD1376008F9DE3 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
 		62DB438D2AFD1444008F9DE3 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
@@ -190,24 +186,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		623572512AFFC3CA000F8F34 /* PhotoPicker */ = {
-			isa = PBXGroup;
-			children = (
-				623572522AFFC42B000F8F34 /* TZImageManager.h */,
-				623572532AFFC42C000F8F34 /* TZImageManager.m */,
-				6235724D2AFFC35D000F8F34 /* TZAlbumPickerController.h */,
-				6235724E2AFFC35D000F8F34 /* TZAlbumPickerController.m */,
-			);
-			path = PhotoPicker;
-			sourceTree = "<group>";
-		};
 		623572552AFFD403000F8F34 /* PhotoAbout */ = {
 			isa = PBXGroup;
 			children = (
-				623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */,
 				623572582AFFD828000F8F34 /* PhotoModel.swift */,
-				6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */,
-				6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */,
 			);
 			path = PhotoAbout;
 			sourceTree = "<group>";
@@ -236,7 +218,6 @@
 				629666922AF9188D00E06522 /* AppDelegate.swift */,
 				629666A82AF91F7400E06522 /* TabBarItem.swift */,
 				629666A62AF91F4E00E06522 /* TabBarViewController.swift */,
-				623572512AFFC3CA000F8F34 /* PhotoPicker */,
 				62DB438A2AFD1359008F9DE3 /* Guide */,
 				629666C52AF9203A00E06522 /* Send */,
 				629666C72AF9205400E06522 /* Receive */,
@@ -253,6 +234,7 @@
 		629666C52AF9203A00E06522 /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				62B84C212B00785C000A9FB8 /* ViewModel */,
 				629667312AF930E500E06522 /* Views */,
 				629667302AF930DA00E06522 /* ViewController */,
 			);
@@ -374,7 +356,6 @@
 			children = (
 				623572552AFFD403000F8F34 /* PhotoAbout */,
 				629667252AF92FF000E06522 /* PhotoViewController.swift */,
-				6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */,
 				6296671F2AF925BD00E06522 /* SendViewController.swift */,
 				629667272AF92FFC00E06522 /* VideoViewController.swift */,
 				629667292AF9300600E06522 /* ContactViewController.swift */,
@@ -388,12 +369,24 @@
 		629667312AF930E500E06522 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				623572562AFFD446000F8F34 /* PhotoSelectedHeader.swift */,
+				6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */,
+				6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */,
 				629667342AF9322600E06522 /* MineItemView.swift */,
 				629667322AF9322000E06522 /* OrderMenuCell.swift */,
 				620DB6552AFA838600C3A556 /* InfoTopView.swift */,
 				62DB43882AFBE237008F9DE3 /* ProgressView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		62B84C212B00785C000A9FB8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */,
+				62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		62DB438A2AFD1359008F9DE3 /* Guide */ = {
@@ -427,6 +420,7 @@
 				6296668B2AF9188D00E06522 /* Sources */,
 				6296668C2AF9188D00E06522 /* Frameworks */,
 				6296668D2AF9188D00E06522 /* Resources */,
+				6751626AC59DF3F5F0969C53 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -453,7 +447,7 @@
 				};
 			};
 			buildConfigurationList = 6296668A2AF9188D00E06522 /* Build configuration list for PBXProject "WeShare" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -505,6 +499,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6751626AC59DF3F5F0969C53 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeShare/Pods-WeShare-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeShare/Pods-WeShare-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeShare/Pods-WeShare-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -522,6 +533,7 @@
 				629666FD2AF9218300E06522 /* UIButton+Extension.swift in Sources */,
 				629667112AF9218300E06522 /* PLPresentModalController.swift in Sources */,
 				629667282AF92FFC00E06522 /* VideoViewController.swift in Sources */,
+				62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */,
 				6235725F2AFFE9CD000F8F34 /* PhotoViewModel.swift in Sources */,
 				629667042AF9218300E06522 /* UIFont+Convenience.swift in Sources */,
 				629667082AF9218300E06522 /* HUDView.swift in Sources */,
@@ -539,7 +551,6 @@
 				6296670B2AF9218300E06522 /* LoadingHUDView.swift in Sources */,
 				6296671A2AF9218300E06522 /* PLViewControllerUtils.m in Sources */,
 				6296672A2AF9300600E06522 /* ContactViewController.swift in Sources */,
-				6235724F2AFFC35D000F8F34 /* TZAlbumPickerController.m in Sources */,
 				629667072AF9218300E06522 /* PLToast.swift in Sources */,
 				6296672F2AF9304000E06522 /* FileViewController.swift in Sources */,
 				620DB6562AFA838600C3A556 /* InfoTopView.swift in Sources */,
@@ -577,7 +588,6 @@
 				629667182AF9218300E06522 /* PLViewController.swift in Sources */,
 				623572382AFE7BF1000F8F34 /* SwitchBar.swift in Sources */,
 				629667022AF9218300E06522 /* PLNetworkError.swift in Sources */,
-				623572542AFFC42C000F8F34 /* TZImageManager.m in Sources */,
 				629667142AF9218300E06522 /* PLFadedModalController.swift in Sources */,
 				6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */,
 				62DB43922AFD2EFB008F9DE3 /* BannerCell.swift in Sources */,
@@ -728,6 +738,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FQ54L65454;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
@@ -761,6 +772,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FQ54L65454;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";

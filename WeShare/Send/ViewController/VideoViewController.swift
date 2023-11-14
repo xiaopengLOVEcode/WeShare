@@ -16,14 +16,7 @@ class VideoViewController: UIViewController {
     
     weak var delegate: VideoViewControllerDelegate?
     
-    
-    private let dataList: [PhotoGroupModel] = [
-        PhotoGroupModel(title: "group1", isExpand: false, isSelectedAll: false),
-        PhotoGroupModel(title: "group2", isExpand: false, isSelectedAll: false),
-        PhotoGroupModel(title: "group3", isExpand: false, isSelectedAll: false),
-        PhotoGroupModel(title: "group4", isExpand: false, isSelectedAll: false),
-        PhotoGroupModel(title: "group5", isExpand: false, isSelectedAll: false)
-    ]
+    private let vm = VideoViewModel()
     
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -31,7 +24,7 @@ class VideoViewController: UIViewController {
         flowLayout.footerReferenceSize = .zero
         flowLayout.minimumLineSpacing = 7
         flowLayout.minimumInteritemSpacing = 7
-        flowLayout.sectionInset = .zero
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
         flowLayout.scrollDirection = .vertical
         flowLayout.headerReferenceSize = CGSize(width: LayoutConstants.deviceWidth - 32, height: 40)
         flowLayout.itemSize = CGSize(width: 110, height: 110)
@@ -97,11 +90,11 @@ class VideoViewController: UIViewController {
 
 extension VideoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return vm.itemCount(section: section)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dataList.count
+        return vm.dataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -121,16 +114,42 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 ofKind: kind,
                 withReuseIdentifier: PhotoSelectedHeader.reuseIdentifier,
                 for: indexPath
-            ) as? PhotoSelectedHeader, dataList.count > 1 else {
+            ) as? PhotoSelectedHeader, vm.dataList.count > 1 else {
                 return UICollectionReusableView()
             }
-            header.update(model: dataList[indexPath.section])
+            header.update(model: vm.dataList[indexPath.section])
+            header.section = indexPath.section
+            header.delegate = self
             return header
         }
         return UICollectionReusableView()
-        
-        
+    }
+}
+
+extension VideoViewController: PhotoSelectedHeaderDelegate {
+    func didSelectAllCommentActionCell(section: Int) {
+        let isSelected = !vm.currentSectionSelectedAll(section)
     }
     
-
+    func didSelectCommentActionCell(section: Int) {
+        let isExpand = !vm.currentSectionState(section)
+        vm.updateSectionState(section: section, isExpand: isExpand)
+        if isExpand {
+            collectionView.performBatchUpdates { [weak self] in
+                guard let self = self else { return }
+                if let indexPaths = self.vm.indexPathsForSubSection(section: section, loadingCount: 0) {
+                    self.collectionView.insertItems(at: indexPaths)
+                }
+            }
+        } else {
+            collectionView.performBatchUpdates { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                if let indexPaths = self.vm.indexPathsForSubSection(section: section, loadingCount: 0) {
+                    self.collectionView.deleteItems(at: indexPaths)
+                }
+            }
+        }
+    }
 }

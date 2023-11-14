@@ -8,6 +8,7 @@
 import RxCocoa
 import RxSwift
 import UIKit
+import TZImagePickerController
 
 protocol PhotoViewControllerDelegate: AnyObject {
     func photoViewControllerSend()
@@ -124,6 +125,10 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
 }
 
 extension PhotoViewController: PhotoSelectedHeaderDelegate {
+    func didSelectAllCommentActionCell(section: Int) {
+        
+    }
+    
     func didSelectCommentActionCell(section: Int) {
         let isExpand = !vm.currentSectionState(section)
         vm.updateSectionState(section: section, isExpand: isExpand)

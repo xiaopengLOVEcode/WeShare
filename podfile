@@ -24,4 +24,5 @@ target "WeShare" do
     pod 'R.swift'
     pod 'SDWebImage', '~> 5.13'
     pod 'YYText'
+    pod 'TZImagePickerController'
 end
