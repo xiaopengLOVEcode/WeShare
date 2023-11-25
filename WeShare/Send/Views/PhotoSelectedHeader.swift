@@ -9,6 +9,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 import UIKit
+import TZImagePickerController
 
 protocol PhotoSelectedHeaderDelegate: AnyObject {
     func didSelectCommentActionCell(section: Int)
@@ -72,10 +73,11 @@ final class PhotoSelectedHeader: UICollectionViewCell {
         }
     }
 
-    func update(model: PhotoGroupModel) {
-        titleLabel.text = model.title
+    func update(model: PhotoItemGroupModel) {
+        titleLabel.text = model.bumModel.name
         let imgStr = model.isExpand ? "up_arrow" : "down_arrow"
         arrowImg.image = UIImage(named: imgStr)
+        rightBtn.isHidden = !model.isExpand
         let rightTitle = model.isSelectedAll ? "取消全选" : "全选"
         rightBtn.setTitle(rightTitle, for: .normal)
         rightBtn.setTitle(rightTitle, for: .highlighted)

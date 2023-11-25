@@ -7,8 +7,9 @@
 
 import UIKit
 import RxSwift
+import TZImagePickerController
 
-protocol VideoViewControllerDelegate: AnyObject {
+protocol VideoViewControllerDelegate: SubCommProtocol {
     func videoViewControllerSend()
 }
 
@@ -38,7 +39,7 @@ class VideoViewController: UIViewController {
             withReuseIdentifier: PhotoSelectedHeader.reuseIdentifier
         )
         
-        view.register(PhotoItemsCell.self, forCellWithReuseIdentifier: PhotoItemsCell.reuseIdentifier)
+        view.register(TZAssetCell.self, forCellWithReuseIdentifier: "TZAssetCell")
         view.backgroundColor = .white
         view.dataSource = self
         view.delegate = self
@@ -54,14 +55,18 @@ class VideoViewController: UIViewController {
         $0.setTitle("开始发送", for: .normal)
         $0.setTitle("开始发送", for: .highlighted)
     }
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
         addHandleEvent()
+        configPhotoResource()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate?.showRightBtn(isHidden: true)
+    }
     
     private func setupSubviews() {
         view.addSubview(collectionView)
@@ -85,6 +90,25 @@ class VideoViewController: UIViewController {
         }.disposed(by: bag)
     }
 
+    
+    private func configPhotoResource() {
+        if !TZImageManager.default().authorizationStatusAuthorized() {
+            return
+        }
+        TZImagePickerConfig.sharedInstance().allowPickingImage = true
+        TZImagePickerConfig.sharedInstance().allowPickingVideo = true
+        TZImageManager.default().pickerDelegate = self
+        DispatchQueue.global(qos: .default).async {
+            TZImageManager.default().getAllAlbums(withFetchAssets: true) { models in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let groupMoldels: [PhotoItemGroupModel] = models?.map { PhotoItemGroupModel(bumModel: $0, isExpand: false, isSelectedAll: false) } ?? []
+                    self.vm.dataList = groupMoldels
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 
@@ -98,9 +122,13 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoItemsCell.reuseIdentifier, for: indexPath) as? PhotoItemsCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZAssetCell", for: indexPath) as? TZAssetCell else {
             return UICollectionViewCell()
         }
+        cell.showSelectBtn = true
+        cell.photoSelImage = UIImage(named: "selected")
+        cell.photoSelImage = UIImage(named: "unselected")
+        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as! TZAssetModel
         return cell
     }
     
@@ -114,7 +142,7 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 ofKind: kind,
                 withReuseIdentifier: PhotoSelectedHeader.reuseIdentifier,
                 for: indexPath
-            ) as? PhotoSelectedHeader, vm.dataList.count > 1 else {
+            ) as? PhotoSelectedHeader else {
                 return UICollectionReusableView()
             }
             header.update(model: vm.dataList[indexPath.section])
@@ -153,3 +181,13 @@ extension VideoViewController: PhotoSelectedHeaderDelegate {
         }
     }
 }
+
+extension VideoViewController: TZImagePickerControllerDelegate  {
+    func isAlbumCanSelect(_ albumName: String!, result: PHFetchResult<AnyObject>!) -> Bool {
+//        if albumName == "视频" {
+//            return true
+//        }
+        return true
+    }
+}
+

@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-protocol FileViewControllerDelegate: AnyObject {
+protocol FileViewControllerDelegate: SubCommProtocol {
     func fileViewControllerSend()
 }
 
@@ -43,6 +43,11 @@ class FileViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         addHandleEvent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate?.showRightBtn(isHidden: false)
     }
 
     private func setupSubviews() {

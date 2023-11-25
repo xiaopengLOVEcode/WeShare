@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		59912ECF3395DE53BDB3912D /* libPods-WeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFB8F8897797B093057D65A /* libPods-WeShare.a */; };
+		6206FDDA2B0B94ED009D1F80 /* PhotoItemGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206FDD92B0B94ED009D1F80 /* PhotoItemGroupModel.swift */; };
+		6206FDE02B0CFD64009D1F80 /* PPPersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206FDDD2B0CFD64009D1F80 /* PPPersonModel.swift */; };
+		6206FDE12B0CFD64009D1F80 /* PPAddressBookHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206FDDE2B0CFD64009D1F80 /* PPAddressBookHandle.swift */; };
+		6206FDE22B0CFD64009D1F80 /* PPGetAddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206FDDF2B0CFD64009D1F80 /* PPGetAddressBook.swift */; };
+		6206FDE42B0D0093009D1F80 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */; };
+		6206FDE62B0D0329009D1F80 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206FDE52B0D0329009D1F80 /* ContactCell.swift */; };
 		620DB6522AFA82DF00C3A556 /* SendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DB6512AFA82DF00C3A556 /* SendingViewController.swift */; };
 		620DB6562AFA838600C3A556 /* InfoTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DB6552AFA838600C3A556 /* InfoTopView.swift */; };
 		623572382AFE7BF1000F8F34 /* SwitchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623572332AFE7BF1000F8F34 /* SwitchBar.swift */; };
@@ -74,6 +80,10 @@
 		629667392AF9426E00E06522 /* WSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667382AF9426E00E06522 /* WSGradientView.swift */; };
 		6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673C2AF956FD00E06522 /* GradientButton.swift */; };
 		62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */; };
+		62CEDBD32B0E4D2F002AF1E4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */; };
+		62CEDBD52B0E4FBA002AF1E4 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */; };
+		62CEDBD72B0E50EA002AF1E4 /* CalendarTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */; };
+		62CEDBD92B0E6892002AF1E4 /* SubCommProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */; };
 		62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB43882AFBE237008F9DE3 /* ProgressView.swift */; };
 		62DB438C2AFD1376008F9DE3 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438B2AFD1376008F9DE3 /* GuideModel.swift */; };
 		62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438D2AFD1444008F9DE3 /* GuideViewController.swift */; };
@@ -84,6 +94,13 @@
 
 /* Begin PBXFileReference section */
 		42C0C66C69EF691728422096 /* Pods-WeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeShare.release.xcconfig"; path = "Target Support Files/Pods-WeShare/Pods-WeShare.release.xcconfig"; sourceTree = "<group>"; };
+		6206FDD92B0B94ED009D1F80 /* PhotoItemGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemGroupModel.swift; sourceTree = "<group>"; };
+		6206FDDB2B0CADC4009D1F80 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6206FDDD2B0CFD64009D1F80 /* PPPersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPPersonModel.swift; sourceTree = "<group>"; };
+		6206FDDE2B0CFD64009D1F80 /* PPAddressBookHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPAddressBookHandle.swift; sourceTree = "<group>"; };
+		6206FDDF2B0CFD64009D1F80 /* PPGetAddressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPGetAddressBook.swift; sourceTree = "<group>"; };
+		6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		6206FDE52B0D0329009D1F80 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		620DB6512AFA82DF00C3A556 /* SendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.swift; sourceTree = "<group>"; };
 		620DB6552AFA838600C3A556 /* InfoTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTopView.swift; sourceTree = "<group>"; };
 		623572332AFE7BF1000F8F34 /* SwitchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchBar.swift; sourceTree = "<group>"; };
@@ -156,6 +173,10 @@
 		629667382AF9426E00E06522 /* WSGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSGradientView.swift; sourceTree = "<group>"; };
 		6296673C2AF956FD00E06522 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTool.swift; sourceTree = "<group>"; };
+		62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCommProtocol.swift; sourceTree = "<group>"; };
 		62DB43882AFBE237008F9DE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		62DB438B2AFD1376008F9DE3 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
 		62DB438D2AFD1444008F9DE3 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
@@ -186,12 +207,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6206FDDC2B0CFCA1009D1F80 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				6206FDE72B0D032D009D1F80 /* Views */,
+				6206FDDE2B0CFD64009D1F80 /* PPAddressBookHandle.swift */,
+				6206FDDF2B0CFD64009D1F80 /* PPGetAddressBook.swift */,
+				6206FDDD2B0CFD64009D1F80 /* PPPersonModel.swift */,
+				629667292AF9300600E06522 /* ContactViewController.swift */,
+				6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		6206FDE72B0D032D009D1F80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6206FDE52B0D0329009D1F80 /* ContactCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		623572552AFFD403000F8F34 /* PhotoAbout */ = {
 			isa = PBXGroup;
 			children = (
 				623572582AFFD828000F8F34 /* PhotoModel.swift */,
 			);
 			path = PhotoAbout;
+			sourceTree = "<group>";
+		};
+		626A73982B0F563C00301C1D /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = QRCode;
 			sourceTree = "<group>";
 		};
 		629666862AF9188D00E06522 = {
@@ -218,6 +267,7 @@
 				629666922AF9188D00E06522 /* AppDelegate.swift */,
 				629666A82AF91F7400E06522 /* TabBarItem.swift */,
 				629666A62AF91F4E00E06522 /* TabBarViewController.swift */,
+				626A73982B0F563C00301C1D /* QRCode */,
 				62DB438A2AFD1359008F9DE3 /* Guide */,
 				629666C52AF9203A00E06522 /* Send */,
 				629666C72AF9205400E06522 /* Receive */,
@@ -234,6 +284,7 @@
 		629666C52AF9203A00E06522 /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				6206FDD92B0B94ED009D1F80 /* PhotoItemGroupModel.swift */,
 				62B84C212B00785C000A9FB8 /* ViewModel */,
 				629667312AF930E500E06522 /* Views */,
 				629667302AF930DA00E06522 /* ViewController */,
@@ -354,14 +405,15 @@
 		629667302AF930DA00E06522 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				62CEDBD12B0E4C6C002AF1E4 /* Calendar */,
+				6206FDDC2B0CFCA1009D1F80 /* Contact */,
 				623572552AFFD403000F8F34 /* PhotoAbout */,
 				629667252AF92FF000E06522 /* PhotoViewController.swift */,
 				6296671F2AF925BD00E06522 /* SendViewController.swift */,
 				629667272AF92FFC00E06522 /* VideoViewController.swift */,
-				629667292AF9300600E06522 /* ContactViewController.swift */,
-				6296672B2AF9301F00E06522 /* CalendarViewController.swift */,
 				6296672E2AF9304000E06522 /* FileViewController.swift */,
 				620DB6512AFA82DF00C3A556 /* SendingViewController.swift */,
+				62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -387,6 +439,17 @@
 				62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		62CEDBD12B0E4C6C002AF1E4 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				6296672B2AF9301F00E06522 /* CalendarViewController.swift */,
+				62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */,
+				62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */,
+				62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		62DB438A2AFD1359008F9DE3 /* Guide */ = {
@@ -453,6 +516,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 629666862AF9188D00E06522;
 			productRefGroup = 629666902AF9188D00E06522 /* Products */;
@@ -525,10 +589,13 @@
 			files = (
 				629667052AF9218300E06522 /* NSData+Base64.m in Sources */,
 				623572462AFF6FEC000F8F34 /* SettingViewController.swift in Sources */,
+				6206FDE22B0CFD64009D1F80 /* PPGetAddressBook.swift in Sources */,
 				629666A92AF91F7400E06522 /* TabBarItem.swift in Sources */,
 				62DB43902AFD2AD0008F9DE3 /* BannerView.swift in Sources */,
 				629666F82AF9218300E06522 /* UIDevice+Extension.swift in Sources */,
 				629666FB2AF9218300E06522 /* UIWindow+Extension.swift in Sources */,
+				6206FDE42B0D0093009D1F80 /* ContactViewModel.swift in Sources */,
+				6206FDE02B0CFD64009D1F80 /* PPPersonModel.swift in Sources */,
 				629667222AF925DB00E06522 /* ReceiveViewController.swift in Sources */,
 				629666FD2AF9218300E06522 /* UIButton+Extension.swift in Sources */,
 				629667112AF9218300E06522 /* PLPresentModalController.swift in Sources */,
@@ -548,6 +615,7 @@
 				62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */,
 				6296672C2AF9301F00E06522 /* CalendarViewController.swift in Sources */,
 				62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */,
+				6206FDE62B0D0329009D1F80 /* ContactCell.swift in Sources */,
 				6296670B2AF9218300E06522 /* LoadingHUDView.swift in Sources */,
 				6296671A2AF9218300E06522 /* PLViewControllerUtils.m in Sources */,
 				6296672A2AF9300600E06522 /* ContactViewController.swift in Sources */,
@@ -560,7 +628,9 @@
 				629667172AF9218300E06522 /* PLBaseViewController.swift in Sources */,
 				6235724B2AFFB7EA000F8F34 /* ARSGradientView.swift in Sources */,
 				623572472AFF6FEC000F8F34 /* EntryView.swift in Sources */,
+				62CEDBD72B0E50EA002AF1E4 /* CalendarTool.swift in Sources */,
 				6235723B2AFE7BF1000F8F34 /* IntroduceCenterView.swift in Sources */,
+				62CEDBD52B0E4FBA002AF1E4 /* CalendarViewModel.swift in Sources */,
 				629667062AF9218300E06522 /* Array+Extension.swift in Sources */,
 				629667152AF9218300E06522 /* CommonConstants.swift in Sources */,
 				623572432AFE7D61000F8F34 /* ARSUISwitch.swift in Sources */,
@@ -569,6 +639,7 @@
 				629666F62AF9218300E06522 /* UIImageView+Extension.swift in Sources */,
 				629667332AF9322000E06522 /* OrderMenuCell.swift in Sources */,
 				629666932AF9188D00E06522 /* AppDelegate.swift in Sources */,
+				62CEDBD32B0E4D2F002AF1E4 /* CalendarCell.swift in Sources */,
 				629667102AF9218300E06522 /* PLCommonSelectAlertView.swift in Sources */,
 				629666F92AF9218300E06522 /* ObservableProperty.swift in Sources */,
 				629667362AF9322600E06522 /* MineItemView.swift in Sources */,
@@ -576,6 +647,7 @@
 				629667122AF9218300E06522 /* PLPopupBaseView.swift in Sources */,
 				629667092AF9218300E06522 /* PLTextHUDView.swift in Sources */,
 				620DB6522AFA82DF00C3A556 /* SendingViewController.swift in Sources */,
+				6206FDDA2B0B94ED009D1F80 /* PhotoItemGroupModel.swift in Sources */,
 				629666FA2AF9218300E06522 /* UIColor+Extension.swift in Sources */,
 				629666FE2AF9218300E06522 /* Codable+Default.swift in Sources */,
 				629667002AF9218300E06522 /* UIView+Layout.swift in Sources */,
@@ -587,11 +659,13 @@
 				6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */,
 				629667182AF9218300E06522 /* PLViewController.swift in Sources */,
 				623572382AFE7BF1000F8F34 /* SwitchBar.swift in Sources */,
+				62CEDBD92B0E6892002AF1E4 /* SubCommProtocol.swift in Sources */,
 				629667022AF9218300E06522 /* PLNetworkError.swift in Sources */,
 				629667142AF9218300E06522 /* PLFadedModalController.swift in Sources */,
 				6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */,
 				62DB43922AFD2EFB008F9DE3 /* BannerCell.swift in Sources */,
 				6296670C2AF9218300E06522 /* TTTAttributedLabel.m in Sources */,
+				6206FDE12B0CFD64009D1F80 /* PPAddressBookHandle.swift in Sources */,
 				629667192AF9218300E06522 /* PLHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +677,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6296669E2AF9188F00E06522 /* Base */,
+				6206FDDB2B0CADC4009D1F80 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -615,6 +690,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -678,6 +754,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

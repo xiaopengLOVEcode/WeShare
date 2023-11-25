@@ -40,6 +40,7 @@ class SendViewController: PLBaseViewController {
         contactVc.delegate = self
         calendarVc.delegate = self
         fileVc.delegate = self
+        headerView.rightButton.isHidden = true
     }
     
     private func setupSubviews() {
@@ -103,7 +104,6 @@ extension SendViewController: PagingMenuViewControllerDataSource {
         cell.titleLabel.text = dataSource[index].menu
         cell.updateCurrrentImageStr(dataSource[index].imageName)
         cell.imageView.image = UIImage(named: dataSource[index].imageName)
-        
         return cell
     }
 
@@ -115,6 +115,20 @@ extension SendViewController: PagingMenuViewControllerDataSource {
 extension SendViewController: PagingMenuViewControllerDelegate {
     func menuViewController(viewController: PagingMenuViewController, didSelect page: Int, previousPage: Int) {
         contentController.scroll(to: page, animated: true)
+    }
+    
+//    func menuViewController(viewController: PagingMenuViewController, willDisplay cell: PagingMenuViewCell, forItemAt index: Int) {
+//        if index == 0  { 
+//            headerView.rightButton.isHidden = true
+//        }
+//    }
+    
+    func menuViewController(viewController: PagingMenuViewController, willAnimateFocusViewTo index: Int, with coordinator: PagingMenuFocusViewAnimationCoordinator) {
+        if index == 0 || index == 1 {
+            headerView.rightButton.isHidden = true
+        } else {
+            headerView.rightButton.isHidden = false
+        }
     }
 }
 
@@ -133,6 +147,11 @@ extension SendViewController: PagingContentViewControllerDataSource {
 extension SendViewController: PagingContentViewControllerDelegate {
     func contentViewController(viewController: PagingContentViewController, didManualScrollOn index: Int, percent: CGFloat) {
         menuController.scroll(index: index, percent: percent, animated: false)
+        if index == 0 || index == 1 {
+            headerView.rightButton.isHidden = true
+        } else {
+            headerView.rightButton.isHidden = false
+        }
     }
 }
 
@@ -162,6 +181,8 @@ extension SendViewController: PhotoViewControllerDelegate, VideoViewControllerDe
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
+    func showRightBtn(isHidden: Bool) {
+//        headerView.rightButton.isHidden = isHidden
+    }
 }
 

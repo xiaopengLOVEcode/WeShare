@@ -10,11 +10,11 @@ import RxSwift
 import UIKit
 import TZImagePickerController
 
-protocol PhotoViewControllerDelegate: AnyObject {
+protocol PhotoViewControllerDelegate: SubCommProtocol {
     func photoViewControllerSend()
 }
 
-final class PhotoViewController: UIViewController {
+final class PhotoViewController: UIViewController, TZImagePickerControllerDelegate {
     
     weak var delegate: PhotoViewControllerDelegate?
     
@@ -42,7 +42,7 @@ final class PhotoViewController: UIViewController {
             withReuseIdentifier: PhotoSelectedHeader.reuseIdentifier
         )
         
-        view.register(PhotoItemsCell.self, forCellWithReuseIdentifier: PhotoItemsCell.reuseIdentifier)
+        view.register(TZAssetCell.self, forCellWithReuseIdentifier: "TZAssetCell")
         view.backgroundColor = .white
         view.dataSource = self
         view.delegate = self
@@ -61,6 +61,12 @@ final class PhotoViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         addHandleEvent()
+        configPhotoResource()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate?.showRightBtn(isHidden: true)
     }
 
     private func setupSubviews() {
@@ -75,6 +81,25 @@ final class PhotoViewController: UIViewController {
             make.right.equalToSuperview().offset(-40)
             make.height.equalTo(46)
             make.bottom.equalToSuperview().offset(-15)
+        }
+    }
+    
+    private func configPhotoResource() {
+        if !TZImageManager.default().authorizationStatusAuthorized() {
+            return
+        }
+        TZImagePickerConfig.sharedInstance().allowPickingImage = true
+//        TZImagePickerConfig.sharedInstance().allowPickingVideo = false
+        TZImageManager.default().pickerDelegate = self
+        DispatchQueue.global(qos: .default).async {
+            TZImageManager.default().getAllAlbums(withFetchAssets: true) { models in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let groupMoldels: [PhotoItemGroupModel] = models?.map { PhotoItemGroupModel(bumModel: $0, isExpand: false, isSelectedAll: false) } ?? []
+                    self.vm.dataList = groupMoldels
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
 
@@ -96,9 +121,13 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoItemsCell.reuseIdentifier, for: indexPath) as? PhotoItemsCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TZAssetCell", for: indexPath) as? TZAssetCell else {
             return UICollectionViewCell()
         }
+        cell.showSelectBtn = true
+        cell.photoSelImage = UIImage(named: "selected")
+        cell.photoSelImage = UIImage(named: "unselected")
+        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as! TZAssetModel
         return cell
     }
     
@@ -112,7 +141,7 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 ofKind: kind,
                 withReuseIdentifier: PhotoSelectedHeader.reuseIdentifier,
                 for: indexPath
-            ) as? PhotoSelectedHeader, vm.dataList.count > 1 else {
+            ) as? PhotoSelectedHeader else {
                 return UICollectionReusableView()
             }
             header.update(model: vm.dataList[indexPath.section])
@@ -130,12 +159,13 @@ extension PhotoViewController: PhotoSelectedHeaderDelegate {
     }
     
     func didSelectCommentActionCell(section: Int) {
+        print("section: %d", section)
         let isExpand = !vm.currentSectionState(section)
         vm.updateSectionState(section: section, isExpand: isExpand)
         if isExpand {
             collectionView.performBatchUpdates { [weak self] in
                 guard let self = self else { return }
-                if let indexPaths = self.vm.indexPathsForSubSection(section: section, loadingCount: 0) {
+                if let indexPaths = self.vm.indexPathsForSubSection(section: section) {
                     self.collectionView.insertItems(at: indexPaths)
                 }
             }
@@ -144,10 +174,16 @@ extension PhotoViewController: PhotoSelectedHeaderDelegate {
                 guard let self = self else {
                     return
                 }
-                if let indexPaths = self.vm.indexPathsForSubSection(section: section, loadingCount: 0) {
+                if let indexPaths = self.vm.indexPathsForSubSection(section: section) {
                     self.collectionView.deleteItems(at: indexPaths)
                 }
             }
         }
+    }
+}
+
+extension PhotoViewController  {
+    func isAlbumCanSelect(_ albumName: String!, result: PHFetchResult<AnyObject>!) -> Bool {
+        return true
     }
 }

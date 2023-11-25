@@ -42,6 +42,7 @@ final class BannerView: UIView, UICollectionViewDataSource, UICollectionViewDele
         view.showsVerticalScrollIndicator = false
         view.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.reuseIdentifier)
         view.backgroundColor = .white
+        view.isScrollEnabled = false
         view.dataSource = self
         view.delegate = self
         return view
