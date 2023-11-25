@@ -23,8 +23,8 @@ final class SwapDataManager: NSObject {
     static let shared = SwapDataManager()
     
     // MultipeerConnectivity相关属性
-    private var myPeerID: MCPeerID!
-    private var session: MCSession!
+    private var myPeerID: MCPeerID
+    private var session: MCSession
     private var advertiser: MCNearbyServiceAdvertiser?
     private var browser: MCNearbyServiceBrowser?
     // 数据发送方需要使用的字段
@@ -32,19 +32,26 @@ final class SwapDataManager: NSObject {
     private var toPeerId: MCPeerID?
     
     // 数据传输回调闭包
-    var onDataReceived: ((String) -> Void)?
+    var dataReceived: ((TransferData) -> Void)?
     /// 连接状态变化
     var stateCallback: ((SessionState) -> Void)?
-    
+    /// 进度
+    private var progress: ((Double) -> Void)?
     // 服务类型
     private let serviceType = "weshare"
     
+    private var operations: [SendDataOperation] = []
+    private let operationQueue: OperationQueue
+    private let serialQueue: DispatchQueue
     // 初始化方法
     private override init() {
-        super.init()
+        serialQueue = DispatchQueue(label: "weshare.sendData.queue", qos: .default)
+        operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 3
         // 初始化Peer ID和Session
         myPeerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: myPeerID, securityIdentity: nil, encryptionPreference: .required)
+        super.init()
         session.delegate = self
     }
     
@@ -80,19 +87,81 @@ final class SwapDataManager: NSObject {
         session.disconnect()
         self.stateCallback = nil
     }
+
+    // MARK: - 发送方函数
+    /// 批量发送数据
+    /// - Parameters:
+    ///   - datas: 批量数据
+    ///   - progress: 发送进度
+    func sendDatas(_ datas: [TransferData], progress: @escaping (Double) -> Void) {
+        guard operations.isEmpty else {
+            return print("[debug] 队列忙，请稍后再试")
+        }
+        self.progress = progress
+        operations = datas.map { data in
+           let operation = SendDataOperation(id: data.identifier) { [weak self] op in
+               guard let dataToSend = messageArchiver(data) else {
+                    op.reportSuccess()
+                    return print("[error] 数据转换错误")
+                }
+               self?.sendDataIMP(data: dataToSend, errorCallback: {
+                   op.reportSuccess()
+               })
+            }
+            self.operationQueue.addOperation(operation)
+            return operation
+        }
+        operationQueue.progress.totalUnitCount = Int64(operations.count)
+        // 队列任务执行完
+        operationQueue.addBarrierBlock { [weak self] in
+            guard let self = self else { return }
+            print("[debug] 数据发送完成")
+            self.operations.removeAll()
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.progress?(1.0)
+                self.sendReceivedProgress(1.0)
+            }
+        }
+    }
     
-    // 发送数据
-    func sendData(_ data: String) {
+    // MARK: - 接收方函数
+    /// 接收数据
+    /// - Parameters:
+    ///   - dataReceived: 收到的数据
+    ///   - progress: 数据接收方进度
+    func onDataReceived(dataReceived: @escaping (TransferData) -> Void, progress: @escaping (Double) -> Void) {
+        self.progress = progress
+        self.dataReceived = dataReceived
+    }
+}
+
+// MARK: - Private
+private extension SwapDataManager {
+    /// 接收数据方，发送ACK
+    /// - Parameter ack: 文件的id
+    func sendACK(_ ack: String) {
+        guard let data = messageArchiver(ACKMessage(identifier: ack)) else { return }
+        sendDataIMP(data: data) {}
+    }
+    
+    /// 给数据接收方发送当前进度
+    func sendReceivedProgress(_ fractionCompleted: Double) {
+        guard let data = messageArchiver(ProgressMessage(progress: fractionCompleted)) else { return }
+        sendDataIMP(data: data) {}
+    }
+    
+    func sendDataIMP(data dataToSend: Data, errorCallback: () -> Void) {
         guard let peerID = toPeerId, session.connectedPeers.contains(peerID) else {
             // 如果设备未连接，可以在此处进行处理
+            errorCallback()
             return print("[error] 未连接到设备，无法发送数据")
         }
-        if let dataToSend = data.data(using: .utf8) {
-            do {
-                try session.send(dataToSend, toPeers: [peerID], with: .reliable)
-            } catch {
-                print("Error sending data: \(error.localizedDescription)")
-            }
+        do {
+            try session.send(dataToSend, toPeers: [peerID], with: .reliable)
+        } catch {
+            errorCallback()
+            print("Error sending data: \(error.localizedDescription)")
         }
     }
 }
@@ -135,16 +204,47 @@ extension SwapDataManager: MCSessionDelegate {
     
     // 实现MCSessionDelegate的方法来处理数据传输
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        if let receivedString = String(data: data, encoding: .utf8) {
+        // 判断收到的是否为ACK类型数据
+        if let ack = messageUnarchiver(data, type: ACKMessage.self)?.identifier {
+            guard ack != "close_message" else {
+                return stopServices()
+            }
+            // 判断收到的数据是否为ACK
+            self.operations.filter { $0.id == ack }.forEach { $0.reportSuccess() }
+            // 数据发送方的进度回调
+            let fractionCompleted = self.operationQueue.progress.fractionCompleted
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.progress?(fractionCompleted)
+            }
+            // 同时给数据接收方，发送下进度
+            self.sendReceivedProgress(fractionCompleted)
+            return
+        }
+        
+        // 是否为SwapData类型数据
+        if let swapData = messageUnarchiver(data, type: TransferData.self) {
+            // 发送ACK
+            self.sendACK(swapData.identifier)
             // 使用 onDataReceived 回调将数据传递给外部
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.onDataReceived?(receivedString)
+                self.dataReceived?(swapData)
+            }
+            return
+        }
+        
+        // 进度数据
+        if let fractionCompleted = messageUnarchiver(data, type: ProgressMessage.self)?.progress {
+            // 数据接收方的进度回调
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.progress?(Double(fractionCompleted))
+                self.sendACK("close_message")
+                self.stopServices()
             }
         }
     }
-    
-    // 其他MCSessionDelegate方法可以根据需要实现
 }
 
 // MARK: - MCNearbyServiceAdvertiserDelegate

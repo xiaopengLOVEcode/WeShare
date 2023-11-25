@@ -92,6 +92,9 @@
 		62DB43942AFD419E008F9DE3 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB43932AFD419E008F9DE3 /* SheetView.swift */; };
 		CCAD3CD72B11B57E00E1D030 /* SwapDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAD3CD62B11B57E00E1D030 /* SwapDataManager.swift */; };
 		CCAD3CDC2B11B90A00E1D030 /* SwapDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAD3CDB2B11B90A00E1D030 /* SwapDataViewController.swift */; };
+		CCAD3CDE2B12160700E1D030 /* TransferData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAD3CDD2B12160700E1D030 /* TransferData.swift */; };
+		CCAD3CE32B1224C000E1D030 /* OWSOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAD3CE22B1224C000E1D030 /* OWSOperation.swift */; };
+		CCAD3CE52B1225FC00E1D030 /* SendDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAD3CE42B1225FC00E1D030 /* SendDataOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +191,9 @@
 		6FFB8F8897797B093057D65A /* libPods-WeShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeShare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCAD3CD62B11B57E00E1D030 /* SwapDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapDataManager.swift; sourceTree = "<group>"; };
 		CCAD3CDB2B11B90A00E1D030 /* SwapDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapDataViewController.swift; sourceTree = "<group>"; };
+		CCAD3CDD2B12160700E1D030 /* TransferData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferData.swift; sourceTree = "<group>"; };
+		CCAD3CE22B1224C000E1D030 /* OWSOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OWSOperation.swift; sourceTree = "<group>"; };
+		CCAD3CE42B1225FC00E1D030 /* SendDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataOperation.swift; sourceTree = "<group>"; };
 		E24A2A29606E6A710C54C664 /* Pods-WeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeShare.debug.xcconfig"; path = "Target Support Files/Pods-WeShare/Pods-WeShare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -482,6 +488,9 @@
 			children = (
 				CCAD3CD62B11B57E00E1D030 /* SwapDataManager.swift */,
 				CCAD3CDB2B11B90A00E1D030 /* SwapDataViewController.swift */,
+				CCAD3CDD2B12160700E1D030 /* TransferData.swift */,
+				CCAD3CE22B1224C000E1D030 /* OWSOperation.swift */,
+				CCAD3CE42B1225FC00E1D030 /* SendDataOperation.swift */,
 			);
 			path = SwapDataManager;
 			sourceTree = "<group>";
@@ -606,6 +615,7 @@
 				623572462AFF6FEC000F8F34 /* SettingViewController.swift in Sources */,
 				6206FDE22B0CFD64009D1F80 /* PPGetAddressBook.swift in Sources */,
 				629666A92AF91F7400E06522 /* TabBarItem.swift in Sources */,
+				CCAD3CE52B1225FC00E1D030 /* SendDataOperation.swift in Sources */,
 				62DB43902AFD2AD0008F9DE3 /* BannerView.swift in Sources */,
 				629666F82AF9218300E06522 /* UIDevice+Extension.swift in Sources */,
 				629666FB2AF9218300E06522 /* UIWindow+Extension.swift in Sources */,
@@ -616,6 +626,7 @@
 				629667112AF9218300E06522 /* PLPresentModalController.swift in Sources */,
 				629667282AF92FFC00E06522 /* VideoViewController.swift in Sources */,
 				62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */,
+				CCAD3CDE2B12160700E1D030 /* TransferData.swift in Sources */,
 				6235725F2AFFE9CD000F8F34 /* PhotoViewModel.swift in Sources */,
 				629667042AF9218300E06522 /* UIFont+Convenience.swift in Sources */,
 				629667082AF9218300E06522 /* HUDView.swift in Sources */,
@@ -679,6 +690,7 @@
 				629667022AF9218300E06522 /* PLNetworkError.swift in Sources */,
 				629667142AF9218300E06522 /* PLFadedModalController.swift in Sources */,
 				6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */,
+				CCAD3CE32B1224C000E1D030 /* OWSOperation.swift in Sources */,
 				62DB43922AFD2EFB008F9DE3 /* BannerCell.swift in Sources */,
 				6296670C2AF9218300E06522 /* TTTAttributedLabel.m in Sources */,
 				6206FDE12B0CFD64009D1F80 /* PPAddressBookHandle.swift in Sources */,

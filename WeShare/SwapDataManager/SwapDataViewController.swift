@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import Photos
 
 class SwapDataViewController: PLBaseViewController {
 
@@ -75,6 +76,13 @@ class SwapDataViewController: PLBaseViewController {
         receivedlabel.font = UIFont.systemFont(ofSize: 16)
         receivedlabel.text = "接收到数据:"
         
+        let progresslabel = UILabel()
+        progresslabel.textAlignment = .left
+        progresslabel.numberOfLines = 0
+        progresslabel.font = UIFont.systemFont(ofSize: 16)
+        progresslabel.text = "0.0"
+        advertisingStackView.addArrangedSubview(progresslabel)
+        
         let sender = UIButton(type: .custom)
         sender.backgroundColor = .orange
         sender.setTitleColor(UIColor.black, for: .normal)
@@ -114,14 +122,25 @@ class SwapDataViewController: PLBaseViewController {
         receivedlabel.isHidden = true
         advertisingStackView.addArrangedSubview(receivedlabel)
         
-        SwapDataManager.shared.onDataReceived = { [weak self] text in
+        SwapDataManager.shared.onDataReceived { [weak self] data in
             guard let self = self else { return }
+            var text = "未知数据"
+            switch data.type {
+            case .calendar: text = "日历"
+            case .contact: text = "联系人"
+            case .document: text = "文档"
+            case .photo: text = "照片"
+            case .video: text = "视频"
+            case .text: text = String(data: data.data, encoding: .utf8) ?? ""
+            }
             let label = UILabel()
             label.textAlignment = .left
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 14)
             label.text = text
             self.advertisingStackView.addArrangedSubview(label)
+        } progress: { progress in
+            progresslabel.text = "\(progress)"
         }
     }
     
@@ -140,6 +159,13 @@ class SwapDataViewController: PLBaseViewController {
         sendButton.backgroundColor = .orange
         sendButton.setTitleColor(UIColor.black, for: .normal)
         sendButton.setTitle("模拟发送数据", for: .normal)
+        
+        let progresslabel = UILabel()
+        progresslabel.textAlignment = .left
+        progresslabel.numberOfLines = 0
+        progresslabel.font = UIFont.systemFont(ofSize: 16)
+        progresslabel.text = "0.0"
+        browserStackView.addArrangedSubview(progresslabel)
         
         let browser = UIButton(type: .custom)
         browser.backgroundColor = .orange
@@ -179,7 +205,11 @@ class SwapDataViewController: PLBaseViewController {
         
         sendButton.isHidden = true
         sendButton.rx.tap.subscribeNext { _ in
-            SwapDataManager.shared.sendData(UUID().uuidString)
+            let sendDatas = ["数据1", "数据2", "数据3", "数据4", "数据5", "数据6"]
+            let result = sendDatas.compactMap { $0.map() }
+            SwapDataManager.shared.sendDatas(result) { progress in
+                progresslabel.text = "\(progress)"
+            }
         }.disposed(by: bag)
         browserStackView.addArrangedSubview(sendButton)
         sendButton.snp.makeConstraints { make in
