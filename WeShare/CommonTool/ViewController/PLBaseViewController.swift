@@ -40,6 +40,7 @@ class PLBaseViewController: PLViewController {
             )
             headerView.leftButton.isHidden = true
         }
+        view.backgroundColor = .white
     }
 
     open override func viewDidAppear(_ animated: Bool) {

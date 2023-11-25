@@ -25,8 +25,10 @@ class CalendarViewController: UIViewController {
         tableView.estimatedSectionFooterHeight = 0
         tableView.sectionIndexColor = UIColor.pl_main
         tableView.adaptToIOS11()
-        if #available(iOS 11.0, *) {
+        if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
+        } else {
+            // Fallback on earlier versions
         }
         return tableView
     }()

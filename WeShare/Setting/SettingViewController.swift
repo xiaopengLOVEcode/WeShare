@@ -72,6 +72,8 @@ class SettingViewController: PLBaseViewController {
 
         let policyData = EntryData.arrow("隐私政策", "policy") { [weak self] in
             guard let self = self else { return }
+            let vc = SwapDataViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let policyEntry = EntryView(with: policyData)
 
