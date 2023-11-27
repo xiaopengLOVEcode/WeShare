@@ -13,6 +13,7 @@ target "WeShare" do
               end
        end
     end
+    
     pod 'SnapKit'
     pod 'Then'
     pod 'RxGesture', '~> 3.0'
@@ -24,5 +25,6 @@ target "WeShare" do
     pod 'R.swift'
     pod 'SDWebImage', '~> 5.13'
     pod 'YYText'
+    pod 'SGQRCode', '~> 4.1.0'
     pod 'TZImagePickerController'
 end

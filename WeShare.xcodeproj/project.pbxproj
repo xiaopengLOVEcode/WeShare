@@ -28,6 +28,7 @@
 		6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */; };
 		6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */; };
 		6235725F2AFFE9CD000F8F34 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */; };
+		626A739B2B11F63000301C1D /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626A739A2B11F63000301C1D /* QRCodeViewController.swift */; };
 		629666932AF9188D00E06522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629666922AF9188D00E06522 /* AppDelegate.swift */; };
 		6296669C2AF9188F00E06522 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6296669B2AF9188F00E06522 /* Images.xcassets */; };
 		6296669F2AF9188F00E06522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6296669D2AF9188F00E06522 /* LaunchScreen.storyboard */; };
@@ -79,6 +80,7 @@
 		629667362AF9322600E06522 /* MineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667342AF9322600E06522 /* MineItemView.swift */; };
 		629667392AF9426E00E06522 /* WSGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629667382AF9426E00E06522 /* WSGradientView.swift */; };
 		6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673C2AF956FD00E06522 /* GradientButton.swift */; };
+		62B82B012B136422006953DA /* QRFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B82B002B136422006953DA /* QRFocusView.swift */; };
 		62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */; };
 		62CEDBD32B0E4D2F002AF1E4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */; };
 		62CEDBD52B0E4FBA002AF1E4 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */; };
@@ -120,6 +122,7 @@
 		6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemsCell.swift; sourceTree = "<group>"; };
 		6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LZCollectionView.swift; sourceTree = "<group>"; };
 		6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		626A739A2B11F63000301C1D /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		6296668F2AF9188D00E06522 /* WeShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		629666922AF9188D00E06522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6296669B2AF9188F00E06522 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -177,6 +180,7 @@
 		629667342AF9322600E06522 /* MineItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineItemView.swift; sourceTree = "<group>"; };
 		629667382AF9426E00E06522 /* WSGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSGradientView.swift; sourceTree = "<group>"; };
 		6296673C2AF956FD00E06522 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		62B82B002B136422006953DA /* QRFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRFocusView.swift; sourceTree = "<group>"; };
 		62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -253,6 +257,15 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
+		626A73992B11F5FF00301C1D /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				626A739A2B11F63000301C1D /* QRCodeViewController.swift */,
+				62B82B002B136422006953DA /* QRFocusView.swift */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
 		629666862AF9188D00E06522 = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +293,7 @@
 				629666A82AF91F7400E06522 /* TabBarItem.swift */,
 				629666A62AF91F4E00E06522 /* TabBarViewController.swift */,
 				6296669B2AF9188F00E06522 /* Images.xcassets */,
+				626A73992B11F5FF00301C1D /* QR */,
 				629666C82AF9210600E06522 /* CommonTool */,
 				62DB438A2AFD1359008F9DE3 /* Guide */,
 				6296669D2AF9188F00E06522 /* LaunchScreen.storyboard */,
@@ -639,6 +653,7 @@
 				629667012AF9218300E06522 /* UIScrollView+Extension.swift in Sources */,
 				6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */,
 				629666A72AF91F4E00E06522 /* TabBarViewController.swift in Sources */,
+				626A739B2B11F63000301C1D /* QRCodeViewController.swift in Sources */,
 				62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */,
 				6296672C2AF9301F00E06522 /* CalendarViewController.swift in Sources */,
 				62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */,
@@ -677,6 +692,7 @@
 				6206FDDA2B0B94ED009D1F80 /* PhotoItemGroupModel.swift in Sources */,
 				629666FA2AF9218300E06522 /* UIColor+Extension.swift in Sources */,
 				629666FE2AF9218300E06522 /* Codable+Default.swift in Sources */,
+				62B82B012B136422006953DA /* QRFocusView.swift in Sources */,
 				629667002AF9218300E06522 /* UIView+Layout.swift in Sources */,
 				623572492AFF7030000F8F34 /* IntroduceController.swift in Sources */,
 				6296670F2AF9218300E06522 /* Device+Extension.swift in Sources */,
@@ -840,15 +856,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y3U879H43G;
+				DEVELOPMENT_TEAM = JG4DPWG69J;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
-				INFOPLIST_KEY_NSContactsUsageDescription = "请允许访问联系人，支持传输";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "请允许访问相册，支持传输";
+				INFOPLIST_KEY_NSCameraUsageDescription = "允许使用相机";
+				INFOPLIST_KEY_NSContactsUsageDescription = "允许联系人访问权限";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "允许使用网络授权";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "允许相册访问权限";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "允许访问提醒事件";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -859,8 +879,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexxs;
+				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexsaxs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WeShare/WeShare-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -874,15 +895,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y3U879H43G;
+				DEVELOPMENT_TEAM = JG4DPWG69J;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
-				INFOPLIST_KEY_NSContactsUsageDescription = "请允许访问联系人，支持传输";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "请允许访问相册，支持传输";
+				INFOPLIST_KEY_NSCameraUsageDescription = "允许使用相机";
+				INFOPLIST_KEY_NSContactsUsageDescription = "允许联系人访问权限";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "允许使用网络授权";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "允许相册访问权限";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "允许访问提醒事件";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -893,8 +918,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexxs;
+				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexsaxs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WeShare/WeShare-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

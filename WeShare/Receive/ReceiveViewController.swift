@@ -7,6 +7,7 @@
 
 import UIKit
 import YYText
+import SGQRCode
 
 class ReceiveViewController: PLBaseViewController {
     private let titleLable = UILabel().then {
@@ -82,6 +83,10 @@ class ReceiveViewController: PLBaseViewController {
             make.left.equalTo(titleLable)
             make.right.equalTo(titleLable)
         }
+        
+        let qrSize = LayoutConstants.deviceWidth - 70 - 14
+        let qrImage = SGGenerateQRCode.generateQRCode(withData: "换机助手", size: qrSize)
+        imageView.image = qrImage
     }
 
     private func downLoadFunc() {

@@ -157,8 +157,12 @@ extension SendViewController: PagingContentViewControllerDelegate {
 
 extension SendViewController: PhotoViewControllerDelegate, VideoViewControllerDelegate, ContactViewControllerDelegate, CalendarViewControllerDelegate , FileViewControllerDelegate {
     func photoViewControllerSend() {
-        let vc = SendingViewController(style: .send)
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let qrVc = QRCodeViewController()
+        self.navigationController?.pushViewController(qrVc, animated: true)
+        
+//        let vc = SendingViewController(style: .send)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func videoViewControllerSend() {

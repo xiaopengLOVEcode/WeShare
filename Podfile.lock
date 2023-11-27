@@ -17,6 +17,7 @@ PODS:
   - SDWebImage (5.18.3):
     - SDWebImage/Core (= 5.18.3)
   - SDWebImage/Core (5.18.3)
+  - SGQRCode (4.1.0)
   - SnapKit (5.6.0)
   - Then (3.0.0)
   - TZImagePickerController (3.8.3):
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - RxGesture (~> 3.0)
   - RxSwift (~> 5.0)
   - SDWebImage (~> 5.13)
+  - SGQRCode (~> 4.1.0)
   - SnapKit
   - Then
   - TZImagePickerController
@@ -52,6 +54,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SDWebImage
+    - SGQRCode
     - SnapKit
     - Then
     - TZImagePickerController
@@ -68,11 +71,12 @@ SPEC CHECKSUMS:
   RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
   RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
   SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
+  SGQRCode: 6ad664d63f38f2842503bc5087812c5a3136d924
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 818fe87eaba759c2f36feef4038db988f9a2b468
+PODFILE CHECKSUM: bf2e727fe6d9739c39b1573ade1515664c87b6fc
 
 COCOAPODS: 1.14.3

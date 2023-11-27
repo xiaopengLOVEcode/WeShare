@@ -2,26 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>允许使用相机</string>
-	<key>NSRemindersUsageDescription</key>
-	<string>允许访问提醒事件</string>
-	<key>CFBundleIdentifier</key>
-	<string></string>
-	<key>NSCalendarsFullAccessUsageDescription</key>
-	<string>允许访问日历</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en_US</string>
-	<key>NSContactsUsageDescription</key>
-	<string>允许联系人访问权限</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>允许使用网络授权</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_weshare._tcp</string>
 		<string>_weshare._udp</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>允许相册访问权限</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>允许访问日历</string>
 </dict>
 </plist>
