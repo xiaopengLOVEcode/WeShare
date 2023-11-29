@@ -14,10 +14,12 @@ protocol CalendarViewControllerDelegate: SubCommProtocol {
 
 class CalendarViewController: UIViewController {
     
+    private let vm = CalendarViewModel()
+    
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-//        tableView.delegate = self
-//        tableView.dataSource = self
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -62,10 +64,12 @@ class CalendarViewController: UIViewController {
          let calendarManager = CalendarManager()
          calendarManager.requestCalendarAccess { granted in
             if granted {
-                CalendarManager.selectReminder { reminders in
+                calendarManager.fetchReminders { [weak self] reminders in
+                    guard let self = self else { return }
                     if let reminders = reminders {
-                        for reminder in reminders {
-                            print("Title: \(String(describing: reminder.title)), Due Date: \(reminder.dueDateComponents?.date ?? Date())")
+                        self.vm.dataList = reminders
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -78,7 +82,7 @@ class CalendarViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(56)
+            make.top.equalToSuperview().offset(40)
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -98,17 +102,42 @@ class CalendarViewController: UIViewController {
             self.delegate?.calendarViewControllerSend()
         }.disposed(by: bag)
     }
-
 }
 
-//extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
-////    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////        <#code#>
-////    }
-////    
-////    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-////        <#code#>
-////    }
-//    
-//    
-//}
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vm.dataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = CalendarCell.identifier
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CalendarCell
+        if cell == nil {
+            cell = CalendarCell(style: .subtitle, reuseIdentifier: identifier)
+        }
+        let model = vm.dataList[indexPath.row]
+        cell?.bindData(with: model)
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    // 高度
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 83
+    }
+}

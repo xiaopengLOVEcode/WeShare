@@ -41,4 +41,14 @@ final class VideoViewModel {
     func currentSectionSelectedAll(_ section: Int) -> Bool {
         return dataList[section].isSelectedAll
     }
+    
+    func selectedAllPhotoModel(with section: Int) {
+        let isSelectedAll = !dataList[section].isSelectedAll
+        
+        dataList[section].bumModel.models.forEach { photoResource in
+            guard let model = photoResource as? TZAssetModel else { return }
+            model.isSelected = isSelectedAll
+        }
+        dataList[section].isSelectedAll = isSelectedAll
+    }
 }

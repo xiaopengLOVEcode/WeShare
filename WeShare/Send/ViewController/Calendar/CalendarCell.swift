@@ -7,8 +7,11 @@
 
 import Foundation
 import RxSwift
+import EventKit
 
 final class CalendarCell: UITableViewCell {
+    
+    static let identifier = "CalendarCell"
     
     var isBtnSelected = false {
         didSet {
@@ -18,7 +21,7 @@ final class CalendarCell: UITableViewCell {
     
     private let titleLable = UILabel().then {
         $0.font = .boldFont(16)
-        $0.textColor = .pl_main
+        $0.textColor = .pl_title
     }
     
     private let subTitleLable = UILabel().then {
@@ -59,13 +62,13 @@ final class CalendarCell: UITableViewCell {
         contentView.addSubview(checkBtn)
         checkBtn.snp.makeConstraints { make in
             make.width.height.equalTo(24)
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(18)
             make.left.equalToSuperview().offset(15)
         }
         
         contentView.addSubview(titleLable)
         titleLable.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(17)
             make.left.equalTo(checkBtn.snp.right).offset(25)
         }
         
@@ -74,5 +77,21 @@ final class CalendarCell: UITableViewCell {
             make.left.equalTo(titleLable)
             make.top.equalTo(titleLable.snp.bottom).offset(8)
         }
+        
+        contentView.addSubview(grayLine)
+        grayLine.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
+            make.left.equalTo(titleLable)
+            make.right.equalToSuperview().offset(-24)
+        }
+    }
+    
+    func bindData(with event: EKEvent) {
+        titleLable.text = event.title
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM月dd日" // 设置日期格式为月和日
+        let monthAndDayString = dateFormatter.string(from: event.startDate)
+        subTitleLable.text = monthAndDayString
     }
 }

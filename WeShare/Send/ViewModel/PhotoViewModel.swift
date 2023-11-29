@@ -37,4 +37,14 @@ final class PhotoViewModel {
     func currentSectionState(_ section: Int) -> Bool {
         return dataList[section].isExpand
     }
+    
+    func selectedAllPhotoModel(with section: Int) {
+        let isSelectedAll = !dataList[section].isSelectedAll
+        
+        dataList[section].bumModel.models.forEach { photoResource in
+            guard let model = photoResource as? TZAssetModel else { return }
+            model.isSelected = isSelectedAll
+        }
+        dataList[section].isSelectedAll = isSelectedAll
+    }
 }

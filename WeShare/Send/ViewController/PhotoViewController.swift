@@ -164,7 +164,8 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
 extension PhotoViewController: PhotoSelectedHeaderDelegate {
     func didSelectAllCommentActionCell(section: Int) {
-        
+        vm.selectedAllPhotoModel(with: section)
+        collectionView.reloadData()
     }
     
     func didSelectCommentActionCell(section: Int) {

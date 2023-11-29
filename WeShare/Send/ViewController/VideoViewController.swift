@@ -166,7 +166,8 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
 
 extension VideoViewController: PhotoSelectedHeaderDelegate {
     func didSelectAllCommentActionCell(section: Int) {
-        let isSelected = !vm.currentSectionSelectedAll(section)
+        vm.selectedAllPhotoModel(with: section)
+        collectionView.reloadData()
     }
     
     func didSelectCommentActionCell(section: Int) {

@@ -16,18 +16,41 @@ class CalendarManager {
         }
     }
 
-    func fetchReminders(completion: @escaping ([EKReminder]?) -> Void) {
-        let calendars = eventStore.calendars(for: .reminder)
-        let predicate = eventStore.predicateForReminders(in: calendars)
-        eventStore.fetchReminders(matching: predicate) { reminders in
-            completion(reminders)
+    func fetchReminders(completion: @escaping ([EKEvent]?) -> Void) {
+//        let calendars = eventStore.calendars(for: .event)
+//        let start = Date(timeIntervalSince1970: 0)
+//        let end = Date()
+//        let predicate = eventStore.predicateForEvents(withStart: start, end: end, calendars: calendars)
+//        
+//        let models = eventStore.events(matching: predicate)
+//        print("")
+//        eventStore.fetchReminders(matching: predicate) { reminders in
+//            completion(reminders)
+//        }
+        
+        let calendar = Calendar.current
+        let startDate = calendar.date(byAdding: .month, value: -1, to: Date())!
+        let endDate = calendar.date(byAdding: .month, value: 1, to: Date())!
+
+        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
+        let events = eventStore.events(matching: predicate)
+        for event in events {
+            print("Event Title: \(event.title ?? "")")
+            print("Event Start Date: \(event.startDate ?? Date())")
+            print("Event End Date: \(event.endDate ?? Date())")
+            // 其他事件属性...
         }
+        DispatchQueue.main.async {
+            completion(events)
+        }
+        
     }
     
     // https://developer.aliyun.com/article/932459  日历用法
     static func selectReminder(remindersClosure: @escaping (([EKReminder]?) -> Void)) {
         // 在取得提醒之前，需要先获取授权
         let eventStore = EKEventStore()
+        eventStore.calendars(for: .reminder)
         eventStore.requestAccess(to: .event) {
             (granted: Bool, error: Error?) in
             if granted && (error == nil) {
