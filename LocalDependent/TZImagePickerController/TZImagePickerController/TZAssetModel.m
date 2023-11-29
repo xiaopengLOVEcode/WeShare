@@ -43,6 +43,18 @@
     }
 }
 
+- (void)setResult:(PHFetchResult *)result picker:(TZImageManager *)picker config:(TZImagePickerConfig *)config needFetchAssets:(BOOL)needFetchAssets {
+    _result = result;
+    if (needFetchAssets) {
+        [picker getAssetsFromFetchResult:result config: config completion:^(NSArray<TZAssetModel *> *models) {
+            self->_models = models;
+            if (self->_selectedModels) {
+                [self checkSelectedModels];
+            }
+        }];
+    }
+}
+
 - (void)refreshFetchResult {
     PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:self.collection options:self.options];
     self.count = fetchResult.count;

@@ -22,6 +22,8 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
     
     private let bag = DisposeBag()
     
+    private let picker = TZImageManager()
+    
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.headerReferenceSize = .zero
@@ -88,11 +90,10 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
         if !TZImageManager.default().authorizationStatusAuthorized() {
             return
         }
-        TZImagePickerConfig.sharedInstance().allowPickingImage = true
-//        TZImagePickerConfig.sharedInstance().allowPickingVideo = false
-        TZImageManager.default().pickerDelegate = self
-        DispatchQueue.global(qos: .default).async {
-            TZImageManager.default().getAllAlbums(withFetchAssets: true) { models in
+        picker?.pickerDelegate = self
+        DispatchQueue.global(qos: .default).async { [weak self] in
+            guard let self = self else { return }
+            self.picker?.getAllAlbums(false, allowPickingImage: true, needFetchAssets: true) { models in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     let groupMoldels: [PhotoItemGroupModel] = models?.map { PhotoItemGroupModel(bumModel: $0, isExpand: false, isSelectedAll: false) } ?? []
@@ -127,7 +128,7 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
         cell.showSelectBtn = true
         cell.photoDefImage = UIImage(named: "unselected")
         cell.photoSelImage = UIImage(named: "selected")
-        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as! TZAssetModel
+        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as? TZAssetModel
         cell.didSelectPhotoBlock = { [weak cell] isSelected in
             guard let cell = cell else { return }
             if isSelected {

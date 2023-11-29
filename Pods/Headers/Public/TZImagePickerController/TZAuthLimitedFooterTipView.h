@@ -1,1 +1,1 @@
-../../../TZImagePickerController/TZImagePickerController/TZImagePickerController/TZAuthLimitedFooterTipView.h
+../../../../LocalDependent/TZImagePickerController/TZImagePickerController/TZAuthLimitedFooterTipView.h

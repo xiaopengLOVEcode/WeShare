@@ -19,6 +19,7 @@
 @property (nonatomic, strong) PHCachingImageManager *cachingImageManager;
 
 + (instancetype)manager NS_SWIFT_NAME(default());
+- (instancetype)init;
 + (void)deallocManager;
 
 @property (weak, nonatomic) id<TZImagePickerControllerDelegate> pickerDelegate;
@@ -59,6 +60,7 @@
 
 /// Get Assets 获得Asset数组
 - (void)getAssetsFromFetchResult:(PHFetchResult *)result completion:(void (^)(NSArray<TZAssetModel *> *models))completion;
+- (void)getAssetsFromFetchResult:(PHFetchResult *)result config:(TZImagePickerConfig *)config completion:(void (^)(NSArray<TZAssetModel *> *))completion;
 - (void)getAssetsFromFetchResult:(PHFetchResult *)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TZAssetModel *> *models))completion __attribute__((deprecated("Use -getAssetsFromFetchResult:completion:. You can config allowPickingImage、allowPickingVideo by TZImagePickerConfig")));
 - (void)getAssetFromFetchResult:(PHFetchResult *)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(TZAssetModel *model))completion __attribute__((deprecated("Use -getAssetFromFetchResult:atIndex:completion:. You can config allowPickingImage、allowPickingVideo by TZImagePickerConfig")));
 - (void)getAssetFromFetchResult:(PHFetchResult *)result atIndex:(NSInteger)index completion:(void (^)(TZAssetModel *model))completion;

@@ -1,1 +1,1 @@
-../../../TZImagePickerController/TZImagePickerController/TZImagePickerController/UIView+TZLayout.h
+../../../../LocalDependent/TZImagePickerController/TZImagePickerController/UIView+TZLayout.h

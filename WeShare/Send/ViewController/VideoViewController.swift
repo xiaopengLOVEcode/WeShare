@@ -19,6 +19,8 @@ class VideoViewController: UIViewController {
     
     private let vm = VideoViewModel()
     
+    private let picker = TZImageManager()
+    
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.headerReferenceSize = .zero
@@ -95,11 +97,10 @@ class VideoViewController: UIViewController {
         if !TZImageManager.default().authorizationStatusAuthorized() {
             return
         }
-        TZImagePickerConfig.sharedInstance().allowPickingImage = true
-        TZImagePickerConfig.sharedInstance().allowPickingVideo = true
-        TZImageManager.default().pickerDelegate = self
-        DispatchQueue.global(qos: .default).async {
-            TZImageManager.default().getAllAlbums(withFetchAssets: true) { models in
+        picker?.pickerDelegate = self
+        DispatchQueue.global(qos: .default).async { [weak self] in
+            guard let self = self else { return }
+            self.picker?.getAllAlbums(true, allowPickingImage: false, needFetchAssets: true) { models in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     let groupMoldels: [PhotoItemGroupModel] = models?.map { PhotoItemGroupModel(bumModel: $0, isExpand: false, isSelectedAll: false) } ?? []
@@ -126,9 +127,10 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
             return UICollectionViewCell()
         }
         cell.showSelectBtn = true
+        cell.allowPickingMultipleVideo = true
         cell.photoDefImage = UIImage(named: "unselected")
-        cell.photoSelImage = UIImage(named: "finished")
-        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as! TZAssetModel
+        cell.photoSelImage = UIImage(named: "selected")
+        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as? TZAssetModel
         cell.didSelectPhotoBlock = { [weak cell] isSelected in
             guard let cell = cell else { return }
             if isSelected {

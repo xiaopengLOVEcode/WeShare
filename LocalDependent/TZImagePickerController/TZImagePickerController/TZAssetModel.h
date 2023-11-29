@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
 
+@class TZImageManager;
+@class TZImagePickerConfig;
+
 typedef enum : NSUInteger {
     TZAssetModelMediaTypePhoto = 0,
     TZAssetModelMediaTypeLivePhoto,
@@ -51,6 +54,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL isCameraRoll;
 
 - (void)setResult:(PHFetchResult *)result needFetchAssets:(BOOL)needFetchAssets;
+
+- (void)setResult:(PHFetchResult *)result picker:(TZImageManager *)picker config:(TZImagePickerConfig *)config needFetchAssets:(BOOL)needFetchAssets;
+
 - (void)refreshFetchResult;
 
 @end

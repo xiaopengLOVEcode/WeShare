@@ -98,11 +98,11 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/SGQRCode/SGQRCode/SGQRCode.bundle"
-  install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
+  install_resource "${PODS_ROOT}/../LocalDependent/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/SGQRCode/SGQRCode/SGQRCode.bundle"
-  install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
+  install_resource "${PODS_ROOT}/../LocalDependent/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

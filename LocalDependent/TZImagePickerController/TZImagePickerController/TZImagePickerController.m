@@ -428,16 +428,16 @@
 - (void)pushPhotoPickerVc {
     _didPushPhotoPickerVc = NO;
     // 1.6.8 判断是否需要push到照片选择页，如果_pushPhotoPickerVc为NO,则不push
-    if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) {
-        TZPhotoPickerController *photoPickerVc = [[TZPhotoPickerController alloc] init];
-        photoPickerVc.isFirstAppear = YES;
-        photoPickerVc.columnNumber = self.columnNumber;
-        [[TZImageManager manager] getCameraRollAlbumWithFetchAssets:NO completion:^(TZAlbumModel *model) {
-            photoPickerVc.model = model;
-            [self pushViewController:photoPickerVc animated:YES];
-            self->_didPushPhotoPickerVc = YES;
-        }];
-    }
+//    if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) {
+//        TZPhotoPickerController *photoPickerVc = [[TZPhotoPickerController alloc] init];
+//        photoPickerVc.isFirstAppear = YES;
+//        photoPickerVc.columnNumber = self.columnNumber;
+//        [[TZImageManager manager] getCameraRollAlbumWithFetchAssets:NO completion:^(TZAlbumModel *model) {
+//            photoPickerVc.model = model;
+//            [self pushViewController:photoPickerVc animated:YES];
+//            self->_didPushPhotoPickerVc = YES;
+//        }];
+//    }
 }
 
 - (UIAlertController *)showAlertWithTitle:(NSString *)title {
@@ -810,6 +810,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 self->_albumArr = [NSMutableArray arrayWithArray:models];
                 for (TZAlbumModel *albumModel in self->_albumArr) {
+                    NSLog(@"%@", albumModel.name);
                     albumModel.selectedModels = imagePickerVc.selectedModels;
                 }
                 [imagePickerVc hideProgressHUD];
@@ -1015,7 +1016,7 @@
 
 + (BOOL)tz_isRightToLeftLayout {
     if (@available(iOS 9.0, *)) {
-        if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:UISemanticContentAttributeUnspecified] == UIUserInterfaceLayoutDirectionRightToLeft) {
+        if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:UIView.appearance.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft) {
             return YES;
         }
     } else {

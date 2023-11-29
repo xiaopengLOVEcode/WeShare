@@ -1,1 +1,1 @@
-../../../TZImagePickerController/TZImagePickerController/TZImagePickerController/TZAssetModel.h
+../../../../LocalDependent/TZImagePickerController/TZImagePickerController/TZAssetModel.h

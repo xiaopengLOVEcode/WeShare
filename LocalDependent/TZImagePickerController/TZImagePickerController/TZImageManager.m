@@ -41,6 +41,14 @@ static dispatch_once_t onceToken;
     manager = nil;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self configTZScreenWidth];
+    }
+    return self;
+}
+
 - (void)setPhotoWidth:(CGFloat)photoWidth {
     _photoWidth = photoWidth;
     TZScreenWidth = photoWidth / 2;
@@ -48,7 +56,7 @@ static dispatch_once_t onceToken;
 
 - (void)setColumnNumber:(NSInteger)columnNumber {
     [self configTZScreenWidth];
-
+    
     _columnNumber = columnNumber;
     CGFloat margin = 4;
     CGFloat itemWH = (TZScreenWidth - 2 * margin - 4) / columnNumber - margin;
@@ -122,7 +130,7 @@ static dispatch_once_t onceToken;
     PHFetchOptions *option = [[PHFetchOptions alloc] init];
     if (!config.allowPickingVideo) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
     if (!config.allowPickingImage) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld",
-                                                PHAssetMediaTypeVideo];
+                                                       PHAssetMediaTypeVideo];
     // option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"modificationDate" ascending:self.sortAscendingByModificationDate]];
     if (!self.sortAscendingByModificationDate) {
         option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:self.sortAscendingByModificationDate]];
@@ -142,12 +150,84 @@ static dispatch_once_t onceToken;
     }
 }
 
+// -------------------------------- 新增方法 ----------------------------------
+
 - (void)getAllAlbums:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage needFetchAssets:(BOOL)needFetchAssets completion:(void (^)(NSArray<TZAlbumModel *> *))completion {
-    TZImagePickerConfig *config = [TZImagePickerConfig sharedInstance];
+    TZImagePickerConfig *config = [[TZImagePickerConfig alloc] init];
     config.allowPickingVideo = allowPickingVideo;
     config.allowPickingImage = allowPickingImage;
-    [self getAllAlbumsWithFetchAssets:needFetchAssets completion:completion];
+    [self getAllAlbumsWithFetchAssets:needFetchAssets config: config completion:completion];
 }
+
+- (void)getAllAlbumsWithFetchAssets:(BOOL)needFetchAssets config:(TZImagePickerConfig *)config completion:(void (^)(NSArray<TZAlbumModel *> *))completion {
+    NSMutableArray *albumArr = [NSMutableArray array];
+    PHFetchOptions *option = [[PHFetchOptions alloc] init];
+    if (!config.allowPickingVideo) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
+    if (!config.allowPickingImage) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld",
+                                                PHAssetMediaTypeVideo];
+    // option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"modificationDate" ascending:self.sortAscendingByModificationDate]];
+    if (!self.sortAscendingByModificationDate) {
+        option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:self.sortAscendingByModificationDate]];
+    }
+    // 我的照片流 1.6.10重新加入..
+    PHFetchResult *myPhotoStreamAlbum = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumMyPhotoStream options:nil];
+    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
+    PHFetchResult *syncedAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumSyncedAlbum options:nil];
+    PHFetchResult *sharedAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumCloudShared options:nil];
+    NSArray *allAlbums = @[myPhotoStreamAlbum,smartAlbums,topLevelUserCollections,syncedAlbums,sharedAlbums];
+    for (PHFetchResult *fetchResult in allAlbums) {
+        for (PHAssetCollection *collection in fetchResult) {
+            // 有可能是PHCollectionList类的的对象，过滤掉
+            if (![collection isKindOfClass:[PHAssetCollection class]]) continue;
+            // 过滤空相册
+            if (collection.estimatedAssetCount <= 0 && ![self isCameraRollAlbum:collection]) continue;
+            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:option];
+            if (fetchResult.count < 1 && ![self isCameraRollAlbum:collection]) continue;
+            
+            if ([self.pickerDelegate respondsToSelector:@selector(isAlbumCanSelect:result:)]) {
+                if (![self.pickerDelegate isAlbumCanSelect:collection.localizedTitle result:fetchResult]) {
+                    continue;
+                }
+            }
+            
+            if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumAllHidden) continue;
+            if (collection.assetCollectionSubtype == 1000000201) continue; //『最近删除』相册
+            if ([self isCameraRollAlbum:collection]) {
+                [albumArr insertObject:[self modelWithResult:fetchResult config: config picker: self collection:collection isCameraRoll:YES needFetchAssets:needFetchAssets options:option] atIndex:0];
+            } else {
+                [albumArr addObject:[self modelWithResult:fetchResult config: config picker: self collection:collection isCameraRoll:NO needFetchAssets:needFetchAssets options:option]];
+            }
+        }
+    }
+    if (completion) {
+        completion(albumArr);
+    }
+}
+
+- (TZAlbumModel *)modelWithResult:(PHFetchResult *)result config:(TZImagePickerConfig *)config picker:(TZImageManager *)picker collection:(PHAssetCollection *)collection isCameraRoll:(BOOL)isCameraRoll needFetchAssets:(BOOL)needFetchAssets options:(PHFetchOptions *)options {
+    TZAlbumModel *model = [[TZAlbumModel alloc] init];
+    [model setResult:result picker: self config: config needFetchAssets:needFetchAssets];
+    model.name = collection.localizedTitle;
+    model.collection = collection;
+    model.options = options;
+    model.isCameraRoll = isCameraRoll;
+    model.count = result.count;
+    return model;
+}
+
+- (void)getAssetsFromFetchResult:(PHFetchResult *)result config:(TZImagePickerConfig *)config completion:(void (^)(NSArray<TZAssetModel *> *))completion {
+    NSMutableArray *photoArr = [NSMutableArray array];
+    [result enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        TZAssetModel *model = [self assetModelWithAsset:asset allowPickingVideo:config.allowPickingVideo allowPickingImage:config.allowPickingImage];
+        if (model) {
+            [photoArr addObject:model];
+        }
+    }];
+    if (completion) completion(photoArr);
+}
+
+// -------------------------------- 新增方法 ---------------------------------- 👆🏻
 
 - (void)getAllAlbumsWithFetchAssets:(BOOL)needFetchAssets completion:(void (^)(NSArray<TZAlbumModel *> *))completion {
     TZImagePickerConfig *config = [TZImagePickerConfig sharedInstance];

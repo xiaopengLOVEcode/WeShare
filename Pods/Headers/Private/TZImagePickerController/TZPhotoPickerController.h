@@ -1,1 +1,1 @@
-../../../TZImagePickerController/TZImagePickerController/TZImagePickerController/TZPhotoPickerController.h
+../../../../LocalDependent/TZImagePickerController/TZImagePickerController/TZPhotoPickerController.h

@@ -25,11 +25,10 @@ class CalendarManager {
     }
     
     // https://developer.aliyun.com/article/932459  日历用法
-
     static func selectReminder(remindersClosure: @escaping (([EKReminder]?) -> Void)) {
         // 在取得提醒之前，需要先获取授权
         let eventStore = EKEventStore()
-        eventStore.requestAccess(to: .reminder) {
+        eventStore.requestAccess(to: .event) {
             (granted: Bool, error: Error?) in
             if granted && (error == nil) {
                 // 获取授权后，我们可以得到所有的提醒事项
