@@ -86,6 +86,7 @@
 		62CEDBD52B0E4FBA002AF1E4 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */; };
 		62CEDBD72B0E50EA002AF1E4 /* CalendarTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */; };
 		62CEDBD92B0E6892002AF1E4 /* SubCommProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */; };
+		62D922052B16412200A8B67F /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D922042B16412200A8B67F /* FinishView.swift */; };
 		62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB43882AFBE237008F9DE3 /* ProgressView.swift */; };
 		62DB438C2AFD1376008F9DE3 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438B2AFD1376008F9DE3 /* GuideModel.swift */; };
 		62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438D2AFD1444008F9DE3 /* GuideViewController.swift */; };
@@ -186,6 +187,7 @@
 		62CEDBD42B0E4FBA002AF1E4 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTool.swift; sourceTree = "<group>"; };
 		62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCommProtocol.swift; sourceTree = "<group>"; };
+		62D922042B16412200A8B67F /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
 		62DB43882AFBE237008F9DE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		62DB438B2AFD1376008F9DE3 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
 		62DB438D2AFD1444008F9DE3 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				629667322AF9322000E06522 /* OrderMenuCell.swift */,
 				620DB6552AFA838600C3A556 /* InfoTopView.swift */,
 				62DB43882AFBE237008F9DE3 /* ProgressView.swift */,
+				62D922042B16412200A8B67F /* FinishView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				629666A72AF91F4E00E06522 /* TabBarViewController.swift in Sources */,
 				626A739B2B11F63000301C1D /* QRCodeViewController.swift in Sources */,
 				62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */,
+				62D922052B16412200A8B67F /* FinishView.swift in Sources */,
 				6296672C2AF9301F00E06522 /* CalendarViewController.swift in Sources */,
 				62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */,
 				6206FDE62B0D0329009D1F80 /* ContactCell.swift in Sources */,

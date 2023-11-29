@@ -126,9 +126,17 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
             return UICollectionViewCell()
         }
         cell.showSelectBtn = true
-        cell.photoSelImage = UIImage(named: "selected")
-        cell.photoSelImage = UIImage(named: "unselected")
+        cell.photoDefImage = UIImage(named: "unselected")
+        cell.photoSelImage = UIImage(named: "finished")
         cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as! TZAssetModel
+        cell.didSelectPhotoBlock = { [weak cell] isSelected in
+            guard let cell = cell else { return }
+            if isSelected {
+                cell.selectPhotoButton.isSelected = false;
+            } else {
+                cell.selectPhotoButton.isSelected = true;
+            }
+        }
         return cell
     }
     

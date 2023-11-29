@@ -62,7 +62,7 @@ class CalendarViewController: UIViewController {
          let calendarManager = CalendarManager()
          calendarManager.requestCalendarAccess { granted in
             if granted {
-                calendarManager.fetchReminders { reminders in
+                CalendarManager.selectReminder { reminders in
                     if let reminders = reminders {
                         for reminder in reminders {
                             print("Title: \(String(describing: reminder.title)), Due Date: \(reminder.dueDateComponents?.date ?? Date())")
@@ -76,7 +76,6 @@ class CalendarViewController: UIViewController {
     }
     
     private func setupSubviews() {
-        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(56)

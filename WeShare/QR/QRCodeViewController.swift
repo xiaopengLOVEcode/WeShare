@@ -56,6 +56,11 @@ final class QRCodeViewController: PLBaseViewController {
         setupViews()
         startVerticalAnimation()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        scanner.stopRunning()
+    }
 
     private func setupViews() {
         contentView.backgroundColor = UIColor(hex: 0x000000, alpha: 0.5)
@@ -120,6 +125,18 @@ final class QRCodeViewController: PLBaseViewController {
 
 extension QRCodeViewController: CAAnimationDelegate {
     func animationDidStart(_ anim: CAAnimation) {
+        scanner.preview = foucusView.focusWrapper
+        scanner.delegate = self
+        scanner.startRunning()
+    }
+}
 
+extension QRCodeViewController: SGScanCodeDelegate {
+    func scanCode(_ scanCode: SGScanCode!, result: String!) {
+        if result == "换机助手" {
+            PLToast.showAutoHideHint("识别成功")
+            scanner.stopRunning()
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
