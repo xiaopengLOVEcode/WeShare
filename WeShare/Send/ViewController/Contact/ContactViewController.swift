@@ -158,3 +158,9 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
+
+extension ContactViewController: PageVCProtocol {
+    func selectedAll() {
+        
+    }
+}

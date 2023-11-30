@@ -26,7 +26,6 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
     
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.headerReferenceSize = .zero
         flowLayout.footerReferenceSize = .zero
         flowLayout.minimumLineSpacing = 7
         flowLayout.minimumInteritemSpacing = 7
@@ -144,7 +143,7 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
@@ -178,15 +177,17 @@ extension PhotoViewController: PhotoSelectedHeaderDelegate {
                 if let indexPaths = self.vm.indexPathsForSubSection(section: section) {
                     self.collectionView.insertItems(at: indexPaths)
                 }
+            } completion: { _ in
+                self.collectionView.reloadData()
             }
         } else {
             collectionView.performBatchUpdates { [weak self] in
-                guard let self = self else {
-                    return
-                }
+                guard let self = self else { return }
                 if let indexPaths = self.vm.indexPathsForSubSection(section: section) {
                     self.collectionView.deleteItems(at: indexPaths)
                 }
+            } completion: { _ in
+                self.collectionView.reloadData()
             }
         }
     }
@@ -196,4 +197,8 @@ extension PhotoViewController  {
     func isAlbumCanSelect(_ albumName: String!, result: PHFetchResult<AnyObject>!) -> Bool {
         return true
     }
+}
+
+extension PhotoViewController: PageVCProtocol {
+    func selectedAll() {}
 }

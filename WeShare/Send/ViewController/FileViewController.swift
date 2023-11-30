@@ -95,3 +95,7 @@ class FileViewController: UIViewController {
     }
 
 }
+
+extension FileViewController: PageVCProtocol {
+    func selectedAll() {}
+}

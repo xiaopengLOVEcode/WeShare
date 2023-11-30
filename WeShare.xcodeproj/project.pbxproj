@@ -231,7 +231,6 @@
 				6206FDDF2B0CFD64009D1F80 /* PPGetAddressBook.swift */,
 				6206FDDD2B0CFD64009D1F80 /* PPPersonModel.swift */,
 				629667292AF9300600E06522 /* ContactViewController.swift */,
-				6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -466,6 +465,7 @@
 				6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */,
 				62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */,
 				625DC02D2B179A2300CD6AA4 /* CalendarViewModel.swift */,
+				6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

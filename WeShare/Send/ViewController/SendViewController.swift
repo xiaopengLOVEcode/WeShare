@@ -8,6 +8,14 @@
 import PagingKit
 import UIKit
 
+protocol PageVCProtocol {
+    func selectedAll()
+}
+
+extension PageVCProtocol {
+    func selectedAll() {}
+}
+
 class SendViewController: PLBaseViewController {
     
     private let photoVc = PhotoViewController()
@@ -18,9 +26,10 @@ class SendViewController: PLBaseViewController {
     
     private let menuController = PagingMenuViewController()
     private let contentController = PagingContentViewController()
-    private var dataSource: [(menu: String, imageName: String, content: UIViewController)] = []
+    private var dataSource: [(menu: String, imageName: String, content: UIViewController & PageVCProtocol)] = []
     
-
+    private var currentIdex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -52,7 +61,10 @@ class SendViewController: PLBaseViewController {
     
     
     @objc private func selectAllItem() {
-        
+        print(currentIdex)
+        let vc = dataSource[safe: currentIdex]?.content
+        guard let currentVc = vc else { return }
+        currentVc.selectedAll()
     }
     
     private func setupPageView() {
@@ -114,6 +126,7 @@ extension SendViewController: PagingMenuViewControllerDataSource {
 
 extension SendViewController: PagingMenuViewControllerDelegate {
     func menuViewController(viewController: PagingMenuViewController, didSelect page: Int, previousPage: Int) {
+        currentIdex = page
         contentController.scroll(to: page, animated: true)
     }
     
@@ -124,6 +137,7 @@ extension SendViewController: PagingMenuViewControllerDelegate {
 //    }
     
     func menuViewController(viewController: PagingMenuViewController, willAnimateFocusViewTo index: Int, with coordinator: PagingMenuFocusViewAnimationCoordinator) {
+        currentIdex = index
         if index == 0 || index == 1 {
             headerView.rightButton.isHidden = true
         } else {
@@ -160,9 +174,6 @@ extension SendViewController: PhotoViewControllerDelegate, VideoViewControllerDe
         
         let qrVc = QRCodeViewController()
         self.navigationController?.pushViewController(qrVc, animated: true)
-        
-//        let vc = SendingViewController(style: .send)
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func videoViewControllerSend() {

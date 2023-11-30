@@ -141,3 +141,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         return 83
     }
 }
+
+extension CalendarViewController: PageVCProtocol {
+    func selectedAll() {}
+}

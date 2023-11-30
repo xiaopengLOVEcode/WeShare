@@ -39,4 +39,6 @@ public class PPPersonModel {
     /// 联系人头像
     public var headerImage: UIImage?
     
+    
+    public var isSelected: Bool = false
 }

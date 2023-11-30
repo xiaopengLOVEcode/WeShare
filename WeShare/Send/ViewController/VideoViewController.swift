@@ -179,6 +179,8 @@ extension VideoViewController: PhotoSelectedHeaderDelegate {
                 if let indexPaths = self.vm.indexPathsForSubSection(section: section, loadingCount: 0) {
                     self.collectionView.insertItems(at: indexPaths)
                 }
+            } completion: { _ in
+                self.collectionView.reloadData()
             }
         } else {
             collectionView.performBatchUpdates { [weak self] in
@@ -188,6 +190,8 @@ extension VideoViewController: PhotoSelectedHeaderDelegate {
                 if let indexPaths = self.vm.indexPathsForSubSection(section: section, loadingCount: 0) {
                     self.collectionView.deleteItems(at: indexPaths)
                 }
+            } completion: { _ in
+                self.collectionView.reloadData()
             }
         }
     }
@@ -200,5 +204,9 @@ extension VideoViewController: TZImagePickerControllerDelegate  {
 //        }
         return true
     }
+}
+
+extension VideoViewController: PageVCProtocol {
+    func selectedAll() {}
 }
 
