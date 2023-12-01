@@ -67,7 +67,9 @@ class CalendarViewController: UIViewController {
                 calendarManager.fetchReminders { [weak self] reminders in
                     guard let self = self else { return }
                     if let reminders = reminders {
-                        self.vm.dataList = reminders
+                        self.vm.dataList = reminders.map({ reminder in
+                            return CalendarModel(event: reminder, isSelected: false)
+                        })
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -117,6 +119,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let model = vm.dataList[indexPath.row]
         cell?.bindData(with: model)
+        cell?.delegate = self
         return cell!
     }
     
@@ -143,5 +146,14 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension CalendarViewController: PageVCProtocol {
-    func selectedAll() {}
+    func selectedAll() {
+        vm.selectedAll()
+        tableView.reloadData()
+    }
+}
+
+extension CalendarViewController:  CalendarCellProtocol {
+    func calendarCellBtnClick() {
+        
+    }
 }

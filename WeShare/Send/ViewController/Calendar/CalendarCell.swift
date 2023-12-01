@@ -9,9 +9,15 @@ import Foundation
 import RxSwift
 import EventKit
 
+protocol CalendarCellProtocol: AnyObject {
+    func calendarCellBtnClick()
+}
+
 final class CalendarCell: UITableViewCell {
     
     static let identifier = "CalendarCell"
+    
+    weak var delegate: CalendarCellProtocol?
     
     var isBtnSelected = false {
         didSet {
@@ -38,6 +44,7 @@ final class CalendarCell: UITableViewCell {
             // 点击复选框按钮
             checkBtn.isSelected.toggle()
             self.isBtnSelected = checkBtn.isSelected
+            self.delegate?.calendarCellBtnClick()
         }.disposed(by: bag)
         checkBtn.setImage(UIImage(named: "unselected"), for: .normal)
         checkBtn.setImage(UIImage(named: "selected"), for: .selected)
@@ -87,11 +94,12 @@ final class CalendarCell: UITableViewCell {
         }
     }
     
-    func bindData(with event: EKEvent) {
-        titleLable.text = event.title
+    func bindData(with event: CalendarModel) {
+        titleLable.text = event.event.title
+        checkBtn.isSelected = event.isSelected
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM月dd日" // 设置日期格式为月和日
-        let monthAndDayString = dateFormatter.string(from: event.startDate)
+        let monthAndDayString = dateFormatter.string(from: event.event.startDate)
         subTitleLable.text = monthAndDayString
     }
 }

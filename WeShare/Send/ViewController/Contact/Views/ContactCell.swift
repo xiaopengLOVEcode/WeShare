@@ -76,7 +76,9 @@ final class ContactCell: UITableViewCell {
         }
     }
     
-    func bindData(name: String) {
-        titleLable.text = name
+    func bindData(model: PPPersonModel?) {
+        guard let person = model else { return }
+        titleLable.text = person.name
+        checkBtn.isSelected = person.isSelected
     }
 }

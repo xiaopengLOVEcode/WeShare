@@ -8,7 +8,25 @@
 import Foundation
 import EventKit
 
+struct CalendarModel {
+    let event: EKEvent
+    var isSelected: Bool
+}
+
 final class CalendarViewModel {
+
+    var dataList: [CalendarModel] = []
     
-    var dataList: [EKEvent] = []
+    func selectedAll() {
+        dataList = dataList.map { var newModel = $0; newModel.isSelected = true; return newModel }
+    }
+    
+    func selectedItem(with index: Int, isSelected: Bool) {
+        dataList[index].isSelected = isSelected
+    }
+    
+    func modelForSelected() -> [EKEvent] {
+        return []
+    }
+    
 }

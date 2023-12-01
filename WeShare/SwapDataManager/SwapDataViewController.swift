@@ -88,7 +88,7 @@ class SwapDataViewController: PLBaseViewController {
         sender.setTitleColor(UIColor.black, for: .normal)
         sender.setTitle("数据接收方", for: .normal)
         sender.rx.tap.subscribeNext { _ in
-            SwapDataManager.shared.startAdvertising("WeShareAdmin") { [weak sender] state in
+            SwapDataManager.shared.startAdvertising("换机助手") { [weak sender] state in
                 guard let button = sender else { return }
                 button.backgroundColor = .lightGray
                 button.isEnabled = false
@@ -172,7 +172,7 @@ class SwapDataViewController: PLBaseViewController {
         browser.setTitleColor(UIColor.black, for: .normal)
         browser.setTitle("数据发送方", for: .normal)
         browser.rx.tap.subscribeNext { _ in
-            SwapDataManager.shared.startBrowsing("WeShareAdmin") { [weak browser] state in
+            SwapDataManager.shared.startBrowsing("换机助手") { [weak browser] state in
                 guard let button = browser else { return }
                 button.backgroundColor = .lightGray
                 button.isEnabled = false

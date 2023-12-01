@@ -25,7 +25,13 @@ final class ContactViewModel {
     }
     
     func selectedAll() {
-        
+        addressBookSouce = addressBookSouce.mapValues { models in
+            return models.map { model in
+                let modifiedModel = model
+                modifiedModel.isSelected = true
+                return modifiedModel
+            }
+        }
     }
     
     func sectioNameFor(section: Int) -> String {

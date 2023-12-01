@@ -117,7 +117,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
             cell = ContactCell(style: .subtitle, reuseIdentifier: identifier)
         }
         let model = vm.modelFor(indexPath: indexPath)
-        cell?.bindData(name: model?.name ?? "")
+        cell?.bindData(model: model)
         return cell!
     }
 
@@ -161,6 +161,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ContactViewController: PageVCProtocol {
     func selectedAll() {
-        
+        vm.selectedAll()
+        tableView.reloadData()
     }
 }
