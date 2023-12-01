@@ -51,6 +51,7 @@ class ReceiveViewController: PLBaseViewController {
         view.backgroundColor = .white
         title = "新机接收"
         setupSubviews()
+        addListener()
     }
 
     private func setupSubviews() {
@@ -87,6 +88,32 @@ class ReceiveViewController: PLBaseViewController {
         let qrSize = LayoutConstants.deviceWidth - 70 - 14
         let qrImage = SGGenerateQRCode.generateQRCode(withData: "换机助手", size: qrSize)
         imageView.image = qrImage
+    }
+    
+    private func addListener() {
+        SwapDataManager.shared.startAdvertising("换机助手") { [weak self] state in
+            guard let self = self else { return }
+            switch state {
+            case .waiting:
+                PLToast.showAutoHideHint("等待连接")
+            case .connecting:
+                PLToast.showAutoHideHint("连接中")
+            case .connected:
+                PLToast.showAutoHideHint("连接成功, 等待接受数据")
+                self.startRevieveData()
+            case .notConnected:
+                PLToast.showAutoHideHint("连接已断开")
+            case .error:
+                PLToast.showAutoHideHint("连接失败")
+            case .unknown:
+                PLToast.showAutoHideHint("未知错误，请重试")
+            }
+        }
+    }
+    
+    private func startRevieveData() {
+        let vc = SendingViewController(style: .receive)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     private func downLoadFunc() {
