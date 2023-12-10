@@ -88,7 +88,12 @@ class VideoViewController: UIViewController {
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.videoViewControllerSend()
+            let array = self.vm.selectResources()
+            if array.isEmpty {
+                PLToast.showAutoHideHint("未选中资源")
+            } else {
+                self.delegate?.videoViewControllerSend()
+            }
         }.disposed(by: bag)
     }
 
@@ -130,9 +135,11 @@ extension VideoViewController: UICollectionViewDataSource, UICollectionViewDeleg
         cell.allowPickingMultipleVideo = true
         cell.photoDefImage = UIImage(named: "unselected")
         cell.photoSelImage = UIImage(named: "selected")
-        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as? TZAssetModel
-        cell.didSelectPhotoBlock = { [weak cell] isSelected in
+        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row]
+        cell.didSelectPhotoBlock = { [weak cell, weak self] isSelected in
+            guard let self = self else { return }
             guard let cell = cell else { return }
+            self.vm.selectedItem(with: indexPath, isSelected: !isSelected)
             if isSelected {
                 cell.selectPhotoButton.isSelected = false;
             } else {
@@ -171,6 +178,7 @@ extension VideoViewController: PhotoSelectedHeaderDelegate {
     }
     
     func didSelectCommentActionCell(section: Int) {
+        guard (vm.dataList[section].bumModel.count != 0) else { return }
         let isExpand = !vm.currentSectionState(section)
         vm.updateSectionState(section: section, isExpand: isExpand)
         if isExpand {
@@ -199,10 +207,10 @@ extension VideoViewController: PhotoSelectedHeaderDelegate {
 
 extension VideoViewController: TZImagePickerControllerDelegate  {
     func isAlbumCanSelect(_ albumName: String!, result: PHFetchResult<AnyObject>!) -> Bool {
-//        if albumName == "视频" {
-//            return true
-//        }
-        return true
+        if albumName == "视频" {
+            return true
+        }
+        return false
     }
 }
 

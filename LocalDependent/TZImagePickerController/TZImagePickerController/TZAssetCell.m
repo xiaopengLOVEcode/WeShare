@@ -141,7 +141,7 @@
     }
     self.selectImageView.image = sender.isSelected ? self.photoSelImage : self.photoDefImage;
     if (sender.isSelected) {
-        [UIView showOscillatoryAnimationWithLayer:_selectImageView.layer type:TZOscillatoryAnimationToBigger];
+//        [UIView showOscillatoryAnimationWithLayer:_selectImageView.layer type:TZOscillatoryAnimationToBigger];
         // 用户选中了该图片，提前获取一下大图
         [self requestBigImage];
     } else { // 取消选中，取消大图的获取
@@ -275,7 +275,7 @@
 - (UIImageView *)selectImageView {
     if (_selectImageView == nil) {
         UIImageView *selectImageView = [[UIImageView alloc] init];
-        selectImageView.contentMode = UIViewContentModeCenter;
+//        selectImageView.contentMode = UIViewContentModeCenter;
         selectImageView.clipsToBounds = YES;
         [self.contentView addSubview:selectImageView];
         _selectImageView = selectImageView;

@@ -2,7 +2,6 @@
 //  QRCodeViewController.swift
 //  Aries
 //
-//  Created by 王昱 on 2021/6/7.
 //
 
 import AVFoundation
@@ -136,44 +135,8 @@ extension QRCodeViewController: SGScanCodeDelegate {
         if result == "换机助手" {
             PLToast.showAutoHideHint("识别成功")
             scanner.stopRunning()
-            startConnect()
+            TransferTaskManager.shared.startConnect()
         }
-    }
-}
-
-extension QRCodeViewController {
-    func startConnect() {
-        SwapDataManager.shared.startBrowsing("换机助手") { [weak self] state in
-            guard let self = self else { return }
-            switch state {
-            case .waiting:
-                PLToast.showAutoHideHint("等待连接")
-            case .connecting:
-                PLToast.showAutoHideHint("连接中")
-            case .connected:
-                PLToast.showAutoHideHint("连接成功, 可以发送数据")
-                self.startSendingData()
-            case .notConnected:
-                PLToast.showAutoHideHint("连接已断开")
-            case .error:
-                PLToast.showAutoHideHint("连接失败")
-            case .unknown:
-                PLToast.showAutoHideHint("未知错误，请重试")
-            }
-        }
-    }
-    func startSendingData() {
-        DispatchQueue.main.async {
-            // 先做一次性任务
-            let vc = SendingViewController(style: .send)
-            self.navigationController?.pushViewController(vc, animated: true)
-            var vcs = self.navigationController?.viewControllers ?? []
-            guard vcs.isNotEmpty else { return }
-            // 从web 页面直接返回环节页
-            vcs.remove(at: vcs.count - 2)
-            self.navigationController?.viewControllers = vcs
-        }
-
     }
 }
 

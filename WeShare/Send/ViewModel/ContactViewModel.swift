@@ -53,4 +53,8 @@ final class ContactViewModel {
         }
         return model
     }
+    
+    func selectResources() -> [PPPersonModel] {
+        return addressBookSouce.values.flatMap { $0.filter { $0.isSelected == true } }
+    }
 }

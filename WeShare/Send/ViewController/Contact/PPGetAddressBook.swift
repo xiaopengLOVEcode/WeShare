@@ -106,7 +106,7 @@ public class PPGetAddressBook {
             // 将addressBookDict字典中的所有Key值进行排序: A~Z
             var nameKeys = Array(addressBookDict.keys).sorted()
             addressBookDict =  Dictionary(uniqueKeysWithValues: addressBookDict.sorted(by: { entry1, entry2 in
-                return entry1.key < entry2.key
+                return entry1.key > entry2.key
             }))
             // 将 "#" 排列在 A~Z 的后面
             if nameKeys.first == "#" {

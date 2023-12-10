@@ -106,7 +106,12 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.photoViewControllerSend()
+            let array = self.vm.selectResources()
+            if array.isEmpty {
+                PLToast.showAutoHideHint("未选中资源")
+            } else {
+                self.delegate?.photoViewControllerSend()
+            }
         }.disposed(by: bag)
     }
 }
@@ -127,20 +132,23 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
         cell.showSelectBtn = true
         cell.photoDefImage = UIImage(named: "unselected")
         cell.photoSelImage = UIImage(named: "selected")
-        cell.model = vm.dataList[indexPath.section].bumModel.models[indexPath.row] as? TZAssetModel
-        cell.didSelectPhotoBlock = { [weak cell] isSelected in
-            guard let cell = cell else { return }
+        let assetModel = vm.dataList[indexPath.section].bumModel.models[indexPath.row]
+        cell.model = assetModel
+        cell.didSelectPhotoBlock = { [weak cell, weak self] isSelected in
+            guard let self = self else { return }
+            guard let s_cell = cell else { return }
+            self.vm.selectedItem(with: indexPath, isSelected: !isSelected)
             if isSelected {
-                cell.selectPhotoButton.isSelected = false;
+                s_cell.selectPhotoButton.isSelected = false;
             } else {
-                cell.selectPhotoButton.isSelected = true;
+                s_cell.selectPhotoButton.isSelected = true;
             }
         }
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("\(indexPath.section)   \(indexPath.row)")
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -178,6 +186,10 @@ extension PhotoViewController: PhotoSelectedHeaderDelegate {
                     self.collectionView.insertItems(at: indexPaths)
                 }
             } completion: { _ in
+                UIView.performWithoutAnimation { [weak self] in
+                    self?.collectionView.reloadData()
+                }
+                
                 self.collectionView.reloadData()
             }
         } else {
@@ -187,7 +199,9 @@ extension PhotoViewController: PhotoSelectedHeaderDelegate {
                     self.collectionView.deleteItems(at: indexPaths)
                 }
             } completion: { _ in
-                self.collectionView.reloadData()
+                UIView.performWithoutAnimation { [weak self] in
+                    self?.collectionView.reloadData()
+                }
             }
         }
     }

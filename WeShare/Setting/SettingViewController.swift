@@ -57,22 +57,27 @@ class SettingViewController: PLBaseViewController {
 
         let messageData = EntryData.arrow("联系我们", "message") { [weak self] in
             guard let self = self else { return }
+            self.showAlert()
         }
         let messageEntry = EntryView(with: messageData)
 
         let aboutData = EntryData.arrow("关于我们", "about") { [weak self] in
             guard let self = self else { return }
+            let vc = AboutViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let aboutEntry = EntryView(with: aboutData)
 
         let agreenmentData = EntryData.arrow("用户协议", "agreemnet") { [weak self] in
             guard let self = self else { return }
+            let vc = WebViewController(url: URL(string: "https://www.freeprivacypolicy.com/live/8131e8da-35e3-4d77-b1fd-3bbd94759871")!)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         let agreenmentEntry = EntryView(with: agreenmentData)
 
         let policyData = EntryData.arrow("隐私政策", "policy") { [weak self] in
             guard let self = self else { return }
-            let vc = SwapDataViewController()
+            let vc = WebViewController(url: URL(string: "https://www.freeprivacypolicy.com/live/a6f09528-b94e-4715-880b-8334f09372dc")!)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         let policyEntry = EntryView(with: policyData)
@@ -86,5 +91,16 @@ class SettingViewController: PLBaseViewController {
             policyEntry,
         ]
         return entries
+    }
+    
+    func showAlert() {
+        let alertController = UIAlertController(
+            title: "联系我们",
+            message: "邮箱： haoxunnet@outlook.com",
+            preferredStyle: .alert
+        )
+
+        alertController.addAction(UIAlertAction(title: "确认", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }

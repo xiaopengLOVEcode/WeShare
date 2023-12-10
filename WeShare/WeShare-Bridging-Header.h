@@ -11,6 +11,4 @@
 
 #import "PLViewControllerUtils.h"
 
-
-
 #endif /* WeShare_Bridging_Header_h */

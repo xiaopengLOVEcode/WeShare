@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SendingViewController: PLBaseViewController {
+    
+    private let bag = DisposeBag()
     
     private let pageStyle: PageStyle
     
@@ -56,6 +60,7 @@ final class SendingViewController: PLBaseViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupSubviews()
+        addHandleEvent()
         headerView.leftButton.isHidden = false
     }
     
@@ -95,5 +100,12 @@ final class SendingViewController: PLBaseViewController {
         centerProgressLabel.snp.makeConstraints { make in
             make.center.equalTo(progressView)
         }
+    }
+    
+    private func addHandleEvent() {
+        bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
+            guard let self = self else { return }
+            self.navigationController?.popViewController(animated: true)
+        }.disposed(by: bag)
     }
 }

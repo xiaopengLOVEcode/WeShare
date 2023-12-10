@@ -17,7 +17,7 @@ public final class LayoutConstants {
     
     public static var isIPhoneXSeriesScreenRatio: Bool { return Int((deviceHeight / deviceWidth) * 100) == 216 }
     public static var extraBottomPadding: CGFloat { return isIPhoneXSeriesScreenRatio ? 34 : 0 }
-    
+    public static var isPad: Bool { return UIDevice.current.userInterfaceIdiom == .pad }
     public static var statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
     
     public static var safeBottomHeight =  UIWindow.keyWindow?.safeAreaInsets.bottom ?? 0

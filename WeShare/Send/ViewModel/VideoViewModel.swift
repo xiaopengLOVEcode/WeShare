@@ -42,13 +42,21 @@ final class VideoViewModel {
         return dataList[section].isSelectedAll
     }
     
+    func selectedItem(with indexPath: IndexPath, isSelected: Bool) {
+        dataList[indexPath.section].bumModel.models[indexPath.row].isSelected = isSelected
+    }
+    
     func selectedAllPhotoModel(with section: Int) {
         let isSelectedAll = !dataList[section].isSelectedAll
-        
         dataList[section].bumModel.models.forEach { photoResource in
-            guard let model = photoResource as? TZAssetModel else { return }
-            model.isSelected = isSelectedAll
+            photoResource.isSelected = isSelectedAll
         }
         dataList[section].isSelectedAll = isSelectedAll
+    }
+    
+    func selectResources() -> [TZAssetModel] {
+        return dataList.flatMap { data in
+            return data.bumModel.models.filter { $0.isSelected == true } 
+        }.compactMap { $0 }
     }
 }

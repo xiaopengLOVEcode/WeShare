@@ -47,7 +47,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) PHAssetCollection *collection;
 @property (nonatomic, strong) PHFetchOptions *options;
 
-@property (nonatomic, strong) NSArray *models;
+@property (nonatomic, strong) NSArray<TZAssetModel *> *models;
 @property (nonatomic, strong) NSArray *selectedModels;
 @property (nonatomic, assign) NSUInteger selectedCount;
 
