@@ -117,6 +117,10 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         if cell == nil {
             cell = CalendarCell(style: .subtitle, reuseIdentifier: identifier)
         }
+        cell?.didSelectItemBlock = { [weak self] isSelected in
+            guard let self = self else { return }
+            self.vm.selectedItem(with: indexPath.row, isSelected: isSelected)
+        }
         let model = vm.dataList[indexPath.row]
         cell?.bindData(with: model)
         cell?.delegate = self

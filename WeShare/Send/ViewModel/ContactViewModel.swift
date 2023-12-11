@@ -14,9 +14,10 @@ final class ContactViewModel {
     var keysArray: [String] = []
     
     func rowCountFor(section: Int) -> Int {
+        let realKey = keysArray[section]
         var result = 0
         addressBookSouce.keys.enumerated().forEach { (index, key) in
-            if let array = addressBookSouce[key], index == section {
+            if let array = addressBookSouce[key], key == realKey {
                 let count = array.count
                 result = count
             }
@@ -34,20 +35,21 @@ final class ContactViewModel {
         }
     }
     
+    func selected(indexPath: IndexPath, isSelected: Bool) {
+        let realKey = keysArray[indexPath.section]
+        addressBookSouce[realKey]![indexPath.row].isSelected = isSelected
+    }
+    
     func sectioNameFor(section: Int) -> String {
-        var sectionName = ""
-        addressBookSouce.keys.enumerated().forEach { (index, key) in
-            if index == section {
-                sectionName = key
-            }
-        }
-        return sectionName
+        return keysArray[section]
     }
     
     func modelFor(indexPath: IndexPath) -> PPPersonModel? {
         var model: PPPersonModel?
+        let realKey = keysArray[indexPath.section]
+        
         addressBookSouce.keys.enumerated().forEach { (index, key) in
-            if let array = addressBookSouce[key], index == indexPath.section {
+            if let array = addressBookSouce[key], key == realKey {
                 model = array[indexPath.row]
             }
         }

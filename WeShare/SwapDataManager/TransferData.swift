@@ -7,6 +7,7 @@
 
 import Foundation
 import Photos
+import EventKit
 
 extension PHAsset {
     /// 切记，不要在主线程中使用
@@ -26,6 +27,50 @@ extension PHAsset {
         return TransferData(type: .photo, data: data)
     }
 }
+
+
+// 联系人
+extension PPPersonModel {
+    func map() -> TransferData? {
+        var personData: Data?
+        // 使用DispatchSemaphore等待异步操作完成
+        let semaphore = DispatchSemaphore(value: 0)
+//        let requestOptions = PHImageRequestOptions()
+//        requestOptions.isSynchronous = true
+//        requestOptions.deliveryMode = .highQualityFormat
+//        PHImageManager.default().requestImageDataAndOrientation(for: self, options: requestOptions) { data, _, _, _ in
+//            imageData = data
+//            semaphore.signal()
+//        }
+//        _ = semaphore.wait(timeout: .distantFuture)
+        guard let data = personData else { return nil }
+        return TransferData(type: .contact, data: data)
+    }
+}
+
+// 视频
+
+
+// 日历
+extension EKEvent {
+    func map() -> TransferData? {
+        var personData: Data?
+        // 使用DispatchSemaphore等待异步操作完成
+        let semaphore = DispatchSemaphore(value: 0)
+//        let requestOptions = PHImageRequestOptions()
+//        requestOptions.isSynchronous = true
+//        requestOptions.deliveryMode = .highQualityFormat
+//        PHImageManager.default().requestImageDataAndOrientation(for: self, options: requestOptions) { data, _, _, _ in
+//            imageData = data
+//            semaphore.signal()
+//        }
+//        _ = semaphore.wait(timeout: .distantFuture)
+        guard let data = personData else { return nil }
+        return TransferData(type: .contact, data: data)
+    }
+}
+
+// 文件
 
 extension String {
     func map() -> TransferData? {

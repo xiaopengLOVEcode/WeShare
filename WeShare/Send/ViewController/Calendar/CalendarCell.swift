@@ -15,6 +15,8 @@ protocol CalendarCellProtocol: AnyObject {
 
 final class CalendarCell: UITableViewCell {
     
+    var didSelectItemBlock: ((Bool) -> Void)? = nil
+    
     static let identifier = "CalendarCell"
     
     weak var delegate: CalendarCellProtocol?
@@ -45,6 +47,7 @@ final class CalendarCell: UITableViewCell {
             checkBtn.isSelected.toggle()
             self.isBtnSelected = checkBtn.isSelected
             self.delegate?.calendarCellBtnClick()
+            self.didSelectItemBlock?(self.isBtnSelected)
         }.disposed(by: bag)
         checkBtn.setImage(UIImage(named: "unselected"), for: .normal)
         checkBtn.setImage(UIImage(named: "selected"), for: .selected)

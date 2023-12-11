@@ -30,7 +30,7 @@ class CalendarManager {
         
         let calendar = Calendar.current
         let startDate = calendar.date(byAdding: .month, value: -1, to: Date())!
-        let endDate = calendar.date(byAdding: .month, value: 1, to: Date())!
+        let endDate = calendar.date(byAdding: .year, value: 1, to: Date())!
 
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
         let events = eventStore.events(matching: predicate)

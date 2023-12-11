@@ -11,6 +11,8 @@ import RxSwift
 
 final class ContactCell: UITableViewCell {
     
+    var didSelectItemBlock: ((Bool) -> Void)? = nil
+    
     var isBtnSelected = false {
         didSet {
             checkBtn.isSelected = isBtnSelected
@@ -33,6 +35,7 @@ final class ContactCell: UITableViewCell {
             // 点击复选框按钮
             checkBtn.isSelected.toggle()
             self.isBtnSelected = checkBtn.isSelected
+            self.didSelectItemBlock?(self.isBtnSelected)
         }.disposed(by: bag)
         checkBtn.setImage(UIImage(named: "unselected"), for: .normal)
         checkBtn.setImage(UIImage(named: "selected"), for: .selected)

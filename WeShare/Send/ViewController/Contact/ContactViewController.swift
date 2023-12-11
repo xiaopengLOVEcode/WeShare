@@ -101,10 +101,6 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
         return vm.keysArray.count
     }
 
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return vm.keysArray[safe: section]
-//    }
-
     // 右侧索引
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return vm.keysArray
@@ -115,6 +111,10 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ContactCell
         if cell == nil {
             cell = ContactCell(style: .subtitle, reuseIdentifier: identifier)
+        }
+        cell?.didSelectItemBlock = { [weak self] isSelected in
+            guard let self = self else { return }
+            self.vm.selected(indexPath: indexPath, isSelected: isSelected)
         }
         let model = vm.modelFor(indexPath: indexPath)
         cell?.bindData(model: model)
