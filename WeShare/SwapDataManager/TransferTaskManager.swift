@@ -27,7 +27,13 @@ final class TransferTaskManager: NSObject {
     // 单例实例
     static let shared = TransferTaskManager()
     
-    var state: State = .idle
+    private var state: State = .idle
+    
+    
+    // 持有接受和发送界面 保持一个实例
+    private var sendVC: SendingViewController?
+    
+    private var receiveVC: SendingViewController?
     
     override init() {
         // 监听各个任务的执行状态
@@ -40,18 +46,29 @@ final class TransferTaskManager: NSObject {
         return state == .idle || state == .complete
     }
     
-    func sendDatas(_ datas: [TransferData], progress: @escaping (Double) -> Void) {
-        SwapDataManager.shared.sendDatas(datas) { progress in
+    func sendDatas(_ datas: [TransferData]) {
+        SwapDataManager.shared.sendDatas(datas) { [weak self]progress in
+            guard let self = self else { return }
+            // 同步进度
             print(progress)
+            if progress == 1 {
+                self.state = .complete
+            }
         }
     }
     
     func onDataReceived(dataReceived: @escaping (TransferData) -> Void, progress: @escaping (Double) -> Void) {
         SwapDataManager.shared.onDataReceived { data in
-            
+            // 解析数据
         } progress: { _ in
             print(progress)
         }
+    }
+    
+    func jumpCurTransferPageVc() {
+        guard let curVC = sendVC else { return }
+        guard let fromVc = PLViewControllerUtils.currentTopController() else { return }
+        fromVc.navigationController?.pushViewController(curVC, animated: true)
     }
 }
 
@@ -80,15 +97,19 @@ extension TransferTaskManager {
     }
     
     func startSendingData() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             // 先做一次性任务
-            let vc = SendingViewController(style: .send)
+            guard let self = self else { return }
+            self.sendVC = SendingViewController(style: .send)
+            guard let cur_VC = self.sendVC else { return }
             guard let fromVc = PLViewControllerUtils.currentTopController() else { return }
-            fromVc.navigationController?.pushViewController(vc, animated: true)
+            fromVc.navigationController?.pushViewController(cur_VC, animated: true)
             var vcs = fromVc.navigationController?.viewControllers ?? []
             guard vcs.isNotEmpty else { return }
             vcs.remove(at: vcs.count - 2)
             fromVc.navigationController?.viewControllers = vcs
+            // 直接传输
+            self.sendDatas([])
         }
     }
 }
@@ -118,8 +139,9 @@ extension TransferTaskManager {
     }
     
     private func startRevieveData() {
-        let vc = SendingViewController(style: .receive)
+        self.receiveVC = SendingViewController(style: .receive)
+        guard let cur_VC = self.receiveVC else { return }
         guard let fromVc = PLViewControllerUtils.currentTopController() else { return }
-        fromVc.navigationController?.pushViewController(vc, animated: true)
+        fromVc.navigationController?.pushViewController(cur_VC, animated: true)
     }
 }

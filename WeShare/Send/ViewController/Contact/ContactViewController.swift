@@ -7,6 +7,7 @@
 
 import RxSwift
 import UIKit
+import Contacts
 
 protocol ContactViewControllerDelegate: SubCommProtocol {
     func contactViewControllerSend()
@@ -50,18 +51,31 @@ class ContactViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         addHandleEvent()
+        
+        self.requestContactsPermission { [weak self] grant in
+            guard let self = self else { return }
+            if grant {
+                PPGetAddressBook.getOrderAddressBook(addressBookInfo: { addressBookDict, nameKeys in
+                    self.vm.addressBookSouce = addressBookDict // 所有联系人信息的字典
+                    self.vm.keysArray = nameKeys // 所有分组的key值
+                    // 刷新tableView
+                    self.tableView.reloadData()
+                }, authorizationFailure: {
+                    let alertView = UIAlertController(title: "提示", message: "请在iPhone的“设置-隐私-通讯录”选项中，允许访问您的通讯录", preferredStyle: UIAlertController.Style.alert)
+                    let confirm = UIAlertAction(title: "知道啦", style: UIAlertAction.Style.cancel, handler: nil)
+                    alertView.addAction(confirm)
+                    self.present(alertView, animated: true, completion: nil)
+                })
+            } else {
+                let alertView = UIAlertController(title: "提示", message: "请在iPhone的“设置-隐私-通讯录”选项中，允许访问您的通讯录", preferredStyle: UIAlertController.Style.alert)
+                let confirm = UIAlertAction(title: "知道啦", style: UIAlertAction.Style.cancel, handler: nil)
+                alertView.addAction(confirm)
+                self.present(alertView, animated: true, completion: nil)
+            }
+        }
+        
+        
 
-        PPGetAddressBook.getOrderAddressBook(addressBookInfo: { addressBookDict, nameKeys in
-            self.vm.addressBookSouce = addressBookDict // 所有联系人信息的字典
-            self.vm.keysArray = nameKeys // 所有分组的key值
-            // 刷新tableView
-            self.tableView.reloadData()
-        }, authorizationFailure: {
-            let alertView = UIAlertController(title: "提示", message: "请在iPhone的“设置-隐私-通讯录”选项中，允许访问您的通讯录", preferredStyle: UIAlertController.Style.alert)
-            let confirm = UIAlertAction(title: "知道啦", style: UIAlertAction.Style.cancel, handler: nil)
-            alertView.addAction(confirm)
-            self.present(alertView, animated: true, completion: nil)
-        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,7 +101,12 @@ class ContactViewController: UIViewController {
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.contactViewControllerSend()
+            let array = self.vm.selectResources()
+            if array.isEmpty {
+                PLToast.showAutoHideHint("未选中资源")
+            } else {
+                self.delegate?.contactViewControllerSend()
+            }
         }.disposed(by: bag)
     }
 }
@@ -163,5 +182,41 @@ extension ContactViewController: PageVCProtocol {
     func selectedAll() {
         vm.selectedAll()
         tableView.reloadData()
+    }
+}
+
+extension ContactViewController {
+    func requestContactsPermission(completion: @escaping ((Bool) ->Void)) {
+        let contactStore = CNContactStore()
+
+        // 检查是否已经授权
+        switch CNContactStore.authorizationStatus(for: .contacts) {
+        case .authorized:
+            // 已经授权，可以访问通讯录
+            completion(true)
+            break
+        case .denied, .restricted:
+            // 用户拒绝或受限制，弹出提示或者引导用户打开设置中的权限
+            completion(false)
+            showPermissionAlert()
+        case .notDetermined:
+            // 请求授权
+            contactStore.requestAccess(for: .contacts) { granted, _ in
+                if !granted {
+                    self.showPermissionAlert()
+                }
+                completion(granted)
+            }
+        default:
+            break
+        }
+    }
+
+    func showPermissionAlert() {
+        // 在这里显示一个提示，引导用户打开设置中的权限
+        let alertView = UIAlertController(title: "提示", message: "请在iPhone的“设置-隐私-通讯录”选项中，允许访问您的通讯录", preferredStyle: UIAlertController.Style.alert)
+        let confirm = UIAlertAction(title: "知道啦", style: UIAlertAction.Style.cancel, handler: nil)
+        alertView.addAction(confirm)
+        self.present(alertView, animated: true, completion: nil)
     }
 }

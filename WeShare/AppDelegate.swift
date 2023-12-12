@@ -34,18 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func executeNormalLaunch(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-//        let showFlag = UserDefaults.standard.bool(forKey: "UserGuide")
-//        guard showFlag else {
-//            setupTabBarViewController()
-//            return
-//        }
-//        UserDefaults.standard.set(true, forKey: "UserGuide")
-        let welcomeVC = WelcomeViewController()
-        welcomeVC.dismissAction = { [weak self]  in
-            guard let self = self else { return }
-            self.setupTabBarViewController()
+        let showFlag = UserDefaults.standard.bool(forKey: "UserGuide")
+        guard showFlag else {
+            UserDefaults.standard.set(true, forKey: "UserGuide")
+            let welcomeVC = WelcomeViewController()
+            welcomeVC.dismissAction = { [weak self]  in
+                guard let self = self else { return }
+                self.setupTabBarViewController()
+            }
+            setupRootViewController(with: welcomeVC)
+            return
         }
-        setupRootViewController(with: welcomeVC)
+        setupTabBarViewController()
     }
     
     func setupRootViewController(with rootVC: UIViewController) {

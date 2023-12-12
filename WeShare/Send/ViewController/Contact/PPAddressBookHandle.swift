@@ -112,7 +112,7 @@ class PPAddressBookHandle {
         // 5.遍历所有联系人
         for personInfo in allPeopleArray {
             
-            let model = PPPersonModel()
+            var model = PPPersonModel()
             
             // 5.1 获取到联系人
             let person = personInfo as ABRecord
@@ -122,8 +122,8 @@ class PPAddressBookHandle {
             model.name = name
             
             // 5.3 获取头像数据
-            let imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)?.takeRetainedValue() as NSData? ?? NSData.init()
-            model.headerImage = UIImage.init(data: imageData as Data)
+//            let imageData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)?.takeRetainedValue() as NSData? ?? NSData.init()
+//            model.headerImage = UIImage.init(data: imageData as Data)
             
             // 5.4 遍历每个人的电话号码
             let phones = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue();
@@ -179,14 +179,14 @@ class PPAddressBookHandle {
         for contact in contacts {
             
             // 创建联系人模型
-            let model = PPPersonModel()
+            var model = PPPersonModel()
             
             // 获取联系人全名
             model.name = CNContactFormatter.string(from: contact, style: CNContactFormatterStyle.fullName) ?? "无名氏"
             
-            // 获取头像
-            let imageData = contact.thumbnailImageData ?? NSData.init() as Data
-            model.headerImage = UIImage.init(data: imageData)
+//            // 获取头像
+//            let imageData = contact.thumbnailImageData ?? NSData.init() as Data
+//            model.headerImage = UIImage.init(data: imageData)
             
             // 遍历一个人的所有电话号码
             for labelValue in contact.phoneNumbers {

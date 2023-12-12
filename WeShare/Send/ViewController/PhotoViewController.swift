@@ -86,18 +86,20 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
     }
     
     private func configPhotoResource() {
-        if !TZImageManager.default().authorizationStatusAuthorized() {
-            return
-        }
-        picker?.pickerDelegate = self
-        DispatchQueue.global(qos: .default).async { [weak self] in
+        PhotoUtil.requestPhotoLibraryPermission { [weak self] grant in
             guard let self = self else { return }
-            self.picker?.getAllAlbums(false, allowPickingImage: true, needFetchAssets: true) { models in
-                DispatchQueue.main.async { [weak self] in
+            if grant {
+                self.picker?.pickerDelegate = self
+                DispatchQueue.global(qos: .default).async { [weak self] in
                     guard let self = self else { return }
-                    let groupMoldels: [PhotoItemGroupModel] = models?.map { PhotoItemGroupModel(bumModel: $0, isExpand: false, isSelectedAll: false) } ?? []
-                    self.vm.dataList = groupMoldels
-                    self.collectionView.reloadData()
+                    self.picker?.getAllAlbums(false, allowPickingImage: true, needFetchAssets: true) { models in
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self = self else { return }
+                            let groupMoldels: [PhotoItemGroupModel] = models?.map { PhotoItemGroupModel(bumModel: $0, isExpand: false, isSelectedAll: false) } ?? []
+                            self.vm.dataList = groupMoldels
+                            self.collectionView.reloadData()
+                        }
+                    }
                 }
             }
         }

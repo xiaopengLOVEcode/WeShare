@@ -28,17 +28,12 @@
 
 import UIKit
 
-public class PPPersonModel {
-    
+public struct PPPersonModel: Codable {
     /// 联系人姓名
-    public var name: String = ""
-    
+    var name: String = ""
     /// 联系人电话数组,一个联系人可能存储多个号码
-    public var mobileArray: [String] = []
-    
+    var mobileArray: [String] = []
     /// 联系人头像
-    public var headerImage: UIImage?
-    
-    
-    public var isSelected: Bool = false
+//    var headerImage: UIImage?
+    var isSelected: Bool = false
 }

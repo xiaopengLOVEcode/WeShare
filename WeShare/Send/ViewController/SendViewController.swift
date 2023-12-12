@@ -171,33 +171,39 @@ extension SendViewController: PagingContentViewControllerDelegate {
 
 extension SendViewController: PhotoViewControllerDelegate, VideoViewControllerDelegate, ContactViewControllerDelegate, CalendarViewControllerDelegate , FileViewControllerDelegate {
     func photoViewControllerSend() {
-        
-        let qrVc = QRCodeViewController()
-        self.navigationController?.pushViewController(qrVc, animated: true)
+        startTransfer()
     }
     
     func videoViewControllerSend() {
-        let vc = SendingViewController(style: .send)
-        self.navigationController?.pushViewController(vc, animated: true)
+        startTransfer()
     }
     
     func contactViewControllerSend() {
-        let vc = SendingViewController(style: .send)
-        self.navigationController?.pushViewController(vc, animated: true)
+        startTransfer()
     }
     
     func calendarViewControllerSend() {
-        let vc = SendingViewController(style: .send)
-        self.navigationController?.pushViewController(vc, animated: true)
+        startTransfer()
     }
     
     func fileViewControllerSend() {
-        let vc = SendingViewController(style: .send)
-        self.navigationController?.pushViewController(vc, animated: true)
+        startTransfer()
     }
     
     func showRightBtn(isHidden: Bool) {
 //        headerView.rightButton.isHidden = isHidden
+    }
+    
+    
+    func startTransfer() {
+        if TransferTaskManager.shared.isReady() {
+            PLToast.showAutoHideHint("传输任务在进行中...")
+            // 流转到状态界面
+            TransferTaskManager.shared.jumpCurTransferPageVc()
+        } else {
+            let qrVc = QRCodeViewController()
+            self.navigationController?.pushViewController(qrVc, animated: true)
+        }
     }
 }
 

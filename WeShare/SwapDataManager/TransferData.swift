@@ -35,14 +35,13 @@ extension PPPersonModel {
         var personData: Data?
         // 使用DispatchSemaphore等待异步操作完成
         let semaphore = DispatchSemaphore(value: 0)
-//        let requestOptions = PHImageRequestOptions()
-//        requestOptions.isSynchronous = true
-//        requestOptions.deliveryMode = .highQualityFormat
-//        PHImageManager.default().requestImageDataAndOrientation(for: self, options: requestOptions) { data, _, _, _ in
-//            imageData = data
-//            semaphore.signal()
-//        }
-//        _ = semaphore.wait(timeout: .distantFuture)
+        do {
+            personData = try JSONEncoder().encode(self)
+        } catch {
+            print("Encoding failed: \(error)")
+        }
+        
+        _ = semaphore.wait(timeout: .distantFuture)
         guard let data = personData else { return nil }
         return TransferData(type: .contact, data: data)
     }
@@ -54,7 +53,7 @@ extension PPPersonModel {
 // 日历
 extension EKEvent {
     func map() -> TransferData? {
-        var personData: Data?
+        var eventData: Data?
         // 使用DispatchSemaphore等待异步操作完成
         let semaphore = DispatchSemaphore(value: 0)
 //        let requestOptions = PHImageRequestOptions()
@@ -64,8 +63,8 @@ extension EKEvent {
 //            imageData = data
 //            semaphore.signal()
 //        }
-//        _ = semaphore.wait(timeout: .distantFuture)
-        guard let data = personData else { return nil }
+        _ = semaphore.wait(timeout: .distantFuture)
+        guard let data = eventData else { return nil }
         return TransferData(type: .contact, data: data)
     }
 }

@@ -87,6 +87,7 @@
 		6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673C2AF956FD00E06522 /* GradientButton.swift */; };
 		62B82B012B136422006953DA /* QRFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B82B002B136422006953DA /* QRFocusView.swift */; };
 		62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */; };
+		62C660462B28CAF100295B47 /* PhotoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C660452B28CAF100295B47 /* PhotoUtil.swift */; };
 		62CEDBD32B0E4D2F002AF1E4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */; };
 		62CEDBD72B0E50EA002AF1E4 /* CalendarTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */; };
 		62CEDBD92B0E6892002AF1E4 /* SubCommProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */; };
@@ -193,6 +194,7 @@
 		6296673C2AF956FD00E06522 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		62B82B002B136422006953DA /* QRFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRFocusView.swift; sourceTree = "<group>"; };
 		62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		62C660452B28CAF100295B47 /* PhotoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUtil.swift; sourceTree = "<group>"; };
 		62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTool.swift; sourceTree = "<group>"; };
 		62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCommProtocol.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				623572582AFFD828000F8F34 /* PhotoModel.swift */,
+				62C660452B28CAF100295B47 /* PhotoUtil.swift */,
 			);
 			path = PhotoAbout;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				629666932AF9188D00E06522 /* AppDelegate.swift in Sources */,
 				62CEDBD32B0E4D2F002AF1E4 /* CalendarCell.swift in Sources */,
 				629667102AF9218300E06522 /* PLCommonSelectAlertView.swift in Sources */,
+				62C660462B28CAF100295B47 /* PhotoUtil.swift in Sources */,
 				62025C052B25BBA1003EB721 /* EPOUIDocumentPickerViewController.swift in Sources */,
 				629666F92AF9218300E06522 /* ObservableProperty.swift in Sources */,
 				629667362AF9322600E06522 /* MineItemView.swift in Sources */,
