@@ -8,12 +8,7 @@
 import UIKit
 import RxSwift
 
-protocol CalendarViewControllerDelegate: SubCommProtocol {
-    func calendarViewControllerSend()
-}
-
 class CalendarViewController: UIViewController {
-    
     private let vm = CalendarViewModel()
     
     private lazy var tableView: UITableView = {
@@ -35,7 +30,7 @@ class CalendarViewController: UIViewController {
         return tableView
     }()
     
-    weak var delegate: CalendarViewControllerDelegate?
+    weak var delegate: CommContentVcDelegate?
     
     private let bag = DisposeBag()
     
@@ -101,7 +96,7 @@ class CalendarViewController: UIViewController {
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.calendarViewControllerSend()
+            self.delegate?.contentViewControllerSend(self)
         }.disposed(by: bag)
     }
 }
@@ -146,6 +141,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     // 高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 83
+    }
+}
+
+extension CalendarViewController: TransferTaskManagerDelegate {
+    func transferTaskManagerGetDatas() -> [TransferData] {
+        return []
     }
 }
 

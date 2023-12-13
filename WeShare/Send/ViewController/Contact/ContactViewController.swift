@@ -9,12 +9,8 @@ import RxSwift
 import UIKit
 import Contacts
 
-protocol ContactViewControllerDelegate: SubCommProtocol {
-    func contactViewControllerSend()
-}
-
 class ContactViewController: UIViewController {
-    weak var delegate: ContactViewControllerDelegate?
+    weak var delegate: CommContentVcDelegate?
 
     private let bag = DisposeBag()
 
@@ -105,7 +101,7 @@ class ContactViewController: UIViewController {
             if array.isEmpty {
                 PLToast.showAutoHideHint("未选中资源")
             } else {
-                self.delegate?.contactViewControllerSend()
+                self.delegate?.contentViewControllerSend(self)
             }
         }.disposed(by: bag)
     }
@@ -218,5 +214,11 @@ extension ContactViewController {
         let confirm = UIAlertAction(title: "知道啦", style: UIAlertAction.Style.cancel, handler: nil)
         alertView.addAction(confirm)
         self.present(alertView, animated: true, completion: nil)
+    }
+}
+
+extension ContactViewController: TransferTaskManagerDelegate {
+    func transferTaskManagerGetDatas() -> [TransferData] {
+        return []
     }
 }

@@ -10,13 +10,9 @@ import RxSwift
 import UIKit
 import TZImagePickerController
 
-protocol PhotoViewControllerDelegate: SubCommProtocol {
-    func photoViewControllerSend()
-}
-
 final class PhotoViewController: UIViewController, TZImagePickerControllerDelegate {
     
-    weak var delegate: PhotoViewControllerDelegate?
+    weak var delegate: CommContentVcDelegate?
     
     private let vm = PhotoViewModel()
     
@@ -112,7 +108,7 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
             if array.isEmpty {
                 PLToast.showAutoHideHint("未选中资源")
             } else {
-                self.delegate?.photoViewControllerSend()
+                self.delegate?.contentViewControllerSend(self)
             }
         }.disposed(by: bag)
     }
@@ -206,6 +202,12 @@ extension PhotoViewController: PhotoSelectedHeaderDelegate {
                 }
             }
         }
+    }
+}
+
+extension PhotoViewController: TransferTaskManagerDelegate {
+    func transferTaskManagerGetDatas() -> [TransferData] {
+        return []
     }
 }
 

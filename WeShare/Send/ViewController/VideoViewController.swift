@@ -9,13 +9,9 @@ import UIKit
 import RxSwift
 import TZImagePickerController
 
-protocol VideoViewControllerDelegate: SubCommProtocol {
-    func videoViewControllerSend()
-}
-
 class VideoViewController: UIViewController {
     
-    weak var delegate: VideoViewControllerDelegate?
+    weak var delegate: CommContentVcDelegate?
     
     private let vm = VideoViewModel()
     
@@ -92,7 +88,7 @@ class VideoViewController: UIViewController {
             if array.isEmpty {
                 PLToast.showAutoHideHint("未选中资源")
             } else {
-                self.delegate?.videoViewControllerSend()
+                self.delegate?.contentViewControllerSend(self)
             }
         }.disposed(by: bag)
     }
@@ -218,5 +214,11 @@ extension VideoViewController: TZImagePickerControllerDelegate  {
 
 extension VideoViewController: PageVCProtocol {
     func selectedAll() {}
+}
+
+extension VideoViewController: TransferTaskManagerDelegate {
+    func transferTaskManagerGetDatas() -> [TransferData] {
+        return []
+    }
 }
 

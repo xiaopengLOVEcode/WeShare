@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol SubCommProtocol: AnyObject {
+protocol CommContentVcDelegate: AnyObject{
     func showRightBtn(isHidden: Bool)
+    func contentViewControllerSend(_ vc: (UIViewController & TransferTaskManagerDelegate))
 }

@@ -13,12 +13,9 @@ import AVFoundation
 import SnapKit
 import PhotosUI
 
-protocol FileViewControllerDelegate: SubCommProtocol {
-    func fileViewControllerSend()
-}
-
 class FileViewController: UIViewController {
     
+    private let vm = FileViewModel()
     
     // 文件最大 50 MB
     let allowedMaxFileSize = 20 * 1024 * 1024
@@ -33,6 +30,26 @@ class FileViewController: UIViewController {
         $0.font = .font(14)
     }
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.sectionIndexColor = UIColor.pl_main
+        tableView.adaptToIOS11()
+        tableView.isHidden = true
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        } else {
+            // Fallback on earlier versions
+        }
+        return tableView
+    }()
+    
     private let importBtn = UIButton().then {
         $0.setTitle("导入文档", for: .normal)
         $0.setTitle("导入文档", for: .highlighted)
@@ -41,7 +58,7 @@ class FileViewController: UIViewController {
         $0.titleLabel?.font = .font(16)
     }
     
-    weak var delegate: FileViewControllerDelegate?
+    weak var delegate: CommContentVcDelegate?
     
     private let bag = DisposeBag()
     
@@ -79,6 +96,13 @@ class FileViewController: UIViewController {
         }
         
         
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
         view.addSubview(bottomBtn)
         bottomBtn.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(40)
@@ -91,7 +115,7 @@ class FileViewController: UIViewController {
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.fileViewControllerSend()
+            self.delegate?.contentViewControllerSend(self)
         }.disposed(by: bag)
         
         importBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
@@ -205,6 +229,7 @@ extension FileViewController: UIDocumentPickerDelegate {
         var typesList: [String] = []
         var namesList: [String] = []
         for (_, url) in urls.enumerated() {
+            vm.fileModels.append(FileResourceModel(filePath: url, selected: false))
             // Start accessing a security-scoped resource.
             let isSecureAccess = url.startAccessingSecurityScopedResource()
 
@@ -242,6 +267,13 @@ extension FileViewController: UIDocumentPickerDelegate {
                 }
             }
         }
+        if vm.fileModels.isNotEmpty {
+            self.tableView.isHidden = false
+            self.importBtn.isHidden = true
+            self.noFileLabel.isHidden = true
+            self.tableView.reloadData()
+        }
+        
 //        delegate?.didChooseFiles?(dataList: dataList, typesList: typesList, namesList: namesList)
     }
     
@@ -257,4 +289,60 @@ extension FileViewController: UIDocumentPickerDelegate {
 
 extension FileViewController: PageVCProtocol {
     func selectedAll() {}
+}
+
+
+extension FileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vm.fileModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = CalendarCell.identifier
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? FileCell
+        if cell == nil {
+            cell = FileCell(style: .subtitle, reuseIdentifier: identifier)
+        }
+        cell?.didSelectItemBlock = { [weak self] isSelected in
+//            guard let self = self else { return }
+//            self.vm.selectedItem(with: indexPath.row, isSelected: isSelected)
+        }
+        let model = vm.fileModels[indexPath.row]
+        cell?.bindData(with: model)
+        cell?.delegate = self
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    // 高度
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+}
+
+extension FileViewController: FileCellProtocol {
+    func fileCellBtnClick() {
+        
+    }
+}
+
+extension FileViewController: TransferTaskManagerDelegate {
+    func transferTaskManagerGetDatas() -> [TransferData] {
+        return []
+    }
 }

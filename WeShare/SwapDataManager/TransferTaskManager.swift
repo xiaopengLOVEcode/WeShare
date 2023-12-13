@@ -9,6 +9,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+protocol TransferTaskManagerDelegate: AnyObject {
+    func transferTaskManagerGetDatas() -> [TransferData]
+}
+
 
 final class TransferTaskManager: NSObject {
     
@@ -28,6 +32,8 @@ final class TransferTaskManager: NSObject {
     static let shared = TransferTaskManager()
     
     private var state: State = .idle
+    
+    weak var delegate: TransferTaskManagerDelegate?
     
     
     // 持有接受和发送界面 保持一个实例
@@ -109,7 +115,12 @@ extension TransferTaskManager {
             vcs.remove(at: vcs.count - 2)
             fromVc.navigationController?.viewControllers = vcs
             // 直接传输
-            self.sendDatas([])
+            let datas = delegate?.transferTaskManagerGetDatas()
+            guard let transferDatas = datas  else {
+                PLToast.showAutoHideHint("数据处理失败")
+                return
+            }
+            self.sendDatas(transferDatas)
         }
     }
 }

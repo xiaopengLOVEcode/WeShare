@@ -87,10 +87,12 @@
 		6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6296673C2AF956FD00E06522 /* GradientButton.swift */; };
 		62B82B012B136422006953DA /* QRFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B82B002B136422006953DA /* QRFocusView.swift */; };
 		62B84C232B0078AC000A9FB8 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */; };
+		62B888EF2B29F75C00DB85EA /* FileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B888EE2B29F75C00DB85EA /* FileViewModel.swift */; };
+		62B888F12B29FD8700DB85EA /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B888F02B29FD8700DB85EA /* FileCell.swift */; };
 		62C660462B28CAF100295B47 /* PhotoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C660452B28CAF100295B47 /* PhotoUtil.swift */; };
 		62CEDBD32B0E4D2F002AF1E4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */; };
 		62CEDBD72B0E50EA002AF1E4 /* CalendarTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */; };
-		62CEDBD92B0E6892002AF1E4 /* SubCommProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */; };
+		62CEDBD92B0E6892002AF1E4 /* CommContentVcProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CEDBD82B0E6892002AF1E4 /* CommContentVcProtocol.swift */; };
 		62D922052B16412200A8B67F /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D922042B16412200A8B67F /* FinishView.swift */; };
 		62DB43892AFBE237008F9DE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB43882AFBE237008F9DE3 /* ProgressView.swift */; };
 		62DB438C2AFD1376008F9DE3 /* GuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DB438B2AFD1376008F9DE3 /* GuideModel.swift */; };
@@ -194,10 +196,12 @@
 		6296673C2AF956FD00E06522 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		62B82B002B136422006953DA /* QRFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRFocusView.swift; sourceTree = "<group>"; };
 		62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		62B888EE2B29F75C00DB85EA /* FileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewModel.swift; sourceTree = "<group>"; };
+		62B888F02B29FD8700DB85EA /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		62C660452B28CAF100295B47 /* PhotoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUtil.swift; sourceTree = "<group>"; };
 		62CEDBD22B0E4D2F002AF1E4 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		62CEDBD62B0E50EA002AF1E4 /* CalendarTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTool.swift; sourceTree = "<group>"; };
-		62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCommProtocol.swift; sourceTree = "<group>"; };
+		62CEDBD82B0E6892002AF1E4 /* CommContentVcProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommContentVcProtocol.swift; sourceTree = "<group>"; };
 		62D922042B16412200A8B67F /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
 		62DB43882AFBE237008F9DE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		62DB438B2AFD1376008F9DE3 /* GuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideModel.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 			children = (
 				62025C062B25BE21003EB721 /* EPOOSSUploader.swift */,
 				62025C042B25BBA1003EB721 /* EPOUIDocumentPickerViewController.swift */,
+				62B888F02B29FD8700DB85EA /* FileCell.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -464,7 +469,7 @@
 				629667272AF92FFC00E06522 /* VideoViewController.swift */,
 				6296672E2AF9304000E06522 /* FileViewController.swift */,
 				620DB6512AFA82DF00C3A556 /* SendingViewController.swift */,
-				62CEDBD82B0E6892002AF1E4 /* SubCommProtocol.swift */,
+				62CEDBD82B0E6892002AF1E4 /* CommContentVcProtocol.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				62B84C222B0078AC000A9FB8 /* VideoViewModel.swift */,
 				625DC02D2B179A2300CD6AA4 /* CalendarViewModel.swift */,
 				6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */,
+				62B888EE2B29F75C00DB85EA /* FileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 				CCAD3CE52B1225FC00E1D030 /* SendDataOperation.swift in Sources */,
 				62DB43902AFD2AD0008F9DE3 /* BannerView.swift in Sources */,
 				629666F82AF9218300E06522 /* UIDevice+Extension.swift in Sources */,
+				62B888F12B29FD8700DB85EA /* FileCell.swift in Sources */,
 				629666FB2AF9218300E06522 /* UIWindow+Extension.swift in Sources */,
 				6206FDE42B0D0093009D1F80 /* ContactViewModel.swift in Sources */,
 				6206FDE02B0CFD64009D1F80 /* PPPersonModel.swift in Sources */,
@@ -734,10 +741,11 @@
 				625DC02E2B179A2400CD6AA4 /* CalendarViewModel.swift in Sources */,
 				629667132AF9218300E06522 /* ARSNavigationController.swift in Sources */,
 				6296670D2AF9218300E06522 /* TextView.swift in Sources */,
+				62B888EF2B29F75C00DB85EA /* FileViewModel.swift in Sources */,
 				6296673D2AF956FD00E06522 /* GradientButton.swift in Sources */,
 				629667182AF9218300E06522 /* PLViewController.swift in Sources */,
 				623572382AFE7BF1000F8F34 /* SwitchBar.swift in Sources */,
-				62CEDBD92B0E6892002AF1E4 /* SubCommProtocol.swift in Sources */,
+				62CEDBD92B0E6892002AF1E4 /* CommContentVcProtocol.swift in Sources */,
 				629667022AF9218300E06522 /* PLNetworkError.swift in Sources */,
 				629667142AF9218300E06522 /* PLFadedModalController.swift in Sources */,
 				6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */,
