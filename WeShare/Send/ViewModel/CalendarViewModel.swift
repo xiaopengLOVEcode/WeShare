@@ -25,9 +25,7 @@ final class CalendarViewModel {
         dataList[index].isSelected = isSelected
     }
     
-    func modelForSelected() -> [EKEvent] {
-        return dataList
-            .filter { $0.isSelected == true}
-            .map { $0.event }
+    func selectResources() -> [EKEvent] {
+        return dataList.filter { $0.isSelected }.map { $0.event }
     }
 }

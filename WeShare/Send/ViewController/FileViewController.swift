@@ -115,7 +115,12 @@ class FileViewController: UIViewController {
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.contentViewControllerSend(self)
+            let array = self.vm.selectResources()
+            if array.isEmpty {
+                PLToast.showAutoHideHint("未选中资源")
+            } else {
+                self.delegate?.contentViewControllerSend(self)
+            }
         }.disposed(by: bag)
         
         importBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
@@ -229,7 +234,7 @@ extension FileViewController: UIDocumentPickerDelegate {
         var typesList: [String] = []
         var namesList: [String] = []
         for (_, url) in urls.enumerated() {
-            vm.fileModels.append(FileResourceModel(filePath: url, selected: false))
+            vm.fileModels.append(FileResourceModel(filePath: url, isSelected: false))
             // Start accessing a security-scoped resource.
             let isSecureAccess = url.startAccessingSecurityScopedResource()
 
@@ -344,5 +349,9 @@ extension FileViewController: FileCellProtocol {
 extension FileViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
         return []
+    }
+    
+    func transferTaskManagerDatasReceive(datas: [TransferData]) {
+        
     }
 }

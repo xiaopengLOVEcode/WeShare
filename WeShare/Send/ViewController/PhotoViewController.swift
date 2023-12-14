@@ -209,6 +209,10 @@ extension PhotoViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
         return []
     }
+    
+    func transferTaskManagerDatasReceive(datas: [TransferData]) {
+        
+    }
 }
 
 extension PhotoViewController  {

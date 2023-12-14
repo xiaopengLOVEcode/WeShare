@@ -96,7 +96,12 @@ class CalendarViewController: UIViewController {
     private func addHandleEvent() {
         bottomBtn.rx.controlEvent(.touchUpInside).subscribeNext { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.contentViewControllerSend(self)
+            let array = self.vm.selectResources()
+            if array.isEmpty {
+                PLToast.showAutoHideHint("未选中资源")
+            } else {
+                self.delegate?.contentViewControllerSend(self)
+            }
         }.disposed(by: bag)
     }
 }
@@ -147,6 +152,10 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 extension CalendarViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
         return []
+    }
+    
+    func transferTaskManagerDatasReceive(datas: [TransferData]) {
+        
     }
 }
 

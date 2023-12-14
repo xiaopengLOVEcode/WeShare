@@ -220,5 +220,9 @@ extension VideoViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
         return []
     }
+    
+    func transferTaskManagerDatasReceive(datas: [TransferData]) {
+        
+    }
 }
 

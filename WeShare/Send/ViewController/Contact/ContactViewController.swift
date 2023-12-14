@@ -219,6 +219,12 @@ extension ContactViewController {
 
 extension ContactViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
-        return []
+        let datas = vm.selectResources()
+        let results = datas.compactMap { $0.map() }
+        return results
+    }
+    
+    func transferTaskManagerDatasReceive(datas: [TransferData]) {
+        
     }
 }

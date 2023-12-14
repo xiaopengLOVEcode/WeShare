@@ -30,6 +30,10 @@
 		6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */; };
 		6235725D2AFFDECF000F8F34 /* LZCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */; };
 		6235725F2AFFE9CD000F8F34 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */; };
+		62496E452B2B615B00BEBE8D /* ContactSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62496E442B2B615B00BEBE8D /* ContactSaveTool.swift */; };
+		62496E472B2B619500BEBE8D /* PhotoSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62496E462B2B619500BEBE8D /* PhotoSaveTool.swift */; };
+		62496E492B2B621C00BEBE8D /* EventSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62496E482B2B621C00BEBE8D /* EventSaveTool.swift */; };
+		62496E4B2B2B623000BEBE8D /* FileSaveTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62496E4A2B2B623000BEBE8D /* FileSaveTool.swift */; };
 		625DC02E2B179A2400CD6AA4 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625DC02D2B179A2300CD6AA4 /* CalendarViewModel.swift */; };
 		6261C06B2B19DD0500BA6632 /* TransferTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6261C06A2B19DD0500BA6632 /* TransferTaskManager.swift */; };
 		626A739B2B11F63000301C1D /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626A739A2B11F63000301C1D /* QRCodeViewController.swift */; };
@@ -133,6 +137,10 @@
 		6235725A2AFFDCD4000F8F34 /* PhotoItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemsCell.swift; sourceTree = "<group>"; };
 		6235725C2AFFDECF000F8F34 /* LZCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LZCollectionView.swift; sourceTree = "<group>"; };
 		6235725E2AFFE9CD000F8F34 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		62496E442B2B615B00BEBE8D /* ContactSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSaveTool.swift; sourceTree = "<group>"; };
+		62496E462B2B619500BEBE8D /* PhotoSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSaveTool.swift; sourceTree = "<group>"; };
+		62496E482B2B621C00BEBE8D /* EventSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSaveTool.swift; sourceTree = "<group>"; };
+		62496E4A2B2B623000BEBE8D /* FileSaveTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSaveTool.swift; sourceTree = "<group>"; };
 		625DC02D2B179A2300CD6AA4 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		6261C06A2B19DD0500BA6632 /* TransferTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTaskManager.swift; sourceTree = "<group>"; };
 		626A739A2B11F63000301C1D /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +286,17 @@
 			path = PhotoAbout;
 			sourceTree = "<group>";
 		};
+		62496E432B2B613200BEBE8D /* SaveTool */ = {
+			isa = PBXGroup;
+			children = (
+				62496E442B2B615B00BEBE8D /* ContactSaveTool.swift */,
+				62496E462B2B619500BEBE8D /* PhotoSaveTool.swift */,
+				62496E482B2B621C00BEBE8D /* EventSaveTool.swift */,
+				62496E4A2B2B623000BEBE8D /* FileSaveTool.swift */,
+			);
+			path = SaveTool;
+			sourceTree = "<group>";
+		};
 		626A73982B0F563C00301C1D /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +334,7 @@
 		629666912AF9188D00E06522 /* WeShare */ = {
 			isa = PBXGroup;
 			children = (
+				62496E432B2B613200BEBE8D /* SaveTool */,
 				6296671E2AF9228200E06522 /* WeShare-Bridging-Header.h */,
 				629666A02AF9188F00E06522 /* Info.plist */,
 				629666922AF9188D00E06522 /* AppDelegate.swift */,
@@ -671,6 +691,7 @@
 				62B888F12B29FD8700DB85EA /* FileCell.swift in Sources */,
 				629666FB2AF9218300E06522 /* UIWindow+Extension.swift in Sources */,
 				6206FDE42B0D0093009D1F80 /* ContactViewModel.swift in Sources */,
+				62496E492B2B621C00BEBE8D /* EventSaveTool.swift in Sources */,
 				6206FDE02B0CFD64009D1F80 /* PPPersonModel.swift in Sources */,
 				629667222AF925DB00E06522 /* ReceiveViewController.swift in Sources */,
 				629666FD2AF9218300E06522 /* UIButton+Extension.swift in Sources */,
@@ -686,12 +707,14 @@
 				62DB43942AFD419E008F9DE3 /* SheetView.swift in Sources */,
 				62DB438C2AFD1376008F9DE3 /* GuideModel.swift in Sources */,
 				629667392AF9426E00E06522 /* WSGradientView.swift in Sources */,
+				62496E472B2B619500BEBE8D /* PhotoSaveTool.swift in Sources */,
 				CCAD3CD72B11B57E00E1D030 /* SwapDataManager.swift in Sources */,
 				629667262AF92FF000E06522 /* PhotoViewController.swift in Sources */,
 				629667012AF9218300E06522 /* UIScrollView+Extension.swift in Sources */,
 				6235725B2AFFDCD4000F8F34 /* PhotoItemsCell.swift in Sources */,
 				629666A72AF91F4E00E06522 /* TabBarViewController.swift in Sources */,
 				626A739B2B11F63000301C1D /* QRCodeViewController.swift in Sources */,
+				62496E452B2B615B00BEBE8D /* ContactSaveTool.swift in Sources */,
 				62DB438E2AFD1444008F9DE3 /* GuideViewController.swift in Sources */,
 				62D922052B16412200A8B67F /* FinishView.swift in Sources */,
 				6296672C2AF9301F00E06522 /* CalendarViewController.swift in Sources */,
@@ -734,6 +757,7 @@
 				629666FA2AF9218300E06522 /* UIColor+Extension.swift in Sources */,
 				629666FE2AF9218300E06522 /* Codable+Default.swift in Sources */,
 				62B82B012B136422006953DA /* QRFocusView.swift in Sources */,
+				62496E4B2B2B623000BEBE8D /* FileSaveTool.swift in Sources */,
 				629667002AF9218300E06522 /* UIView+Layout.swift in Sources */,
 				623572492AFF7030000F8F34 /* IntroduceController.swift in Sources */,
 				6296670F2AF9218300E06522 /* Device+Extension.swift in Sources */,

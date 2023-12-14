@@ -68,5 +68,133 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96C571DE-4F84-4BB2-966C-5F45E2015F04"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeShare/Send/ViewController/Contact/ContactViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "transferTaskManagerGetDatas()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4177D14E-EC8B-44F7-BF21-C367374B35D4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeShare/SwapDataManager/TransferTaskManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "startSendingData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4177D14E-EC8B-44F7-BF21-C367374B35D4 - 9994a5ecb5b41516"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in WeShare.TransferTaskManager.startSendingData() -&gt; ()"
+                  moduleName = "WeShare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialipeng/iOS-Project/WeShare/WeShare/SwapDataManager/TransferTaskManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "4177D14E-EC8B-44F7-BF21-C367374B35D4 - 9994a5ecb5b415d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in WeShare.TransferTaskManager.startSendingData() -&gt; ()"
+                  moduleName = "WeShare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialipeng/iOS-Project/WeShare/WeShare/SwapDataManager/TransferTaskManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44322A56-4749-4690-815B-ACBFD17201D3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeShare/SwapDataManager/TransferTaskManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "startlisten()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "44322A56-4749-4690-815B-ACBFD17201D3 - f7558e40e76ea4f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (WeShare.SwapDataManager.SessionState) -&gt; () in WeShare.TransferTaskManager.startlisten() -&gt; ()"
+                  moduleName = "WeShare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialipeng/iOS-Project/WeShare/WeShare/SwapDataManager/TransferTaskManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "44322A56-4749-4690-815B-ACBFD17201D3 - f7558e40e76ea54c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (WeShare.SwapDataManager.SessionState) -&gt; () in WeShare.TransferTaskManager.startlisten() -&gt; ()"
+                  moduleName = "WeShare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xialipeng/iOS-Project/WeShare/WeShare/SwapDataManager/TransferTaskManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E0AEAD1E-7884-411A-9D49-B165DCF23A07"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeShare/SwapDataManager/SwapDataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "stopServices()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

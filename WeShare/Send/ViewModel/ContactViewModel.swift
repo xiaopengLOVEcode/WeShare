@@ -61,34 +61,5 @@ final class ContactViewModel {
         return addressBookSouce.values.flatMap { $0.filter { $0.isSelected == true } }
     }
 
-    // 写入联系人
-    func addContact(with models: [PPPersonModel]) {
-        // 创建通讯录对象
-        let store = CNContactStore()
-        // 创建CNMutableContact类型的实例
-        let contactToAdd = CNMutableContact()
-        // 设置姓名
-        contactToAdd.familyName = "张"
-        contactToAdd.givenName = "飞"
-        // 设置昵称
-        contactToAdd.nickname = "fly"
 
-        // 设置电话
-        let mobileNumber = CNPhoneNumber(stringValue: "18510002000")
-        let mobileValue = CNLabeledValue(label: CNLabelPhoneNumberMobile,
-                                         value: mobileNumber)
-        contactToAdd.phoneNumbers = [mobileValue]
-
-        
-        // 添加联系人请求
-        let saveRequest = CNSaveRequest()
-        saveRequest.add(contactToAdd, toContainerWithIdentifier: nil)
-        do {
-            // 写入联系人
-            try store.execute(saveRequest)
-            print("保存成功!")
-        } catch {
-            print(error)
-        }
-    }
 }

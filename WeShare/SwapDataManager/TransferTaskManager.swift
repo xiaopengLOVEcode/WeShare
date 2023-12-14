@@ -11,6 +11,8 @@ import RxCocoa
 
 protocol TransferTaskManagerDelegate: AnyObject {
     func transferTaskManagerGetDatas() -> [TransferData]
+    // 存放数据
+    func transferTaskManagerDatasReceive(datas: [TransferData])
 }
 
 
@@ -64,11 +66,7 @@ final class TransferTaskManager: NSObject {
     }
     
     func onDataReceived(dataReceived: @escaping (TransferData) -> Void, progress: @escaping (Double) -> Void) {
-        SwapDataManager.shared.onDataReceived { data in
-            // 解析数据
-        } progress: { _ in
-            print(progress)
-        }
+
     }
     
     func jumpCurTransferPageVc() {
@@ -154,5 +152,30 @@ extension TransferTaskManager {
         guard let cur_VC = self.receiveVC else { return }
         guard let fromVc = PLViewControllerUtils.currentTopController() else { return }
         fromVc.navigationController?.pushViewController(cur_VC, animated: true)
+        onDataReceived()
+    }
+    
+    private func onDataReceived() {
+        // 这时候代理为空 不知道哪个页面该进行工作
+        SwapDataManager.shared.onDataReceived { [weak self] data in
+            guard let self = self else { return }
+            var text = "未知数据"
+            switch data.type {
+            case .calendar:
+                print("calendar")
+            case .contact:
+                ContactSaveTool.addContact(with: [])
+            case .document:
+                print("document")
+            case .photo:
+                print("photo")
+            case .video:
+                print("video")
+            case .text:
+                print("text")
+            }
+        } progress: { _ in
+            
+        }
     }
 }

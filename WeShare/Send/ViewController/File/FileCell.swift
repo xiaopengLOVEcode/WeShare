@@ -100,6 +100,6 @@ final class FileCell: UITableViewCell {
     
     func bindData(with fileName: FileResourceModel) {
         titleLable.text = fileName.filePath.lastPathComponent
-        checkBtn.isSelected = fileName.selected
+        checkBtn.isSelected = fileName.isSelected
     }
 }

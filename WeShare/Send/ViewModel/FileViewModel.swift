@@ -9,7 +9,7 @@ import Foundation
 
 struct FileResourceModel {
     var filePath: URL
-    var selected: Bool
+    var isSelected: Bool
 }
 
 final class FileViewModel {
@@ -18,5 +18,17 @@ final class FileViewModel {
     // 获取文件名称
     func getFilesName() -> [String] {
         return fileModels.map { $0.filePath.lastPathComponent }
+    }
+    
+    func selectResources() -> [URL] {
+        return fileModels.filter { $0.isSelected }.map { $0.filePath }
+    }
+    
+    func selectedAll() {
+        fileModels = fileModels.map { var newModel = $0; newModel.isSelected = true; return newModel }
+    }
+    
+    func selectedItem(with index: Int, isSelected: Bool) {
+        fileModels[index].isSelected = isSelected
     }
 }
