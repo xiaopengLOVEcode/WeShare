@@ -9,12 +9,16 @@ import Contacts
 import EventKit
 import TZImagePickerController
 import UIKit
+import CoreTelephony
+import Network
+
 
 class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarStyle()
         setupSubViewControllers()
+        requestFunc()
     }
 
     private func setupSubViewControllers() {
@@ -72,6 +76,32 @@ class TabBarViewController: UITabBarController {
             for: .selected
         )
         return item
+    }
+    
+    private func requestFunc() {
+        
+        let cellularData = CTCellularData()
+        cellularData.cellularDataRestrictionDidUpdateNotifier = { [weak self] status in
+            guard let self = self else { return }
+            if status == .notRestricted {
+                // self.reportSuccess()
+                return
+            }
+        }
+        
+        let monitor = NWPathMonitor()
+
+        monitor.pathUpdateHandler = { path in
+//            if path.localNetworkStatus == .satisfied {
+//                print("已授权局域网权限")
+//            } else {
+//                print("未授权局域网权限")
+//            }
+        }
+
+        let queue = DispatchQueue(label: "NetworkMonitor")
+        monitor.start(queue: queue)
+
     }
 }
 
