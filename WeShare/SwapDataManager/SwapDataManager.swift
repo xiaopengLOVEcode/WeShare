@@ -172,6 +172,7 @@ extension SwapDataManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            print("[debug] \(state)")
             switch state {
             case .notConnected:
                 self.stateCallback?(.notConnected)

@@ -64,6 +64,11 @@ final class SendingViewController: PLBaseViewController {
         headerView.leftButton.isHidden = false
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwapDataManager.shared.stopServices()
+    }
+    
     private func setupSubviews() {
         title = pageStyle.vcTitle
         headerView.leftButton.isHidden = false

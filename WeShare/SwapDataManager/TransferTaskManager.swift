@@ -91,7 +91,7 @@ extension TransferTaskManager {
                 self.startSendingData()
             case .notConnected:
                 PLToast.showAutoHideHint("连接已断开")
-                SwapDataManager.shared.stopServices()
+//                SwapDataManager.shared.stopServices()
             case .error:
                 PLToast.showAutoHideHint("连接失败")
             case .unknown:

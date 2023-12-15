@@ -59,6 +59,7 @@ final class QRCodeViewController: PLBaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scanner.stopRunning()
+        SwapDataManager.shared.stopServices()
     }
 
     private func setupViews() {
@@ -126,7 +127,9 @@ extension QRCodeViewController: CAAnimationDelegate {
     func animationDidStart(_ anim: CAAnimation) {
         scanner.preview = foucusView.focusWrapper
         scanner.delegate = self
-        scanner.startRunning()
+        DispatchQueue.global().async {
+            self.scanner.startRunning()
+        }
     }
 }
 

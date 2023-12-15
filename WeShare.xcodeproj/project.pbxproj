@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -602,7 +602,7 @@
 				};
 			};
 			buildConfigurationList = 6296668A2AF9188D00E06522 /* Build configuration list for PBXProject "WeShare" */;
-			compatibilityVersion = "Xcode 15.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -927,13 +927,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JG4DPWG69J;
+				DEVELOPMENT_TEAM = Y3U879H43G;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "允许读取日历";
 				INFOPLIST_KEY_NSCameraUsageDescription = "允许使用相机";
-				INFOPLIST_KEY_NSContactsUsageDescription = "允许联系人访问权限";
+				INFOPLIST_KEY_NSContactsUsageDescription = "允许访问联系人";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "允许访问手机文件";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "允许使用网络授权";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "允许相册访问权限";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "允许访问提醒事件";
@@ -947,7 +948,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexsaxs;
+				PRODUCT_BUNDLE_IDENTIFIER = Bytance.WeSharexsaxs.zgl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -970,9 +971,10 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "请允许访问日历，支持传输";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "允许读取日历";
 				INFOPLIST_KEY_NSCameraUsageDescription = "允许使用相机";
-				INFOPLIST_KEY_NSContactsUsageDescription = "允许联系人访问权限";
+				INFOPLIST_KEY_NSContactsUsageDescription = "允许访问联系人";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "允许访问手机文件";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "允许使用网络授权";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "允许相册访问权限";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "允许访问提醒事件";
