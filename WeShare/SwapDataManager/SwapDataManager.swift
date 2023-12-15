@@ -208,6 +208,7 @@ extension SwapDataManager: MCSessionDelegate {
         // 判断收到的是否为ACK类型数据
         if let ack = messageUnarchiver(data, type: ACKMessage.self)?.identifier {
             guard ack != "close_message" else {
+                print("[debug] received close_message stop service")
                 return stopServices()
             }
             // 判断收到的数据是否为ACK
