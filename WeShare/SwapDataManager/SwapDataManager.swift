@@ -155,13 +155,14 @@ private extension SwapDataManager {
         guard let peerID = toPeerId, session.connectedPeers.contains(peerID) else {
             // 如果设备未连接，可以在此处进行处理
             errorCallback()
-            return print("[error] 未连接到设备，无法发送数据")
+            print("[error] 未连接到设备，无法发送数据")
+            return
         }
         do {
             try session.send(dataToSend, toPeers: [peerID], with: .reliable)
         } catch {
-            errorCallback()
             print("Error sending data: \(error.localizedDescription)")
+            errorCallback()
         }
     }
 }
@@ -211,8 +212,6 @@ extension SwapDataManager: MCSessionDelegate {
                 print("[debug] received close_message stop service")
                 return stopServices()
             }
-            // 判断收到的数据是否为ACK
-            self.operations.filter { $0.id == ack }.forEach { $0.reportSuccess() }
             // 数据发送方的进度回调
             let fractionCompleted = self.operationQueue.progress.fractionCompleted
             DispatchQueue.main.async { [weak self] in
@@ -221,6 +220,9 @@ extension SwapDataManager: MCSessionDelegate {
             }
             // 同时给数据接收方，发送下进度
             self.sendReceivedProgress(fractionCompleted)
+            
+            // 判断收到的数据是否为ACK
+            self.operations.filter { $0.id == ack }.forEach { $0.reportSuccess() }
             return
         }
         
