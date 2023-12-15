@@ -51,9 +51,12 @@ class ReceiveViewController: PLBaseViewController {
         view.backgroundColor = .white
         title = "新机接收"
         setupSubviews()
-        DispatchQueue.main.async {
-            TransferTaskManager.shared.startlisten()
-        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        SwapDataManager.shared.stopServices()
+        TransferTaskManager.shared.startlisten()
     }
 
     private func setupSubviews() {

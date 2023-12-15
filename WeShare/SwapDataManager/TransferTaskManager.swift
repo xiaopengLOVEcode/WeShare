@@ -126,6 +126,9 @@ extension TransferTaskManager {
 // 接收
 extension TransferTaskManager {
     func startlisten() {
+        
+        onDataReceived()
+        
         SwapDataManager.shared.startAdvertising("换机助手") { [weak self] state in
             guard let self = self else { return }
             switch state {
@@ -152,7 +155,6 @@ extension TransferTaskManager {
         guard let cur_VC = self.receiveVC else { return }
         guard let fromVc = PLViewControllerUtils.currentTopController() else { return }
         fromVc.navigationController?.pushViewController(cur_VC, animated: true)
-        onDataReceived()
     }
     
     private func onDataReceived() {
