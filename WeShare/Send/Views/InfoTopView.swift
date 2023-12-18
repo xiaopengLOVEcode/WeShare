@@ -114,7 +114,7 @@ final class InfoTopView: UIView {
             make.left.equalToSuperview().offset(50)
             make.centerY.equalToSuperview()
         }
-        [hasSendLabel, timeHstackView].forEach { itemView in
+        [hasSendLabel, sizeHstackView].forEach { itemView in
             leftVStackView.addArrangedSubview(itemView)
         }
         
@@ -129,7 +129,7 @@ final class InfoTopView: UIView {
             make.centerY.equalToSuperview()
         }
         
-        [residueLabel, sizeHstackView].forEach { itemView in
+        [residueLabel, timeHstackView].forEach { itemView in
             rightVStackView.addArrangedSubview(itemView)
         }
         

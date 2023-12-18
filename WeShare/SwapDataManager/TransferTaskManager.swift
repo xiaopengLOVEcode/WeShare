@@ -61,10 +61,13 @@ final class TransferTaskManager: NSObject {
             DispatchQueue.main.async {
                 self.sendVC?.setProgress(with: progress)
             }
-            
-            print("当前进度\(progress)")
-            if progress == 1 {
+            if progress >= 1 {
+                PLToast.showAutoHideHint("传输完成")
                 self.state = .complete
+                guard let currentVC = self.sendVC else { return }
+                if PLViewControllerUtils.currentTopController() == sendVC {
+                    currentVC.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
@@ -164,11 +167,11 @@ extension TransferTaskManager {
             case .contact:
                 ContactSaveTool.addContact(with: data.data)
             case .document:
-                print("document")
+                FileSaveTool.saveFileToDocumentsDirectory(with: data.data)
             case .photo:
                 PhotoSaveTool.addImage(with: data.data)
             case .video:
-                print("video")
+                PhotoSaveTool.addVideo(with: data.data)
             case .text:
                 print("text")
             }
@@ -176,6 +179,14 @@ extension TransferTaskManager {
             guard let self = self else { return }
             print("当前进度\(progress)")
             self.receiveVC?.setProgress(with: progress)
+            if progress >= 1 { // 代表完成
+                PLToast.showAutoHideHint("传输完成")
+                self.state = .complete
+                guard let currentVC = self.receiveVC else { return }
+                if PLViewControllerUtils.currentTopController() == sendVC {
+                    currentVC.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
 }

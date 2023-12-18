@@ -218,7 +218,7 @@ extension SwapDataManager: MCSessionDelegate {
             // 队列中状态是已完成的任务
             let finishedOperations = operations.filter { $0.operationState == .finished }
             // 计算进度 已完成 / 总数
-            let fractionCompleted = Double(finishedOperations.count / operations.count)
+            let fractionCompleted = Double(finishedOperations.count) / Double(operations.count)
             print("[debug - sender] send current progress:\(fractionCompleted) when received ack message")
             // 同时给数据接收方，发送下进度
             sendReceivedProgress(fractionCompleted)

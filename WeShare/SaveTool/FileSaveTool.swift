@@ -8,7 +8,7 @@
 import Foundation
 
 final class FileSaveTool {
-    func saveFileToDocumentsDirectory(data: Data, fileName: String) {
+    static func saveFileToDocumentsDirectory(with data: Data, fileName: String = "") {
         // 获取文档目录的路径
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             // 在文档目录下创建文件路径
