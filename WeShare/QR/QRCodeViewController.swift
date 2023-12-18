@@ -59,7 +59,6 @@ final class QRCodeViewController: PLBaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scanner.stopRunning()
-        SwapDataManager.shared.stopServices()
     }
 
     private func setupViews() {

@@ -82,6 +82,7 @@ final class SwapDataManager: NSObject {
     
     // 停止广播和浏览服务
     func stopServices() {
+        print("[debug] stopServices")
         advertiser?.stopAdvertisingPeer()
         browser?.stopBrowsingForPeers()
         session.disconnect()
@@ -95,14 +96,14 @@ final class SwapDataManager: NSObject {
     ///   - progress: 发送进度
     func sendDatas(_ datas: [TransferData], progress: @escaping (Double) -> Void) {
         guard operations.isEmpty else {
-            return print("[debug] 队列忙，请稍后再试")
+            return print("[debug - sender] queue busy, please try again later")
         }
         self.progress = progress
         operations = datas.map { data in
            let operation = SendDataOperation(id: data.identifier) { [weak self] op in
                guard let dataToSend = messageArchiver(data) else {
                     op.reportSuccess()
-                    return print("[error] 数据转换错误")
+                    return print("[error - sender] data conversion error")
                 }
                self?.sendDataIMP(data: dataToSend, errorCallback: {
                    op.reportSuccess()
@@ -111,14 +112,15 @@ final class SwapDataManager: NSObject {
             self.operationQueue.addOperation(operation)
             return operation
         }
+        print("[debug - sender] start send data count:\(datas.count)")
         operationQueue.progress.totalUnitCount = Int64(operations.count)
         // 队列任务执行完
         operationQueue.addBarrierBlock { [weak self] in
             guard let self = self else { return }
-            print("[debug] 数据发送完成")
             self.operations.removeAll()
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
+                print("[debug - sender] send current progress: 1.0 when send completion")
                 self.progress?(1.0)
                 self.sendReceivedProgress(1.0)
             }
@@ -209,7 +211,7 @@ extension SwapDataManager: MCSessionDelegate {
         // 判断收到的是否为ACK类型数据
         if let ack = messageUnarchiver(data, type: ACKMessage.self)?.identifier {
             guard ack != "close_message" else {
-                print("[debug] received close_message stop service")
+                print("[debug - sender] stop service when received close_message ")
                 return stopServices()
             }
             // 数据发送方的进度回调
@@ -218,6 +220,7 @@ extension SwapDataManager: MCSessionDelegate {
                 guard let self = self else { return }
                 self.progress?(fractionCompleted)
             }
+            print("[debug - sender] send current progress:\(fractionCompleted) when received ack message")
             // 同时给数据接收方，发送下进度
             self.sendReceivedProgress(fractionCompleted)
             
@@ -228,6 +231,7 @@ extension SwapDataManager: MCSessionDelegate {
         
         // 是否为SwapData类型数据
         if let swapData = messageUnarchiver(data, type: TransferData.self) {
+            print("[debug - receiver] received data type:\(swapData.type.rawValue) send ack message")
             // 发送ACK
             self.sendACK(swapData.identifier)
             // 使用 onDataReceived 回调将数据传递给外部
@@ -244,8 +248,11 @@ extension SwapDataManager: MCSessionDelegate {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.progress?(Double(fractionCompleted))
-                self.sendACK("close_message")
-                self.stopServices()
+                print("[debug - receiver] current progress: \(fractionCompleted)")
+                if fractionCompleted >= 1.0 {
+                    print("[debug - receiver] send close_message when received completiom")
+                    self.sendACK("close_message")
+                }
             }
         }
     }
