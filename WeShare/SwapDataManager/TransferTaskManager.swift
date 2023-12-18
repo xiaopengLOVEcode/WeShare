@@ -162,11 +162,11 @@ extension TransferTaskManager {
             case .calendar:
                 print("")
             case .contact:
-                ContactSaveTool.addContact(with: [])
+                ContactSaveTool.addContact(with: data.data)
             case .document:
                 print("document")
             case .photo:
-                print("photo")
+                PhotoSaveTool.addImage(with: data.data)
             case .video:
                 print("video")
             case .text:
@@ -174,6 +174,7 @@ extension TransferTaskManager {
             }
         } progress: { [weak self] progress in
             guard let self = self else { return }
+            print("当前进度\(progress)")
             self.receiveVC?.setProgress(with: progress)
         }
     }

@@ -28,13 +28,15 @@ final class SendingViewController: PLBaseViewController {
         $0.font = .font(14)
     }
     
-    private let bottomBtn = GradientButton().then {
-        $0.applyAriesStyle()
-        $0.layer.cornerRadius = 10
-        $0.layer.masksToBounds = true
-        $0.setTitle("取消发送", for: .normal)
-        $0.setTitle("取消发送", for: .highlighted)
-    }
+    private lazy var bottomBtn: GradientButton = {
+        let btn = GradientButton()
+        btn.applyAriesStyle()
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
+        btn.setTitle(pageStyle.bottomText, for: .normal)
+        btn.setTitle(pageStyle.bottomText, for: .highlighted)
+        return btn
+    }()
     
     private lazy var infoView: InfoTopView = {
         let view = InfoTopView(style: pageStyle)
