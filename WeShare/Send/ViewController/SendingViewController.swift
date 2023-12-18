@@ -15,7 +15,7 @@ final class SendingViewController: PLBaseViewController {
     
     private let pageStyle: PageStyle
     
-    private let centerProgressLabel = UILabel().then {
+    private var centerProgressLabel = UILabel().then {
         $0.text = "0%"
         $0.font = .boldSystemFont(ofSize: 48)
         $0.textColor = UIColor(hex: 0x000E1F)
@@ -112,5 +112,10 @@ final class SendingViewController: PLBaseViewController {
             guard let self = self else { return }
             self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
+    }
+    
+    func setProgress(with progress: Double) {
+        self.centerProgressLabel.text = "\(Int(progress * 100))%"
+        progressView.setProgress(Int(progress * 100), animated: true)
     }
 }

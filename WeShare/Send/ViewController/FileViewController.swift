@@ -309,8 +309,8 @@ extension FileViewController: UITableViewDelegate, UITableViewDataSource {
             cell = FileCell(style: .subtitle, reuseIdentifier: identifier)
         }
         cell?.didSelectItemBlock = { [weak self] isSelected in
-//            guard let self = self else { return }
-//            self.vm.selectedItem(with: indexPath.row, isSelected: isSelected)
+            guard let self = self else { return }
+            self.vm.selectedItem(with: indexPath.row, isSelected: isSelected)
         }
         let model = vm.fileModels[indexPath.row]
         cell?.bindData(with: model)
@@ -351,7 +351,16 @@ extension FileViewController: TransferTaskManagerDelegate {
         return []
     }
     
-    func transferTaskManagerDatasReceive(datas: [TransferData]) {
-        
+    func transferTaskManagerDatasReceive(datas: [TransferData]) {}
+    
+    func loadDataFromFile(atPath path: String) -> Data? {
+        let fileURL = URL(fileURLWithPath: path)
+        do {
+            let fileData = try Data(contentsOf: fileURL)
+            return fileData
+        } catch {
+            print("Error loading data from file: \(error)")
+            return nil
+        }
     }
 }

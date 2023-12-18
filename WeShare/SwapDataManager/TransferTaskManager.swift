@@ -55,18 +55,18 @@ final class TransferTaskManager: NSObject {
     }
     
     func sendDatas(_ datas: [TransferData]) {
-        SwapDataManager.shared.sendDatas(datas) { [weak self]progress in
+        SwapDataManager.shared.sendDatas(datas) { [weak self] progress in
             guard let self = self else { return }
             // 同步进度
-            print(progress)
+            DispatchQueue.main.async {
+                self.sendVC?.setProgress(with: progress)
+            }
+            
+            print("当前进度\(progress)")
             if progress == 1 {
                 self.state = .complete
             }
         }
-    }
-    
-    func onDataReceived(dataReceived: @escaping (TransferData) -> Void, progress: @escaping (Double) -> Void) {
-
     }
     
     func jumpCurTransferPageVc() {
@@ -126,9 +126,7 @@ extension TransferTaskManager {
 // 接收
 extension TransferTaskManager {
     func startlisten() {
-        
         onDataReceived()
-        
         SwapDataManager.shared.startAdvertising("换机助手") { [weak self] state in
             guard let self = self else { return }
             switch state {
@@ -159,12 +157,10 @@ extension TransferTaskManager {
     
     private func onDataReceived() {
         // 这时候代理为空 不知道哪个页面该进行工作
-        SwapDataManager.shared.onDataReceived { [weak self] data in
-            guard let self = self else { return }
-            var text = "未知数据"
+        SwapDataManager.shared.onDataReceived { data in
             switch data.type {
             case .calendar:
-                print("calendar")
+                print("")
             case .contact:
                 ContactSaveTool.addContact(with: [])
             case .document:
@@ -176,8 +172,9 @@ extension TransferTaskManager {
             case .text:
                 print("text")
             }
-        } progress: { _ in
-            
+        } progress: { [weak self] progress in
+            guard let self = self else { return }
+            self.receiveVC?.setProgress(with: progress)
         }
     }
 }

@@ -17,29 +17,34 @@ class CalendarManager {
     }
 
     func fetchReminders(completion: @escaping ([EKEvent]?) -> Void) {
-//        let calendars = eventStore.calendars(for: .event)
-//        let start = Date(timeIntervalSince1970: 0)
-//        let end = Date()
-//        let predicate = eventStore.predicateForEvents(withStart: start, end: end, calendars: calendars)
-//        
-//        let models = eventStore.events(matching: predicate)
-//        print("")
-//        eventStore.fetchReminders(matching: predicate) { reminders in
-//            completion(reminders)
-//        }
-        
-        let calendar = Calendar.current
-        let startDate = calendar.date(byAdding: .month, value: -1, to: Date())!
-        let endDate = calendar.date(byAdding: .year, value: 1, to: Date())!
+        let newStore = EKEventStore()
+        let startDate = Date()
+        let endDate = Calendar.current.date(byAdding: .month, value: 1, to: startDate)!
 
-        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
-        let events = eventStore.events(matching: predicate)
-        for event in events {
-            print("Event Title: \(event.title ?? "")")
-            print("Event Start Date: \(event.startDate ?? Date())")
-            print("Event End Date: \(event.endDate ?? Date())")
-            // 其他事件属性...
+        
+        let eventArray = newStore.calendars(for: .event)
+        var onlyArray = [EKCalendar]()
+
+        for tempCalendar in eventArray {
+            if tempCalendar.type == .calDAV {
+                onlyArray.append(tempCalendar)
+            }
         }
+        let predicate = newStore.predicateForEvents(withStart: startDate, end: endDate, calendars: onlyArray)
+        let events = newStore.events(matching: predicate)
+        
+//        let calendar = Calendar.current
+//        let startDate = calendar.date(byAdding: .month, value: -1, to: Date())!
+//        let endDate = calendar.date(byAdding: .year, value: 1, to: Date())!
+//
+//        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
+//        let events = eventStore.events(matching: predicate)
+//        for event in events {
+//            print("Event Title: \(event.title ?? "")")
+//            print("Event Start Date: \(event.startDate ?? Date())")
+//            print("Event End Date: \(event.endDate ?? Date())")
+//            // 其他事件属性...
+//        }
         DispatchQueue.main.async {
             completion(events)
         }
