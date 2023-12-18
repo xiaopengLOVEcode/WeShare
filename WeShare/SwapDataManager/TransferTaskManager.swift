@@ -68,6 +68,11 @@ final class TransferTaskManager: NSObject {
                 if PLViewControllerUtils.currentTopController() == sendVC {
                     currentVC.navigationController?.popViewController(animated: true)
                 }
+                sendVC?.willMove(toParent: nil)
+                sendVC?.view.removeFromSuperview()
+                sendVC?.removeFromParent()
+                sendVC = nil
+                SwapDataManager.shared.stopServices()
             }
         }
     }
@@ -186,6 +191,11 @@ extension TransferTaskManager {
                 if PLViewControllerUtils.currentTopController() == sendVC {
                     currentVC.navigationController?.popViewController(animated: true)
                 }
+                receiveVC?.willMove(toParent: nil)
+                receiveVC?.view.removeFromSuperview()
+                receiveVC?.removeFromParent()
+                receiveVC = nil
+                SwapDataManager.shared.stopServices()
             }
         }
     }

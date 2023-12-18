@@ -26,6 +26,30 @@ extension PHAsset {
         guard let data = imageData else { return nil }
         return TransferData(type: .photo, data: data)
     }
+    
+    func videoMap() -> TransferData? {
+        var resData: Data?
+        let semaphore = DispatchSemaphore(value: 0)
+        let imageManager = PHImageManager.default()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isNetworkAccessAllowed = true
+        imageManager.requestAVAsset(forVideo: self, options: nil, resultHandler: { (avAsset, audioMix, info) in
+            guard let avAsset = avAsset as? AVURLAsset else {
+                return
+            }
+            do {
+                // 获取视频文件的 Data
+                let videoData = try Data(contentsOf: avAsset.url)
+                resData = videoData
+                semaphore.signal()
+            } catch {
+                print("无法将视频文件转换为 Data：\(error)")
+            }
+        })
+        _ = semaphore.wait(timeout: .distantFuture)
+        guard let data = resData else { return nil }
+        return TransferData(type: .video, data: data)
+    }
 }
 
 

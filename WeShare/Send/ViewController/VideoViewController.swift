@@ -218,7 +218,7 @@ extension VideoViewController: PageVCProtocol {
 
 extension VideoViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
-        let result = vm.selectResources().compactMap { $0.asset.map() }
+        let result = vm.selectResources().compactMap { $0.asset.videoMap() }
         return result
     }
     
