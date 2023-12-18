@@ -113,11 +113,9 @@ final class SwapDataManager: NSObject {
             return operation
         }
         print("[debug - sender] start send data count:\(datas.count)")
-        operationQueue.progress.totalUnitCount = Int64(operations.count)
         // 队列任务执行完
         operationQueue.addBarrierBlock { [weak self] in
             guard let self = self else { return }
-            self.operations.removeAll()
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 print("[debug - sender] send current progress: 1.0 when send completion")
@@ -212,20 +210,23 @@ extension SwapDataManager: MCSessionDelegate {
         if let ack = messageUnarchiver(data, type: ACKMessage.self)?.identifier {
             guard ack != "close_message" else {
                 print("[debug - sender] stop service when received close_message ")
+                operations.removeAll()
                 return stopServices()
             }
-            // 数据发送方的进度回调
-            let fractionCompleted = self.operationQueue.progress.fractionCompleted
+            // 判断收到的数据是否为ACK
+            operations.filter { $0.id == ack }.forEach { $0.reportSuccess() }
+            // 队列中状态是已完成的任务
+            let finishedOperations = operations.filter { $0.operationState == .finished }
+            // 计算进度 已完成 / 总数
+            let fractionCompleted = Double(finishedOperations.count / operations.count)
+            print("[debug - sender] send current progress:\(fractionCompleted) when received ack message")
+            // 同时给数据接收方，发送下进度
+            sendReceivedProgress(fractionCompleted)
+            
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.progress?(fractionCompleted)
             }
-            print("[debug - sender] send current progress:\(fractionCompleted) when received ack message")
-            // 同时给数据接收方，发送下进度
-            self.sendReceivedProgress(fractionCompleted)
-            
-            // 判断收到的数据是否为ACK
-            self.operations.filter { $0.id == ack }.forEach { $0.reportSuccess() }
             return
         }
         
@@ -233,7 +234,7 @@ extension SwapDataManager: MCSessionDelegate {
         if let swapData = messageUnarchiver(data, type: TransferData.self) {
             print("[debug - receiver] received data type:\(swapData.type.rawValue) send ack message")
             // 发送ACK
-            self.sendACK(swapData.identifier)
+            sendACK(swapData.identifier)
             // 使用 onDataReceived 回调将数据传递给外部
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
