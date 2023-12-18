@@ -234,7 +234,7 @@ extension FileViewController: UIDocumentPickerDelegate {
         var typesList: [String] = []
         var namesList: [String] = []
         for (_, url) in urls.enumerated() {
-            vm.fileModels.append(FileResourceModel(filePath: url, isSelected: false))
+            vm.fileModels.append(FileResourceModel(fileName: url.lastPathComponent, filePath: url, isSelected: false))
             // Start accessing a security-scoped resource.
             let isSecureAccess = url.startAccessingSecurityScopedResource()
 

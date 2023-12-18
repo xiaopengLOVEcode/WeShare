@@ -53,20 +53,22 @@ extension PHAsset {
     }
 }
 
-extension URL {
+extension FileResourceModel {
     func fileMap() -> TransferData? {
         var fileResData: Data?
         // 使用DispatchSemaphore等待异步操作完成
         let semaphore = DispatchSemaphore(value: 0)
         
         do {
-            let isSecureAccess = self.startAccessingSecurityScopedResource()
+            let isSecureAccess = self.filePath.startAccessingSecurityScopedResource()
             if isSecureAccess {
-                let fileData = try Data(contentsOf: self)
+                let fileData = try Data(contentsOf: self.filePath)
                 // 使用 fileData 进行进一步的处理
                 print("成功读取文件数据，数据大小：\(fileData.count) 字节")
                 fileResData = fileData
-                self.stopAccessingSecurityScopedResource()
+                let fileWrapper = FileWrapper(fileName: self.fileName, data: fileData)
+                fileResData = try JSONEncoder().encode(fileWrapper)
+                self.filePath.stopAccessingSecurityScopedResource()
             }
             semaphore.signal()
             

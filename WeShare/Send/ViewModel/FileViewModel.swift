@@ -8,8 +8,14 @@
 import Foundation
 
 struct FileResourceModel {
+    var fileName: String
     var filePath: URL
     var isSelected: Bool
+}
+
+struct FileWrapper: Codable {
+    var fileName: String
+    var data: Data
 }
 
 final class FileViewModel {
@@ -20,8 +26,8 @@ final class FileViewModel {
         return fileModels.map { $0.filePath.lastPathComponent }
     }
     
-    func selectResources() -> [URL] {
-        return fileModels.filter { $0.isSelected }.map { $0.filePath }
+    func selectResources() -> [FileResourceModel] {
+        return fileModels.filter { $0.isSelected }
     }
     
     func selectedAll() {
