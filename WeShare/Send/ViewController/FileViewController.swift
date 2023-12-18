@@ -348,7 +348,7 @@ extension FileViewController: FileCellProtocol {
 
 extension FileViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
-        return []
+        return vm.selectResources().compactMap {  $0.fileMap() }
     }
     
     func transferTaskManagerDatasReceive(datas: [TransferData]) {}

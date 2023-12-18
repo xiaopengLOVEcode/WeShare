@@ -44,11 +44,41 @@ extension PHAsset {
                 semaphore.signal()
             } catch {
                 print("无法将视频文件转换为 Data：\(error)")
+                semaphore.signal()
             }
         })
         _ = semaphore.wait(timeout: .distantFuture)
         guard let data = resData else { return nil }
         return TransferData(type: .video, data: data)
+    }
+}
+
+extension URL {
+    func fileMap() -> TransferData? {
+        var fileResData: Data?
+        // 使用DispatchSemaphore等待异步操作完成
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        do {
+            let isSecureAccess = self.startAccessingSecurityScopedResource()
+            if isSecureAccess {
+                let fileData = try Data(contentsOf: self)
+                // 使用 fileData 进行进一步的处理
+                print("成功读取文件数据，数据大小：\(fileData.count) 字节")
+                fileResData = fileData
+                self.stopAccessingSecurityScopedResource()
+            }
+            semaphore.signal()
+            
+
+        } catch {
+            print("无法读取文件数据：\(error.localizedDescription)")
+            semaphore.signal()
+        }
+        
+        _ = semaphore.wait(timeout: .distantFuture)
+        guard let data = fileResData else { return nil }
+        return TransferData(type: .document, data: data)
     }
 }
 
@@ -61,8 +91,10 @@ extension PPPersonModel {
         let semaphore = DispatchSemaphore(value: 0)
         do {
             personData = try JSONEncoder().encode(self)
+            semaphore.signal()
         } catch {
             print("Encoding failed: \(error)")
+            semaphore.signal()
         }
         
         _ = semaphore.wait(timeout: .distantFuture)

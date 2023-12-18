@@ -188,7 +188,7 @@ extension TransferTaskManager {
                 PLToast.showAutoHideHint("传输完成")
                 self.state = .complete
                 guard let currentVC = self.receiveVC else { return }
-                if PLViewControllerUtils.currentTopController() == sendVC {
+                if PLViewControllerUtils.currentTopController() == receiveVC {
                     currentVC.navigationController?.popViewController(animated: true)
                 }
                 receiveVC?.willMove(toParent: nil)

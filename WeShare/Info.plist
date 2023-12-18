@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string></string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>需要进行文件读写</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>需要访问照片库以保存视频</string>
 	<key>NSCalendarsFullAccessUsageDescription</key>
