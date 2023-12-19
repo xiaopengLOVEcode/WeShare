@@ -125,6 +125,7 @@
 		6206FDE32B0D0093009D1F80 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		6206FDE52B0D0329009D1F80 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		620D9E462B303FD80000A765 /* UIViewController+ChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildVC.swift"; sourceTree = "<group>"; };
+		620D9E482B30B9640000A765 /* WeShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeShare.entitlements; sourceTree = "<group>"; };
 		620DB6512AFA82DF00C3A556 /* SendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.swift; sourceTree = "<group>"; };
 		620DB6552AFA838600C3A556 /* InfoTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTopView.swift; sourceTree = "<group>"; };
 		623572332AFE7BF1000F8F34 /* SwitchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchBar.swift; sourceTree = "<group>"; };
@@ -336,6 +337,7 @@
 		629666912AF9188D00E06522 /* WeShare */ = {
 			isa = PBXGroup;
 			children = (
+				620D9E482B30B9640000A765 /* WeShare.entitlements */,
 				62496E432B2B613200BEBE8D /* SaveTool */,
 				6296671E2AF9228200E06522 /* WeShare-Bridging-Header.h */,
 				629666A02AF9188F00E06522 /* Info.plist */,
@@ -928,6 +930,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WeShare/WeShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -935,13 +938,14 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "允许读取日历";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "获取日历";
 				INFOPLIST_KEY_NSCameraUsageDescription = "允许使用相机";
 				INFOPLIST_KEY_NSContactsUsageDescription = "允许访问联系人";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "允许访问手机文件";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "需要进行文件读写";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "允许使用网络授权";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "需要访问照片库以保存视频";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "允许相册访问权限";
-				INFOPLIST_KEY_NSRemindersUsageDescription = "允许访问提醒事件";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "获取提醒事件";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -968,6 +972,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WeShare/WeShare.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -975,13 +980,14 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeShare/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "允许读取日历";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "获取日历";
 				INFOPLIST_KEY_NSCameraUsageDescription = "允许使用相机";
 				INFOPLIST_KEY_NSContactsUsageDescription = "允许访问联系人";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "允许访问手机文件";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "需要进行文件读写";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "允许使用网络授权";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "需要访问照片库以保存视频";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "允许相册访问权限";
-				INFOPLIST_KEY_NSRemindersUsageDescription = "允许访问提醒事件";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "获取提醒事件";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

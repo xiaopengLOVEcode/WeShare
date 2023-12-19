@@ -151,7 +151,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CalendarViewController: TransferTaskManagerDelegate {
     func transferTaskManagerGetDatas() -> [TransferData] {
-        return []
+        return vm.selectResources().compactMap {  $0.map() }
     }
     
     func transferTaskManagerDatasReceive(datas: [TransferData]) {

@@ -2,7 +2,7 @@
 //  OWSOperation.swift
 //  WeShare
 //
-//  Created by 朱国良 on 2023/11/25.
+//  Created by XP on 2023/11/25.
 //
 
 let OWSOperationKeyIsExecuting = "isExecuting"

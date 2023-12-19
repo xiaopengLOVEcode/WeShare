@@ -13,6 +13,12 @@ struct CalendarModel {
     var isSelected: Bool
 }
 
+struct CalendarWrapper: Codable {
+    let text: String
+    let startDate: Date
+    let endDate: Date
+}
+
 final class CalendarViewModel {
 
     var dataList: [CalendarModel] = []

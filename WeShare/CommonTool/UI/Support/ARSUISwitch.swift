@@ -1,6 +1,5 @@
 //
 //  ARSUISwitch.swift
-//  Aries
 //
 //  Created by XP on 2022/11/1.
 //

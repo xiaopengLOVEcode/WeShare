@@ -1,8 +1,5 @@
 //
 //  HUDView.swift
-//  Aries
-//
-//  Created by baochuquan on 2022/11/29.
 //
 
 import Foundation

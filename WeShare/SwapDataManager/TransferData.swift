@@ -2,7 +2,7 @@
 //  SwapData.swift
 //  WeShare
 //
-//  Created by 朱国良 on 2023/11/25.
+//  Created by XP on 2023/11/25.
 //
 
 import Foundation
@@ -114,16 +114,19 @@ extension EKEvent {
         var eventData: Data?
         // 使用DispatchSemaphore等待异步操作完成
         let semaphore = DispatchSemaphore(value: 0)
-//        let requestOptions = PHImageRequestOptions()
-//        requestOptions.isSynchronous = true
-//        requestOptions.deliveryMode = .highQualityFormat
-//        PHImageManager.default().requestImageDataAndOrientation(for: self, options: requestOptions) { data, _, _, _ in
-//            imageData = data
-//            semaphore.signal()
-//        }
+        
+        
+        let wrapper = CalendarWrapper(text: self.title, startDate: self.startDate, endDate: self.endDate)
+        do {
+            eventData = try JSONEncoder().encode(wrapper)
+            semaphore.signal()
+        } catch {
+            print("Encoding failed: \(error)")
+            semaphore.signal()
+        }
         _ = semaphore.wait(timeout: .distantFuture)
         guard let data = eventData else { return nil }
-        return TransferData(type: .contact, data: data)
+        return TransferData(type: .calendar, data: data)
     }
 }
 
