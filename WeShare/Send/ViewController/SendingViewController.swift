@@ -84,9 +84,8 @@ final class SendingViewController: PLBaseViewController {
         
         contentView.addSubview(progressView)
         progressView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.center.equalToSuperview()
             make.width.height.equalTo(230)
-            make.bottom.equalToSuperview().offset(-283)
         }
         
         contentView.addSubview(tipLable)
@@ -114,6 +113,10 @@ final class SendingViewController: PLBaseViewController {
             guard let self = self else { return }
             self.navigationController?.popViewController(animated: true)
         }.disposed(by: bag)
+    }
+    
+    func update(with size: Double, time: String) {
+        infoView.update(with: size, time: time)
     }
     
     func setProgress(with progress: Double) {

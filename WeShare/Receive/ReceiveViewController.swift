@@ -30,7 +30,7 @@ class ReceiveViewController: PLBaseViewController {
             attributedText.yy_setColor(UIColor.pl_main, range: content.nsrange(of: "下载安装"))
             attributedText.yy_setFont(.font(16), range: attributedText.yy_rangeOfAll())
             attributedText.yy_setTextHighlight(content.nsrange(of: "下载安装"), color: nil, backgroundColor: nil) { [weak self] _, _, _, _ in
-                self?.downLoadFunc()
+                self?.openUrl()
             }
             return attributedText
         }()
@@ -72,14 +72,13 @@ class ReceiveViewController: PLBaseViewController {
         imageWrapper.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(titleLable.snp.bottom).offset(50)
-            make.left.equalTo(titleLable)
-            make.right.equalTo(titleLable)
-            make.height.equalTo(317)
+            make.height.equalTo(LayoutConstants.deviceHeight * (317 / 812))
+            make.width.equalTo(imageWrapper.snp.height)
         }
 
         imageWrapper.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7))
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 22, left: 22, bottom: 22, right: 22))
             make.center.equalToSuperview()
         }
 
@@ -95,7 +94,8 @@ class ReceiveViewController: PLBaseViewController {
         imageView.image = qrImage
     }
     
-    private func downLoadFunc() {
-        
+    private func openUrl() {
+        let vc = WebViewController(url: URL(string: "https://apps.apple.com/cn/app/id6470176554")!)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

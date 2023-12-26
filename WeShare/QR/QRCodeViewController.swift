@@ -12,10 +12,14 @@ import YYText
 import SGQRCode
 
 final class QRCodeViewController: PLBaseViewController {
+    
+    private var firstShow = true
+    
     let tipLabel = UILabel().then {
         $0.text = "1、请在新手机上打开“换机助手>新机接收”\n生成二维码。"
         $0.font = .font(16)
         $0.textColor = .white
+        $0.numberOfLines = 0
     }
 
     private let gradientView = ARSGradientView().then {
@@ -27,7 +31,7 @@ final class QRCodeViewController: PLBaseViewController {
 
     private lazy var bottomLabel: YYLabel = {
         let otherPrivacyLabel = YYLabel()
-        otherPrivacyLabel.numberOfLines = 2
+        otherPrivacyLabel.numberOfLines = 0
         otherPrivacyLabel.attributedText = {
             let content = """
             2、未安装换机助手，点击下载安装或者去应
@@ -54,6 +58,15 @@ final class QRCodeViewController: PLBaseViewController {
         title = "旧机发送"
         setupViews()
         startVerticalAnimation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard !firstShow else {
+            firstShow = false
+            return
+        }
+        scanner.startRunning()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -119,6 +132,8 @@ final class QRCodeViewController: PLBaseViewController {
     }
 
     private func downLoadFunc() {
+        let vc = WebViewController(url: URL(string: "https://apps.apple.com/cn/app/id6470176554")!)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

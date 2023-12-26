@@ -28,7 +28,7 @@ final class PhotoViewController: UIViewController, TZImagePickerControllerDelega
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
         flowLayout.scrollDirection = .vertical
         flowLayout.headerReferenceSize = CGSize(width: LayoutConstants.deviceWidth - 32, height: 40)
-        flowLayout.itemSize = CGSize(width: 110, height: 110)
+        flowLayout.itemSize = CGSize(width: (LayoutConstants.deviceWidth - 60) / 3, height: (LayoutConstants.deviceWidth - 60) / 3)
         let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         view.bounces = false
         view.showsHorizontalScrollIndicator = false
@@ -223,5 +223,5 @@ extension PhotoViewController  {
 }
 
 extension PhotoViewController: PageVCProtocol {
-    func selectedAll() {}
+    func selectedAll(with all: Bool) {}
 }

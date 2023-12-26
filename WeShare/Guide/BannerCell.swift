@@ -38,7 +38,9 @@ final class BannerCell: UICollectionViewCell {
             make.top.equalToSuperview()
             make.left.equalToSuperview().offset(24)
             make.right.equalToSuperview().offset(-24)
+            make.height.equalTo(imageView.snp.width)
         }
+        
         contentView.addSubview(titleLable)
         titleLable.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(47)

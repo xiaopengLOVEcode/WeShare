@@ -56,7 +56,7 @@ final class WelcomeViewController: PLBaseViewController {
         guideView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.top.equalToSuperview().offset(146)
-            make.height.equalTo(520)
+            make.height.equalTo(LayoutConstants.deviceHeight * (448 / 812))
         }
         
         view.addSubview(bottomBtn)

@@ -213,7 +213,7 @@ extension VideoViewController: TZImagePickerControllerDelegate  {
 }
 
 extension VideoViewController: PageVCProtocol {
-    func selectedAll() {}
+    func selectedAll(with all: Bool) {}
 }
 
 extension VideoViewController: TransferTaskManagerDelegate {

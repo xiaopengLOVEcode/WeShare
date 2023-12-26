@@ -175,8 +175,8 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ContactViewController: PageVCProtocol {
-    func selectedAll() {
-        vm.selectedAll()
+    func selectedAll(with all: Bool) {
+        vm.selectedAll(with: all)
         tableView.reloadData()
     }
 }

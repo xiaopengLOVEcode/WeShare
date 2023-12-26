@@ -26,11 +26,11 @@ final class ContactViewModel {
         return result
     }
 
-    func selectedAll() {
+    func selectedAll(with all: Bool) {
         addressBookSouce = addressBookSouce.mapValues { models in
             models.map { model in
                 var modifiedModel = model
-                modifiedModel.isSelected = true
+                modifiedModel.isSelected = all
                 return modifiedModel
             }
         }

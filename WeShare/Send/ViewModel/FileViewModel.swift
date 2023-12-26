@@ -30,8 +30,8 @@ final class FileViewModel {
         return fileModels.filter { $0.isSelected }
     }
     
-    func selectedAll() {
-        fileModels = fileModels.map { var newModel = $0; newModel.isSelected = true; return newModel }
+    func selectedAll(with all: Bool) {
+        fileModels = fileModels.map { var newModel = $0; newModel.isSelected = all; return newModel }
     }
     
     func selectedItem(with index: Int, isSelected: Bool) {

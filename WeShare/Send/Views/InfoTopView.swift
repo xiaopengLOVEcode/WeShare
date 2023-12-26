@@ -152,4 +152,16 @@ final class InfoTopView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //    func formatFileSize(bytes: Int) -> String {
+    //        let byteCountFormatter = ByteCountFormatter()
+    //        byteCountFormatter.allowedUnits = [.useGB, .useMB, .useKB]
+    //        byteCountFormatter.countStyle = .file
+    //        return byteCountFormatter.string(fromByteCount: Int64(bytes))
+    //    }
+    //
+    //    let dataSizeInBytes = data.count
+    //    let formattedSize = formatFileSize(bytes: dataSizeInBytes)
+    //
+    //    print("Data size: \(formattedSize)")
+    
 }

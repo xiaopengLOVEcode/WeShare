@@ -293,7 +293,10 @@ extension FileViewController: UIDocumentPickerDelegate {
 
 
 extension FileViewController: PageVCProtocol {
-    func selectedAll() {}
+    func selectedAll(with all: Bool) {
+        vm.selectedAll(with: all)
+        tableView.reloadData()
+    }
 }
 
 

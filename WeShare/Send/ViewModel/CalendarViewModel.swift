@@ -23,8 +23,8 @@ final class CalendarViewModel {
 
     var dataList: [CalendarModel] = []
     
-    func selectedAll() {
-        dataList = dataList.map { var newModel = $0; newModel.isSelected = true; return newModel }
+    func selectedAll(with all: Bool) {
+        dataList = dataList.map { var newModel = $0; newModel.isSelected = all; return newModel }
     }
     
     func selectedItem(with index: Int, isSelected: Bool) {

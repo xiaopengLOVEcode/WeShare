@@ -18,7 +18,7 @@ final class BannerView: UIView, UICollectionViewDataSource, UICollectionViewDele
     
     static let bannerWidth = LayoutConstants.deviceWidth
     
-    static let bannerHeight = 328 + 47 + 22 + 33 + 20
+    static let bannerHeight = LayoutConstants.deviceHeight * (448 / 812)
     
     weak var dataSource: BannerViewDataSource! {
         didSet {

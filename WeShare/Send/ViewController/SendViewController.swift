@@ -9,11 +9,11 @@ import PagingKit
 import UIKit
 
 protocol PageVCProtocol {
-    func selectedAll()
+    func selectedAll(with all: Bool)
 }
 
 extension PageVCProtocol {
-    func selectedAll() {}
+    func selectedAll(with all: Bool) {}
 }
 
 class SendViewController: PLBaseViewController {
@@ -26,7 +26,7 @@ class SendViewController: PLBaseViewController {
     
     private let menuController = PagingMenuViewController()
     private let contentController = PagingContentViewController()
-    private var dataSource: [(menu: String, imageName: String, content: UIViewController & PageVCProtocol)] = []
+    private var dataSource: [(menu: String, imageName: String, content: UIViewController & PageVCProtocol, isSelectedAll: Bool)] = []
     
     private var currentIdex = -1
     
@@ -36,11 +36,11 @@ class SendViewController: PLBaseViewController {
         setupSubviews()
         
         dataSource = [
-            (menu: "照片", imageName: "photo", content: photoVc),
-            (menu: "视频", imageName: "video" , content: videoVc),
-            (menu: "联系人", imageName: "contact" , content: contactVc),
-            (menu: "日历", imageName: "calendar" , content: calendarVc),
-            (menu: "文档", imageName: "file", content: fileVc)
+            (menu: "照片", imageName: "photo", content: photoVc, isSelectedAll: false),
+            (menu: "视频", imageName: "video" , content: videoVc, isSelectedAll: false),
+            (menu: "联系人", imageName: "contact" , content: contactVc, isSelectedAll: false),
+            (menu: "日历", imageName: "calendar" , content: calendarVc, isSelectedAll: false),
+            (menu: "文档", imageName: "file", content: fileVc, isSelectedAll: false)
         ]
         setupPageView()
         
@@ -59,12 +59,21 @@ class SendViewController: PLBaseViewController {
         headerView.rightButton.setTitleColor( UIColor.pl_main, for: .highlighted)
     }
     
+//    func selectedAll(with all: Bool) {
+//        headerView.setRightButton(with: all ? "取消全选" : "全选", target: self, action: #selector(selectAllItem))
+//    }
+    
     
     @objc private func selectAllItem() {
         print(currentIdex)
         let vc = dataSource[safe: currentIdex]?.content
+        let isSelectedAll = dataSource[currentIdex].isSelectedAll
+        dataSource[currentIdex].isSelectedAll = !isSelectedAll
+        headerView.setRightButton(with: !isSelectedAll ? "取消全选" : "全选", target: self, action: #selector(selectAllItem))
+        headerView.rightButton.setTitleColor( UIColor.pl_main, for: .normal)
+        headerView.rightButton.setTitleColor( UIColor.pl_main, for: .highlighted)
         guard let currentVc = vc else { return }
-        currentVc.selectedAll()
+        currentVc.selectedAll(with: !isSelectedAll)
     }
     
     private func setupPageView() {
